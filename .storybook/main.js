@@ -1,3 +1,5 @@
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
 module.exports = {
   stories: [
     '../src/**/*.stories.mdx',
@@ -7,6 +9,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@chakra-ui/storybook-addon',
+    '@storybook/addon-a11y',
   ],
   framework: '@storybook/react',
   webpackFinal: async config => {
@@ -15,6 +18,13 @@ module.exports = {
       test: /\.mjs$/,
       use: [],
     });
+
+    config.resolve.plugins = [
+      ...(config.resolve.plugins || []),
+      new TsconfigPathsPlugin({
+        extensions: config.resolve.extensions,
+      }),
+    ];
 
     delete config.resolve.alias['emotion-theming'];
     delete config.resolve.alias['@emotion/styled'];
