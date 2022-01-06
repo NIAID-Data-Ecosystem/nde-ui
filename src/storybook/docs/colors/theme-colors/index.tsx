@@ -1,7 +1,7 @@
 import React from 'react';
-import {theme} from 'src/theme/index';
+import {theme} from 'src/theme/';
 
 export const ThemeColors = () => {
   console.log(theme);
-  return <div>hi</div>;
+  return <div>theme colors</div>;
 };
