@@ -1,7 +1,7 @@
-import { theme } from "../src/theme/index";
+import {theme} from '../src/theme/index';
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: {argTypesRegex: '^on[A-Z].*'},
   controls: {
     expanded: true, // sets docs in controls panel.
     matchers: {

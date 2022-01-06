@@ -1,0 +1,7 @@
+dist
+node_modules
+.next
+build
+
+# Ignore all MDX files:
+*.mdx

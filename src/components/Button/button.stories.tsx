@@ -20,16 +20,16 @@ export default {
       },
     },
     variant: {
-      defaultValue: 'solid',
       options: ['solid', 'outline', 'link', 'ghost'],
       table: {
+        defaultValue: 'solid',
         category: 'Color + Styling',
       },
     },
     isLoading: {
       control: 'boolean',
-      defaultValue: false,
       table: {
+        defaultValue: false,
         category: 'State Props',
       },
     },
