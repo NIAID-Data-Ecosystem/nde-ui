@@ -2,8 +2,50 @@
 NIAID styleguide colors
 http://policy-prod-varnish-1734617591.us-east-1.elb.amazonaws.com/policies/color
 */
+import {ColorHues} from '@chakra-ui/react';
 
-const colors = {
+export interface ColorHues {
+  50: string;
+  100: string;
+  200: string;
+  300: string;
+  400: string;
+  500: string;
+  600: string;
+  700: string;
+  800: string;
+  900: string;
+}
+
+export interface Colors {
+  primary: ColorHues;
+  secondary: ColorHues;
+  niaid: ColorHues;
+  gray: ColorHues;
+  text: {
+    body: string;
+    heading: string;
+  };
+  navigation: {bg: string; hover: string};
+  accent: {bg: string};
+  link: {
+    bg: string;
+    visited: string;
+  };
+  status: {
+    success: string;
+    alert: string;
+    warning: string;
+    error: string;
+    info: string;
+  };
+
+  socials: {
+    ig: string;
+  };
+}
+
+const colors: Colors = {
   primary: {
     50: '#f3fbfc',
     100: '#dbf2f6',

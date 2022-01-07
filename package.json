@@ -18,7 +18,9 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "gen:theme-typings": "chakra-cli tokens ./src/theme/index.ts --out ./src/theme/generated-theme.types.ts",
+    "postinstall": "npm run gen:theme-typings"
   },
   "eslintConfig": {
     "extends": [
@@ -40,6 +42,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
+    "@chakra-ui/cli": "^1.7.0",
     "@chakra-ui/icons": "^1.1.1",
     "@chakra-ui/react": "^1.7.4",
     "@chakra-ui/storybook-addon": "^1.0.0",
