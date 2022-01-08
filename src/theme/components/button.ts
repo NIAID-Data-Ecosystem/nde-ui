@@ -1,20 +1,20 @@
 const Button = {
   // The styles all button have in common
   baseStyle: {
-    borderRadius: "base", // <-- border radius is same for all variants and sizes
-    fontWeight: "normal",
-    fontFamily: "body",
-    cursor: "pointer",
+    borderRadius: 'base', // <-- border radius is same for all variants and sizes
+    fontWeight: 'normal',
+    fontFamily: 'body',
+    cursor: 'pointer',
   },
   // Two sizes: sm and md
   sizes: {
     sm: {
-      fontSize: "sm",
+      fontSize: 'sm',
       px: 4, // <-- px is short for paddingLeft and paddingRight
       py: 3, // <-- py is short for paddingTop and paddingBottom
     },
     md: {
-      fontSize: "md",
+      fontSize: 'md',
       px: 8, // <-- these values are tokens from the design system
       py: 4, // <-- these values are tokens from the design system
     },
@@ -22,18 +22,18 @@ const Button = {
   // Two variants: outline and solid
   variants: {
     link: {
-      textDecoration: "underline",
-      color: "nde.link.bg",
+      textDecoration: 'underline',
+      color: 'link.color',
     },
-    solid: ({ colorScheme, ...props }: { colorScheme: string }) => {
+    solid: ({colorScheme, ...props}: {colorScheme: string}) => {
       let bg;
       let hoverBg;
       let color;
 
-      if (colorScheme === "red") {
-        bg = "nde.status.error";
-        hoverBg = "red.700";
-        color = "white";
+      if (colorScheme === 'negative') {
+        bg = 'status.error';
+        hoverBg = 'red.700';
+        color = 'white';
       }
       return {
         bg,
@@ -46,19 +46,19 @@ const Button = {
       };
     },
 
-    outline: ({ colorScheme }: { colorScheme: string }) => {
+    outline: ({colorScheme}: {colorScheme: string}) => {
       let borderColor;
       let color;
       let hoverBg;
       let bg;
 
-      if (colorScheme === "red") {
-        borderColor = "nde.status.error";
-        color = "nde.status.error";
-        hoverBg = "red.50";
+      if (colorScheme === 'red') {
+        borderColor = 'status.error';
+        color = 'status.error';
+        hoverBg = 'red.50';
       }
       return {
-        border: "1px solid",
+        border: '1px solid',
         color,
         bg,
         _hover: {
@@ -72,9 +72,9 @@ const Button = {
   },
   // The default size and variant values
   defaultProps: {
-    size: "md",
-    variant: "solid",
-    colorScheme: "primary",
+    size: 'md',
+    variant: 'solid',
+    colorScheme: 'primary',
   },
 };
 

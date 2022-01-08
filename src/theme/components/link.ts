@@ -3,7 +3,7 @@ const Link = {
     return {
       display: 'inline-flex',
       alignItems: 'baseline',
-      color: props.color || 'nde.link.bg',
+      color: props.color || 'link.color',
       lineHeight: 'base',
       // using border instead of text-decoration as outlined here: https://policy-prod-varnish-1734617591.us-east-1.elb.amazonaws.com/policies/link-styles
       borderBottom: '0.0625rem solid',
@@ -15,17 +15,17 @@ const Link = {
       ':hover, :visited:hover': {
         textDecoration: 'none',
         borderBottom: '0.0625rem solid',
-        borderColor: props?._hover?.color || 'niaid.600',
-        color: props?._hover?.color || 'niaid.600',
+        borderColor: props?._hover?.color || 'niaid.color',
+        color: props?._hover?.color || 'niaid.color',
         svg: {
-          color: props?._hover?.color || 'niaid.600',
+          color: props?._hover?.color || 'niaid.color',
         },
       },
       ':visited': {
-        color: props?._visited?.color ?? 'nde.link.visited',
-        borderColor: props?._visited?.color ?? 'nde.link.visited',
+        color: props?._visited?.color ?? 'link.visited',
+        borderColor: props?._visited?.color ?? 'link.visited',
         svg: {
-          color: props?._visited?.color ?? 'nde.link.visited',
+          color: props?._visited?.color ?? 'link.visited',
         },
       },
     };
@@ -33,7 +33,7 @@ const Link = {
   variants: {
     underline: (props: any) => {
       return {
-        borderColor: props.color || 'nde.link.bg',
+        borderColor: props.color || 'link.color',
         ':hover': {
           borderColor: 'transparent',
           textDecoration: 'none',

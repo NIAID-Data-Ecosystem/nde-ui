@@ -1,6 +1,6 @@
 import {SystemStyleObject} from '@chakra-ui/theme-tools';
 const baseStyle = {
-  color: 'nde.text.heading',
+  color: 'text.heading',
 };
 
 const sizes: Record<string, SystemStyleObject> = {

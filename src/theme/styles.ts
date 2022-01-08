@@ -9,7 +9,7 @@ const styles: Styles = {
     },
     body: {
       fontFamily: 'body',
-      color: 'nde.text.body',
+      color: 'text.body',
       fontSize: '16px',
       lineHeight: 'base',
     },

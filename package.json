@@ -19,7 +19,7 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "gen:theme-typings": "chakra-cli tokens ./src/theme/index.ts --out ./src/theme/generated-theme.types.ts",
+    "gen:theme-typings": "chakra-cli tokens ./src/theme/index.ts --out ./src/theme/theme.types.ts",
     "postinstall": "npm run gen:theme-typings"
   },
   "eslintConfig": {
@@ -56,6 +56,7 @@
     "@storybook/react": "^6.4.9",
     "babel-loader": "^8.2.3",
     "framer-motion": "^5.5.5",
+    "react-icons": "^4.3.1",
     "tsconfig-paths-webpack-plugin": "^3.5.2"
   }
 }

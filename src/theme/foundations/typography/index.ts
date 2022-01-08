@@ -1,3 +1,5 @@
+import {Typography} from './typography.types';
+
 /*
 NIAID styleguide typography
 http://policy-prod-varnish-1734617591.us-east-1.elb.amazonaws.com/policies/typography
@@ -5,11 +7,10 @@ http://policy-prod-varnish-1734617591.us-east-1.elb.amazonaws.com/policies/typog
 USWDS Typesetting guidelines:
 https://designsystem.digital.gov/design-tokens/typesetting/overview/
 */
-
-const typography = {
+const typography: Typography = {
   fonts: {
     heading: 'Martel',
-    body: `"Public Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+    body: `Public Sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
   },
   fontSizes: {
     xs: '0.875rem',

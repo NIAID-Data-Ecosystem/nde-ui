@@ -1,5 +1,6 @@
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
+
 module.exports = {
   stories: [
     '../src/**/*.stories.mdx',
@@ -12,25 +13,7 @@ module.exports = {
     '@storybook/addon-a11y',
   ],
   framework: '@storybook/react',
-  webpackFinal: async config => {
-    config.module.rules.push({
-      type: 'javascript/auto',
-      test: /\.mjs$/,
-      use: [],
-    });
-
-    config.resolve.plugins = [
-      ...(config.resolve.plugins || []),
-      new TsconfigPathsPlugin({
-        extensions: config.resolve.extensions,
-      }),
-    ];
-
-    delete config.resolve.alias['emotion-theming'];
-    delete config.resolve.alias['@emotion/styled'];
-    delete config.resolve.alias['@emotion/core'];
-    return config;
-  },
+  staticDirs: ['../public'],
   typescript: {
     check: false,
     checkOptions: {},
@@ -51,5 +34,24 @@ module.exports = {
             ) &&
             !prop.parent.fileName.includes('node_modules/@chakra-ui/system'))),
     },
+  },
+  webpackFinal: async config => {
+    config.module.rules.push({
+      type: 'javascript/auto',
+      test: /\.mjs$/,
+      use: [],
+    });
+
+    config.resolve.plugins = [
+      ...(config.resolve.plugins || []),
+      new TsconfigPathsPlugin({
+        extensions: config.resolve.extensions,
+      }),
+    ];
+
+    delete config.resolve.alias['emotion-theming'];
+    delete config.resolve.alias['@emotion/styled'];
+    delete config.resolve.alias['@emotion/core'];
+    return config;
   },
 };

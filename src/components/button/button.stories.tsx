@@ -2,11 +2,9 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {Button} from './button';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Components/Button',
   component: Button,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     label: {
       table: {
@@ -14,7 +12,7 @@ export default {
       },
     },
     colorScheme: {
-      options: ['nde.primary', 'nde.secondary', 'gray'],
+      options: ['primary', 'secondary', 'gray'],
       table: {
         category: 'Color + Styling',
       },
@@ -42,16 +40,13 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
-
 export const SolidVariant: ComponentStory<typeof Button> = args => (
   <>
-    <Button {...args} colorScheme='nde.primary'>
+    <Button {...args} colorScheme='primary'>
       Primary
     </Button>
 
-    <Button {...args} colorScheme='nde.secondary'>
+    <Button {...args} colorScheme='secondary'>
       Secondary
     </Button>
 
@@ -60,5 +55,3 @@ export const SolidVariant: ComponentStory<typeof Button> = args => (
     </Button>
   </>
 );
-
-// More on args: https://storybook.js.org/docs/react/writing-stories/args

@@ -1,10 +1,11 @@
-import {extendTheme} from '@chakra-ui/react';
+import {extendTheme, ThemeTypings} from '@chakra-ui/react';
 import foundations from './foundations';
 import components from './components';
 import styles from './styles';
 import type {ColorModeOptions} from '@chakra-ui/system';
-import {ThemeTypings} from './generated-theme.types';
-import {Colors} from './foundations/colors';
+// import {ThemeTypings} from './generated-theme.types';
+import {Colors} from './foundations/colors/colors.types';
+import {Fonts} from './foundations/typography/typography.types';
 
 export interface ThemeConfig extends ColorModeOptions {
   cssVarPrefix?: string;
@@ -25,7 +26,7 @@ const overrides = {
   config,
 };
 
-interface Theme extends Omit<ThemeTypings, 'colors'> {
+interface Theme extends Omit<ThemeTypings, 'colors' | 'fonts'>, Fonts {
   colors: Colors;
 }
 
