@@ -1,12 +1,12 @@
 import React from 'react';
-
 import {
   Button as ChakraButton,
   ButtonProps as ChakraButtonProps,
   SystemProps,
 } from '@chakra-ui/react';
 
-interface ButtonProps extends Omit<ChakraButtonProps, keyof SystemProps> {
+export interface ButtonProps
+  extends Omit<ChakraButtonProps, keyof SystemProps> {
   label?: string;
 }
 /**

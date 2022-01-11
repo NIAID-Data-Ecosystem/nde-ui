@@ -25,15 +25,13 @@ const Button = {
       textDecoration: 'underline',
       color: 'link.color',
     },
-    solid: ({colorScheme, ...props}: {colorScheme: string}) => {
+    solid: ({colorScheme}: {colorScheme: string}) => {
       let bg;
       let hoverBg;
-      let color;
 
       if (colorScheme === 'negative') {
         bg = 'status.error';
         hoverBg = 'red.700';
-        color = 'white';
       }
       return {
         bg,
@@ -47,13 +45,11 @@ const Button = {
     },
 
     outline: ({colorScheme}: {colorScheme: string}) => {
-      let borderColor;
       let color;
       let hoverBg;
       let bg;
 
       if (colorScheme === 'red') {
-        borderColor = 'status.error';
         color = 'status.error';
         hoverBg = 'red.50';
       }

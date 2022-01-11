@@ -7,7 +7,7 @@ import type {ColorModeOptions} from '@chakra-ui/system';
 import {Colors} from './foundations/colors/colors.types';
 import {Fonts} from './foundations/typography/typography.types';
 
-export interface ThemeConfig extends ColorModeOptions {
+interface ThemeConfig extends ColorModeOptions {
   cssVarPrefix?: string;
 }
 const config: ThemeConfig = {
