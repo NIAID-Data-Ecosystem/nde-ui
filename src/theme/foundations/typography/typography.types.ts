@@ -1,3 +1,5 @@
+import {TypographyProps} from '@chakra-ui/react';
+
 export interface Fonts {
   fonts: {
     heading: string;
@@ -5,7 +7,7 @@ export interface Fonts {
   };
 }
 
-export interface Typography extends Fonts {
+export interface Typography extends Fonts, TypographyProps {
   fontSizes: {
     xs: string;
     sm: string;

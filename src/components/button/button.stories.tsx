@@ -1,57 +1,262 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {Button} from './button';
+import {Box, Flex} from '@chakra-ui/react';
 
 export default {
   title: 'Components/Button',
   component: Button,
+  parameters: {
+    controls: {sort: 'alpha'},
+  },
+
   argTypes: {
-    label: {
+    /* theming */
+    children: {
+      name: 'children',
       table: {
-        category: 'Text',
+        type: {
+          summary: 'text|React.ReactElement',
+        },
       },
     },
     colorScheme: {
-      options: ['primary', 'secondary', 'gray'],
+      name: 'colorScheme',
+      control: {
+        type: 'radio',
+        options: ['primary', 'secondary', 'gray', 'negative'],
+      },
       table: {
-        category: 'Color + Styling',
+        type: {
+          summary: 'primary|secondary|gray|negative',
+        },
       },
     },
+
+    size: {
+      name: 'size',
+      type: {name: 'string', required: false},
+
+      control: {
+        type: 'select',
+        options: ['xs', 'sm', 'md', 'lg'],
+      },
+    },
+
     variant: {
-      options: ['solid', 'outline', 'link', 'ghost'],
+      name: 'variant',
+      control: {
+        type: 'select',
+        options: ['solid', 'outline', 'link', 'ghost'],
+      },
       table: {
-        defaultValue: 'solid',
-        category: 'Color + Styling',
+        type: {
+          summary: 'solid|ghost|link|unstyled',
+        },
       },
     },
-    isLoading: {
-      control: 'boolean',
+
+    isFullWidth: {
+      table: {},
+    },
+
+    /* icon */
+    iconSpacing: {
       table: {
-        defaultValue: false,
-        category: 'State Props',
+        category: 'icon',
+      },
+    },
+    leftIcon: {
+      table: {
+        category: 'icon',
+      },
+    },
+
+    rightIcon: {
+      table: {
+        category: 'icon',
+      },
+    },
+
+    /* spinner */
+    spinner: {
+      table: {
+        category: 'spinner',
+      },
+    },
+    spinnerPlacement: {
+      table: {
+        category: 'spinner',
+      },
+    },
+
+    /* state  */
+    loadingText: {
+      table: {
+        category: 'state',
+      },
+    },
+    isActive: {
+      control: {type: 'boolean'},
+      table: {
+        category: 'state',
+      },
+    },
+
+    isLoading: {
+      control: {type: 'boolean'},
+      table: {
+        category: 'state',
       },
     },
     isDisabled: {
-      control: 'boolean',
+      control: {type: 'boolean'},
       table: {
-        category: 'State Props',
+        category: 'state',
       },
     },
   },
 } as ComponentMeta<typeof Button>;
 
-export const SolidVariant: ComponentStory<typeof Button> = args => (
-  <>
-    <Button {...args} colorScheme='primary'>
-      Primary
-    </Button>
+const defaultButtonArgs = {
+  isActive: false,
+  isLoading: false,
+  isDisabled: false,
+  isFullWidth: false,
+  colorScheme: 'primary',
+  variant: 'solid',
+  children: 'Click Me',
+};
 
-    <Button {...args} colorScheme='secondary'>
-      Secondary
-    </Button>
-
-    <Button {...args} colorScheme='gray'>
-      Gray
-    </Button>
-  </>
+export const AllButtons: ComponentStory<typeof Button> = args => (
+  <Flex flexDirection={'column'} my={2}>
+    <Flex>
+      <Box m={2}>
+        <Button {...args} colorScheme='primary'>
+          Primary
+        </Button>
+      </Box>
+      <Box m={2}>
+        <Button {...args} colorScheme='secondary'>
+          Secondary
+        </Button>
+      </Box>
+      <Box m={2}>
+        <Button {...args} colorScheme='gray'>
+          Gray
+        </Button>
+      </Box>
+      <Box m={2}>
+        <Button {...args} colorScheme='negative'>
+          Negative
+        </Button>
+      </Box>
+    </Flex>
+    <Flex my={2}>
+      <Box m={2}>
+        <Button {...args} colorScheme='primary' variant={'outline'}>
+          Primary
+        </Button>
+      </Box>
+      <Box m={2}>
+        <Button {...args} colorScheme='secondary' variant={'outline'}>
+          Secondary
+        </Button>
+      </Box>
+      <Box m={2}>
+        <Button {...args} colorScheme='gray' variant={'outline'}>
+          Gray
+        </Button>
+      </Box>
+      <Box m={2}>
+        <Button {...args} colorScheme='negative' variant={'outline'}>
+          Negative
+        </Button>
+      </Box>
+    </Flex>
+    <Flex my={2}>
+      <Box m={2}>
+        <Button {...args} colorScheme='primary' variant={'ghost'}>
+          Primary
+        </Button>
+      </Box>
+      <Box m={2}>
+        <Button {...args} colorScheme='secondary' variant={'ghost'}>
+          Secondary
+        </Button>
+      </Box>
+      <Box m={2}>
+        <Button {...args} colorScheme='gray' variant={'ghost'}>
+          Gray
+        </Button>
+      </Box>
+      <Box m={2}>
+        <Button {...args} colorScheme='negative' variant={'ghost'}>
+          Negative
+        </Button>
+      </Box>
+    </Flex>
+  </Flex>
 );
+
+const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
+
+// Solid Buttons
+export const SolidPrimary = Template.bind({});
+SolidPrimary.args = {
+  ...defaultButtonArgs,
+};
+
+export const SolidLoading = Template.bind({});
+SolidLoading.args = {
+  ...defaultButtonArgs,
+  isLoading: true,
+};
+
+export const SolidDisabled = Template.bind({});
+SolidDisabled.args = {
+  ...defaultButtonArgs,
+  isDisabled: true,
+};
+
+// Outline Buttons
+export const Outline = Template.bind({});
+Outline.args = {
+  ...defaultButtonArgs,
+  variant: 'outline',
+};
+
+export const OutlineLoading = Template.bind({});
+OutlineLoading.args = {
+  ...defaultButtonArgs,
+  isLoading: true,
+  variant: 'outline',
+};
+
+export const OutlineDisabled = Template.bind({});
+OutlineDisabled.args = {
+  ...defaultButtonArgs,
+  isDisabled: true,
+  variant: 'outline',
+};
+
+// Ghost Buttons
+export const Ghost = Template.bind({});
+Ghost.args = {
+  ...defaultButtonArgs,
+  variant: 'ghost',
+};
+
+export const GhostLoading = Template.bind({});
+GhostLoading.args = {
+  ...defaultButtonArgs,
+  isLoading: true,
+  variant: 'ghost',
+};
+
+export const GhostDisabled = Template.bind({});
+GhostDisabled.args = {
+  ...defaultButtonArgs,
+  isDisabled: true,
+  variant: 'ghost',
+};

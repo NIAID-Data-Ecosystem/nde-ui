@@ -26,13 +26,12 @@ module.exports = {
       propFilter: prop =>
         // Filter props so that only chakra-ui props are showing in the docs. (e.g. no html attributes props and no styled system props.)
         prop.parent !== undefined &&
-        (!prop.parent.fileName.includes('node_modules') ||
-          (prop.parent.fileName.includes('node_modules') &&
-            prop.parent.fileName.includes('node_modules/@chakra-ui/') &&
-            !prop.parent.fileName.includes(
-              'node_modules/@chakra-ui/styled-system',
-            ) &&
-            !prop.parent.fileName.includes('node_modules/@chakra-ui/system'))),
+        prop.parent.fileName.includes('node_modules') &&
+        prop.parent.fileName.includes('node_modules/@chakra-ui/') &&
+        !prop.parent.fileName.includes('node_modules/@chakra-ui/react/') &&
+        !prop.parent.fileName.includes(
+          'node_modules/@chakra-ui/styled-system/',
+        ),
     },
   },
   webpackFinal: async config => {

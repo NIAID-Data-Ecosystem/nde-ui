@@ -6,6 +6,9 @@ import type {ColorModeOptions} from '@chakra-ui/system';
 // import {ThemeTypings} from './generated-theme.types';
 import {Colors} from './foundations/colors/colors.types';
 import {Fonts} from './foundations/typography/typography.types';
+import {Button} from '../components/button/button.theme';
+import {Text} from '../components/text/';
+import {Card, CardHeader} from '../components/card/card.theme';
 
 interface ThemeConfig extends ColorModeOptions {
   cssVarPrefix?: string;
@@ -22,7 +25,13 @@ Theme extended from Chakra-UI: https://chakra-ui.com/docs/theming/theme
 const overrides = {
   ...foundations,
   styles,
-  components,
+  components: {
+    ...components,
+    Button,
+    Text,
+    Card,
+    CardHeader,
+  },
   config,
 };
 

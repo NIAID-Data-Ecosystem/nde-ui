@@ -1,17 +1,16 @@
-const Button = {
-  // The styles all button have in common
+export const Button = {
+  // The styles all buttons have in common
   baseStyle: {
-    borderRadius: 'base', // <-- border radius is same for all variants and sizes
+    borderRadius: 'base',
     fontWeight: 'normal',
     fontFamily: 'body',
     cursor: 'pointer',
   },
-  // Two sizes: sm and md
   sizes: {
     sm: {
       fontSize: 'sm',
-      px: 4, // <-- px is short for paddingLeft and paddingRight
-      py: 3, // <-- py is short for paddingTop and paddingBottom
+      px: 4,
+      py: 3,
     },
     md: {
       fontSize: 'md',
@@ -19,7 +18,6 @@ const Button = {
       py: 4, // <-- these values are tokens from the design system
     },
   },
-  // Two variants: outline and solid
   variants: {
     link: {
       textDecoration: 'underline',
@@ -43,13 +41,29 @@ const Button = {
         },
       };
     },
+    ghost: ({colorScheme}: {colorScheme: string}) => {
+      let bg;
+      let hoverBg;
 
+      if (colorScheme === 'negative') {
+        hoverBg = 'red.100';
+      }
+      return {
+        bg,
+        _hover: {
+          bg: hoverBg,
+          _disabled: {
+            bg,
+          },
+        },
+      };
+    },
     outline: ({colorScheme}: {colorScheme: string}) => {
       let color;
       let hoverBg;
       let bg;
 
-      if (colorScheme === 'red') {
+      if (colorScheme === 'negative') {
         color = 'status.error';
         hoverBg = 'red.50';
       }
@@ -73,5 +87,3 @@ const Button = {
     colorScheme: 'primary',
   },
 };
-
-export default Button;

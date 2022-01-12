@@ -5,13 +5,10 @@ import {
   SystemProps,
 } from '@chakra-ui/react';
 
-export interface ButtonProps
-  extends Omit<ChakraButtonProps, keyof SystemProps> {
-  label?: string;
-}
+export type ButtonProps = Omit<ChakraButtonProps, keyof SystemProps>;
 /**
  * Primary UI component for user interaction
  */
-export const Button: React.FC<ButtonProps> = ({children, label, ...rest}) => {
-  return <ChakraButton {...rest}>{label || children}</ChakraButton>;
+export const Button: React.FC<ButtonProps> = ({children, ...props}) => {
+  return <ChakraButton {...props}>{children}</ChakraButton>;
 };
