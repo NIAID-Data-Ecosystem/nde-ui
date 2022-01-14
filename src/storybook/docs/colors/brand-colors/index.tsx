@@ -2,7 +2,6 @@ import React from 'react';
 import {theme} from 'src/theme/';
 import {ColorSwatch} from 'src/storybook/components/color-swatch';
 import {Box, Heading} from '@chakra-ui/react';
-import {Colors} from 'src/theme/foundations/colors/colors.types';
 
 export const BrandColors = () => {
   const {colors} = theme;
@@ -28,7 +27,7 @@ export const BrandColors = () => {
   };
 
   // Get the only the brand sections from the theme.
-  const brandColors: [string, Colors][] = Object.entries(colors).filter(v => {
+  const brandColors = Object.entries(colors).filter(v => {
     return (
       v[0] === 'primary' ||
       v[0] === 'secondary' ||

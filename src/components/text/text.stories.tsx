@@ -32,6 +32,7 @@ export default {
       name: 'fontSize',
       description: 'Different text font sizes.',
       table: {
+        defaultValue: {summary: 'md'},
         type: {
           summary: 'string|number',
         },
@@ -45,6 +46,7 @@ export default {
       name: 'fontFamily',
       description: 'Different text font families.',
       table: {
+        defaultValue: {summary: theme.fonts.body},
         type: {
           summary: 'string',
         },
@@ -57,9 +59,14 @@ export default {
 
     color: {
       name: 'color',
-      default: theme.colors.text.body,
+      defaultValue: theme.colors.text.body,
+      description: 'Text color',
       control: {
         type: 'color',
+      },
+      table: {
+        defaultValue: {summary: 'text.body'},
+        type: {summary: 'string'},
       },
     },
 
@@ -70,12 +77,14 @@ export default {
     /* CSS properties */
     align: {
       table: {
+        defaultValue: {summary: 'none'},
         category: 'CSS properties',
       },
       control: {type: 'text'},
     },
     casing: {
       table: {
+        defaultValue: {summary: 'lowercase'},
         category: 'CSS properties',
       },
       control: {type: 'text'},
@@ -83,6 +92,7 @@ export default {
     decoration: {
       table: {
         category: 'CSS properties',
+        defaultValue: {summary: 'none'},
       },
       control: {type: 'text'},
     },
@@ -101,4 +111,24 @@ Default.args = {
   align: 'left',
   casing: 'capitalize',
   decoration: 'none',
+};
+
+export const Sizes = (args: any) => {
+  return Object.keys(theme.fontSizes).map(fontSize => {
+    return (
+      <Text {...args} key={fontSize} fontSize={fontSize} isTruncated>
+        {fontSize} - This is some example text.
+      </Text>
+    );
+  });
+};
+
+export const Weights = (args: any) => {
+  return Object.keys(theme.fontWeights).map(fontWeight => {
+    return (
+      <Text {...args} key={fontWeight} fontWeight={fontWeight} isTruncated>
+        {fontWeight} - This is some example text.
+      </Text>
+    );
+  });
 };

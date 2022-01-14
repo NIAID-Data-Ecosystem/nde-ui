@@ -1,5 +1,7 @@
-const Link = {
-  baseStyle: (props: any) => {
+import {ComponentStyleConfig} from '@chakra-ui/react';
+
+export const Link: ComponentStyleConfig = {
+  baseStyle: props => {
     return {
       display: 'inline-flex',
       alignItems: 'baseline',
@@ -31,7 +33,7 @@ const Link = {
     };
   },
   variants: {
-    underline: (props: any) => {
+    underline: props => {
       return {
         borderColor: props.color || 'link.color',
         ':hover': {
@@ -40,20 +42,20 @@ const Link = {
         },
       };
     },
-    'no-line': {
-      borderBottom: 'none',
-      textDecoration: 'none',
-      _hover: {textDecoration: 'none', borderBottom: 'none'},
-      ':hover, :visited:hover': {
-        textDecoration: 'none',
+    unstyled: () => {
+      return {
         borderBottom: 'none',
-      },
-      ':visited': {
         textDecoration: 'none',
-        borderBottom: 'none',
-      },
+        _hover: {textDecoration: 'none', borderBottom: 'none'},
+        ':hover, :visited:hover': {
+          textDecoration: 'none',
+          borderBottom: 'none',
+        },
+        ':visited': {
+          textDecoration: 'none',
+          borderBottom: 'none',
+        },
+      };
     },
   },
 };
-
-export default Link;

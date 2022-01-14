@@ -12,7 +12,7 @@ export const excludedChakraProps = [
 export const parameters = {
   actions: {argTypesRegex: '^on[A-Z].*'},
   controls: {
-    exclude: [...excludedChakraProps],
+    exclude: ['__css', 'orientation', 'styleConfig', 'sx', 'css'],
     expanded: true, // sets docs in controls panel.
     matchers: {
       color: /(background|color)$/i,

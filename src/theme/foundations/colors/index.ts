@@ -3,9 +3,11 @@ NIAID styleguide colors
 http://policy-prod-varnish-1734617591.us-east-1.elb.amazonaws.com/policies/color
 */
 
-import {Colors} from './colors.types';
+import {theme as ChakraTheme} from '@chakra-ui/react';
+export type ColorsProps = typeof colors;
 
-const colors: Colors = {
+export const colors = {
+  ...ChakraTheme.colors,
   primary: {
     50: '#f3fbfc',
     100: '#dbf2f6',
@@ -69,5 +71,3 @@ const colors: Colors = {
     ig: 'linear-gradient(45deg,#f6874f 0%,#cf4679 50%,#8c2f8f 100%)',
   },
 };
-
-export default colors;
