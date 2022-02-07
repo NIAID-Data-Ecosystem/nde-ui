@@ -19,6 +19,8 @@ import {
 } from '@chakra-ui/react';
 import {FaCaretDown, FaChevronRight, FaChevronDown} from 'react-icons/fa';
 import {IoClose, IoMenu} from 'react-icons/io5';
+import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-preferred--white.svg';
+import DesktopLogo from '../../assets/logos/niaid-data-ecosystem-logo_desktop--white.svg';
 
 export interface RouteProps {
   label: string;
@@ -29,7 +31,7 @@ export interface RouteProps {
 }
 
 export interface NavigationProps {
-  navItems: Array<RouteProps>;
+  navItems?: Array<RouteProps>;
   bg: string;
 }
 
@@ -234,11 +236,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
               <Image
                 w={['220px', '220px', '350px']}
                 h={'auto'}
-                src={
-                  isMobile
-                    ? '/assets/logos/nde-logo-acronym-white.svg'
-                    : '/assets/logos/nde-logo-white.svg'
-                }
+                src={isMobile ? MobileLogo : DesktopLogo}
                 alt={'niaid logo'}
               />
             </Link>
@@ -249,35 +247,39 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
               justifyContent={'flex-end'}
             >
               <Stack direction={'row'} spacing={4}>
-                {navItems.map(navItem => (
-                  <DesktopNavItem key={navItem.label} {...navItem} />
-                ))}
+                {navItems &&
+                  navItems.map(navItem => (
+                    <DesktopNavItem key={navItem.label} {...navItem} />
+                  ))}
               </Stack>
             </Flex>
           </Flex>
-          <IconButton
-            onClick={onToggle}
-            color={'white'}
-            display={{base: 'flex', md: 'none'}}
-            _hover={{bg: 'whiteAlpha.500'}}
-            icon={
-              isOpen ? (
-                <Icon as={IoClose} w={5} h={5} />
-              ) : (
-                <Icon as={IoMenu} w={5} h={5} />
-              )
-            }
-            variant={'ghost'}
-            aria-label={'Toggle Navigation'}
-          />
+          {navItems && (
+            <IconButton
+              onClick={onToggle}
+              color={'white'}
+              display={{base: 'flex', md: 'none'}}
+              _hover={{bg: 'whiteAlpha.500'}}
+              icon={
+                isOpen ? (
+                  <Icon as={IoClose} w={5} h={5} />
+                ) : (
+                  <Icon as={IoMenu} w={5} h={5} />
+                )
+              }
+              variant={'ghost'}
+              aria-label={'Toggle Navigation'}
+            />
+          )}
         </Flex>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
         <Stack bg={'white'} p={2} display={{md: 'none'}} alignItems={'end'}>
-          {navItems.map(navItem => (
-            <MobileNavItem key={navItem.label} {...navItem} />
-          ))}
+          {navItems &&
+            navItems.map(navItem => (
+              <MobileNavItem key={navItem.label} {...navItem} />
+            ))}
         </Stack>
       </Collapse>
     </Box>

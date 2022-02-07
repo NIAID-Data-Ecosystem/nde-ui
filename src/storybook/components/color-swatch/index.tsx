@@ -16,8 +16,9 @@ export const ColorSwatch: React.FC<ColorSwatch> = ({
   hexValue,
   hasBorder,
 }) => {
+  const text = description ? `${hexValue} - ${description}` : hexValue;
   return (
-    <VisualDescription title={title} description={description}>
+    <VisualDescription title={title} description={text}>
       <Box
         w={75}
         h={75}

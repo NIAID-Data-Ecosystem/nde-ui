@@ -21,6 +21,12 @@
     // ts handles types - rollup handles js
     "emitDeclarationOnly": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/react.d.ts",
+    "src/svg.d.ts"
+  ],
   "exclude": ["node_modules"]
 }

@@ -109,10 +109,10 @@ const customRoutes = [
 
 const Template: ComponentStory<typeof Footer> = args => <Footer {...args} />;
 
-/* Default Navigation Bar Story  */
+/* Default Footer Story  */
 export const DefaultFooter = Template.bind({});
 
-/* Default Navigation Bar Story with contact info  */
+/* Default Footer Story with contact info  */
 export const DefaultFooterWithContactUs = Template.bind({});
 DefaultFooterWithContactUs.args = {
   contact: <ContactUs />,

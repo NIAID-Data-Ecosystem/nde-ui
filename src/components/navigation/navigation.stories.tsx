@@ -18,6 +18,8 @@ const Template: ComponentStory<typeof NavigationBar> = args => (
   <NavigationBar {...args} />
 );
 
+export const NavigationBarNoLinks = Template.bind({});
+
 /* Navigation Bar Story  */
 export const DefaultNavigation = Template.bind({});
 DefaultNavigation.args = {

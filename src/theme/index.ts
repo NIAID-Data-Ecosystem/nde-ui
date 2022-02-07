@@ -9,6 +9,7 @@ import {Card, CardHeader} from '../components/card/card.theme';
 import {Link} from '../components/link/link.theme';
 import {Text} from '../components/text/text.theme';
 import {ColorsProps} from './foundations/colors';
+
 interface ThemeConfig extends ColorModeOptions {
   cssVarPrefix?: string;
 }
@@ -19,6 +20,7 @@ const config: ThemeConfig = {
   cssVarPrefix: 'chakra',
 };
 
+// Overrides to Chakra-UI theme object
 const overrides = {
   ...foundations,
   styles,

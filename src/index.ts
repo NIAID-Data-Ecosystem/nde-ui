@@ -1,6 +1,6 @@
 export * from './components/';
 export * from './theme/';
-export * from './utils/ThemeProvider';
+export * from './utils/theme-provider';
 export {
   Accordion,
   AccordionButton,

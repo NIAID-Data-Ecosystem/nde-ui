@@ -14,6 +14,8 @@ import {FaExternalLinkAlt} from 'react-icons/fa';
 import {Link, LinkProps} from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import footerConfig from './footer.config.json';
+import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-preferred--white.svg';
+import DesktopLogo from '../../assets/logos/niaid-data-ecosystem-logo_desktop--white.svg';
 
 // Styled links for footer section
 export const StyledLink = styled(Link)<LinkProps>(() => ({}));
@@ -126,37 +128,30 @@ export const Footer: React.FC<FooterProps> = ({navigation, contact}) => {
           })}
         </SimpleGrid>
       </Container>
-
-      {contact && (
-        <Box
-          borderTopWidth={1}
-          borderStyle={'solid'}
-          bg={'text.heading'}
-          borderColor={'gray.700'}
+      <Box
+        borderTopWidth={1}
+        borderStyle={'solid'}
+        bg={'text.heading'}
+        borderColor={'gray.700'}
+      >
+        <Container
+          as={Stack}
+          maxW={'6xl'}
+          py={4}
+          direction={{base: 'column', md: 'row'}}
+          spacing={4}
+          justify={{md: 'space-between'}}
+          align={{md: 'center'}}
         >
-          <Container
-            as={Stack}
-            maxW={'6xl'}
-            py={4}
-            direction={{base: 'column', md: 'row'}}
-            spacing={4}
-            justify={{md: 'space-between'}}
-            align={{md: 'center'}}
-          >
-            <Box flex={1} maxW={'300px'}>
-              <Image
-                src={
-                  isMobile
-                    ? '/assets/logos/nde-logo-acronym-white.svg'
-                    : '/assets/logos/nde-logo-white.svg'
-                }
-                alt={'Niaid data ecosystem logo'}
-              ></Image>
-            </Box>
-            {contact}
-          </Container>
-        </Box>
-      )}
+          <Box flex={1} maxW={'300px'}>
+            <Image
+              src={isMobile ? MobileLogo : DesktopLogo}
+              alt={'NIAID data ecosystem logo'}
+            ></Image>
+          </Box>
+          {contact}
+        </Container>
+      </Box>
     </Box>
   );
 };
