@@ -1,15 +1,19 @@
 {
-  "name": "@nde/design-system",
-  "version": "1.0.0",
-  "private": true,
+  "name": "nde-design-system",
+  "version": "0.1.0",
   "description": "A React component library for NIAID Data Ecosystem design system.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NIAID-Data-Ecosystem/nde-ui"
+  },
+  "author": "Candice Czech",
+  "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.es.js",
   "files": [
     "dist"
   ],
   "types": "dist/index.d.ts",
-  "author": "Candice Czech",
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
