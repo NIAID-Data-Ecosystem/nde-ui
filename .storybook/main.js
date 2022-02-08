@@ -13,7 +13,6 @@ module.exports = {
     '@storybook/addon-a11y',
   ],
   framework: '@storybook/react',
-  staticDirs: ['../public'],
   typescript: {
     check: false,
     checkOptions: {},

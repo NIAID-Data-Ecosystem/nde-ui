@@ -1,11 +1,11 @@
 import {extendTheme, ThemeTypings} from '@chakra-ui/react';
 import foundations from './foundations';
-import components from './components';
 import styles from './styles';
 import type {ColorModeOptions} from '@chakra-ui/system';
 import {Fonts} from './foundations/typography/typography.types';
 import {Button} from '../components/button/button.theme';
 import {Card, CardHeader} from '../components/card/card.theme';
+import {Heading} from '../components/heading/heading.theme';
 import {Link} from '../components/link/link.theme';
 import {Text} from '../components/text/text.theme';
 import {ColorsProps} from './foundations/colors';
@@ -25,10 +25,10 @@ const overrides = {
   ...foundations,
   styles,
   components: {
-    ...components,
     Button,
     Card,
     CardHeader,
+    Heading,
     Link,
     Text,
   },

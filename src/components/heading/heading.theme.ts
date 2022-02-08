@@ -27,7 +27,7 @@ const sizes: Record<string, SystemStyleObject> = {
   xs: {fontSize: 'sm', lineHeight: 'base'},
 };
 
-export const Text = {
+export const Heading = {
   baseStyle: {
     color: 'text.heading',
     fontWeight: 'bold',
