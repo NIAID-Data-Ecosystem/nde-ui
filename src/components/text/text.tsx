@@ -3,12 +3,9 @@ import {
   Text as ChakraText,
   TextProps as ChakraTextProps,
   TypographyProps,
-  SystemProps,
 } from '@chakra-ui/react';
 
-export interface TextProps
-  extends Omit<ChakraTextProps, keyof SystemProps>,
-    TypographyProps {
+export interface TextProps extends ChakraTextProps, TypographyProps {
   color?: string;
 }
 

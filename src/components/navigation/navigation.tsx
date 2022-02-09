@@ -32,7 +32,7 @@ export interface RouteProps {
 
 export interface NavigationProps {
   navItems?: Array<RouteProps>;
-  bg: string;
+  bg?: string;
 }
 
 // Mobile Navigation link styles

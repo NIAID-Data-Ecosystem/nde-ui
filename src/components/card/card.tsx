@@ -5,13 +5,11 @@ import {
   useStyleConfig,
   Box,
   BoxProps,
-  SystemProps,
-  LayoutProps,
+  HeadingProps,
+  ButtonGroupProps,
 } from '@chakra-ui/react';
 
-export interface CardProps
-  extends Omit<BoxProps, keyof SystemProps>,
-    LayoutProps {}
+export interface CardProps extends BoxProps {}
 
 export const Card: React.FC<CardProps> = ({children, ...props}) => {
   const styles = useStyleConfig('Card');
@@ -23,7 +21,7 @@ export const Card: React.FC<CardProps> = ({children, ...props}) => {
   );
 };
 
-export const CardHeader: React.FC = ({children, ...props}) => {
+export const CardHeader: React.FC<BoxProps> = ({children, ...props}) => {
   const styles = useStyleConfig('CardHeader');
 
   return (
@@ -33,7 +31,7 @@ export const CardHeader: React.FC = ({children, ...props}) => {
   );
 };
 
-export const CardTitle: React.FC = ({children, ...props}) => {
+export const CardTitle: React.FC<HeadingProps> = ({children, ...props}) => {
   return (
     <Heading as='h3' size={'lg'} mr='3' mb='2' {...props}>
       {children}
@@ -41,7 +39,12 @@ export const CardTitle: React.FC = ({children, ...props}) => {
   );
 };
 
-export const CardActions: React.FC = ({children, ...props}) => {
+export interface CardActionsProps extends BoxProps, ButtonGroupProps {}
+
+export const CardActions: React.FC<CardActionsProps> = ({
+  children,
+  ...props
+}) => {
   if (Children.count(children) === 1) {
     return (
       <Box mb='2' {...props}>

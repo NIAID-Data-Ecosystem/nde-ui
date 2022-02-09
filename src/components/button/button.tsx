@@ -2,10 +2,9 @@ import React from 'react';
 import {
   Button as ChakraButton,
   ButtonProps as ChakraButtonProps,
-  SystemProps,
 } from '@chakra-ui/react';
 
-export type ButtonProps = Omit<ChakraButtonProps, keyof SystemProps>;
+export type ButtonProps = ChakraButtonProps;
 /**
  * Primary UI component for user interaction
  */

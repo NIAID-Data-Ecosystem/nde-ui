@@ -29,7 +29,7 @@ StyledLink.defaultProps = {
 };
 
 // Header for footer section
-interface ListHeaderProps extends TextProps {}
+export interface ListHeaderProps extends TextProps {}
 const ListHeader: React.FC<ListHeaderProps> = ({children, ...props}) => {
   return (
     <Heading
