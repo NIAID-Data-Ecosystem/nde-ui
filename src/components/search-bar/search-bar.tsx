@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   Flex,
   Button,
@@ -7,11 +7,6 @@ import {
   Input,
   VisuallyHidden,
   Icon,
-  BoxProps,
-  ButtonProps,
-  FlexProps,
-  SystemProps,
-  HTMLChakraProps,
 } from '@chakra-ui/react';
 import {FaSearch} from 'react-icons/fa';
 
@@ -59,7 +54,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         ></Input>
         {/* Mobile button */}
         <Button
-          aria-label='search datasets'
+          aria-label='search'
           isDisabled={!value || value.length < 1}
           onClick={e => {
             e.preventDefault();
