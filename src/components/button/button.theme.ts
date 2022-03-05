@@ -79,6 +79,14 @@ export const Button = {
         },
       };
     },
+    unstyled: () => {
+      return {
+        background: 'transparent',
+        _hover: {
+          background: 'transparent',
+        },
+      };
+    },
   },
   // The default size and variant values
   defaultProps: {

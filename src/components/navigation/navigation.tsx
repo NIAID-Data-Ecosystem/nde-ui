@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Box,
+  Button,
   Flex,
   Text,
   IconButton,
@@ -8,7 +9,6 @@ import {
   Collapse,
   Image,
   Icon,
-  Link,
   Popover,
   PopoverArrow,
   PopoverTrigger,
@@ -19,6 +19,7 @@ import {
 } from '@chakra-ui/react';
 import {FaCaretDown, FaChevronRight, FaChevronDown} from 'react-icons/fa';
 import {IoClose, IoMenu} from 'react-icons/io5';
+import {Link} from '../../components/link';
 import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-preferred--white.svg';
 import DesktopLogo from '../../assets/logos/niaid-data-ecosystem-logo_desktop--white.svg';
 
@@ -46,42 +47,60 @@ export const MobileNavItem = ({label, routes, href}: RouteProps) => {
       onClick={routes && onToggle}
       cursor={'pointer'}
     >
-      <Flex
-        p={2}
-        as={href ? Link : Box}
-        variant={'unstyled'}
-        href={href || ''}
-        justify={'space-between'}
-        align={'center'}
-        w={'100%'}
-        color={href ? 'primary.600' : 'text.heading'}
-        rounded={'md'}
-        _hover={{
-          bg: 'primary.50',
-          color: href ? 'primary.500' : 'text.heading',
-        }}
-      >
-        <Text fontWeight={600}>{label}</Text>
-        {href && (
-          <Icon
-            sx={{
-              '> *': {color: 'gray.300'},
-            }}
-            w={3}
-            h={3}
-            as={FaChevronRight}
-          />
-        )}
-        {routes && (
-          <Icon
-            as={FaChevronDown}
-            transition={'all .25s ease-in-out'}
-            transform={isOpen ? 'rotate(180deg)' : ''}
-            w={4}
-            h={4}
-          />
-        )}
-      </Flex>
+      {href ? (
+        <Link
+          p={2}
+          href={href}
+          w={'100%'}
+          color={'primary.600'}
+          rounded={'md'}
+          _hover={{
+            bg: 'primary.50',
+            color: 'primary.500',
+          }}
+        >
+          <Flex justify={'space-between'} align={'center'}>
+            <Text fontWeight={600}>{label}</Text>
+            <Icon
+              sx={{
+                '> *': {color: 'gray.300'},
+              }}
+              w={3}
+              h={3}
+              as={FaChevronRight}
+            />
+          </Flex>
+        </Link>
+      ) : (
+        <Flex
+          p={2}
+          justify={'space-between'}
+          align={'center'}
+          w={'100%'}
+          color={'gray.800'}
+          rounded={'md'}
+          _hover={{
+            bg: 'primary.50',
+            color: 'gray.900',
+          }}
+        >
+          <Flex justify={'space-between'} align={'center'}>
+            <Text fontWeight={600}>{label}</Text>
+          </Flex>
+          {routes && (
+            <Icon
+              sx={{
+                '> *': {color: 'gray.300'},
+              }}
+              as={FaChevronDown}
+              transition={'all .25s ease-in-out'}
+              transform={isOpen ? 'rotate(180deg)' : ''}
+              w={3}
+              h={3}
+            />
+          )}
+        </Flex>
+      )}
 
       <Collapse in={isOpen} animateOpacity>
         <Stack
@@ -105,12 +124,37 @@ export const MobileNavItem = ({label, routes, href}: RouteProps) => {
 
 // Desktop Navigation link styles
 export const DesktopNavItem = ({label, routes, href}: RouteProps) => {
+  if (!routes) {
+    return (
+      <Link
+        p={2}
+        href={href ?? '#'}
+        fontSize={'sm'}
+        fontWeight={500}
+        color={'white'}
+        _visited={{color: 'white'}}
+        _hover={{
+          opacity: 0.85,
+          color: 'white',
+        }}
+        variant='unstyled'
+        cursor={'pointer'}
+        alignItems={'center'}
+      >
+        {label}
+      </Link>
+    );
+  }
   return (
     <Box bg={'inherit'}>
-      <Popover trigger={'hover'} placement={'bottom-start'}>
+      <Popover
+        trigger={'click'}
+        placement={'bottom-start'}
+        autoFocus
+        closeOnEsc
+      >
         <PopoverTrigger>
-          <Flex
-            as={routes ? Flex : Link}
+          <Button
             p={2}
             href={href ?? '#'}
             fontSize={'sm'}
@@ -127,7 +171,7 @@ export const DesktopNavItem = ({label, routes, href}: RouteProps) => {
           >
             {label}
             {routes && <Icon as={FaCaretDown} w={4} h={4} />}
-          </Flex>
+          </Button>
         </PopoverTrigger>
 
         {routes && (
@@ -138,10 +182,12 @@ export const DesktopNavItem = ({label, routes, href}: RouteProps) => {
             py={2}
             rounded={'xl'}
             minW={'sm'}
+            id='title'
+            title='Nav Pop over'
           >
             <PopoverArrow />
             <PopoverBody>
-              <Stack>
+              <Stack role={'tablist'}>
                 {routes.map(route => (
                   <DesktopSubNav key={route.label} {...route} />
                 ))}
@@ -158,37 +204,43 @@ export const DesktopNavItem = ({label, routes, href}: RouteProps) => {
 const DesktopSubNav = ({label, href, subLabel}: RouteProps) => {
   return (
     <Link
+      role='tab'
       href={href}
-      role={'group'}
-      display={'block'}
       p={2}
       color={'primary.700'}
-      textDecoration={'none'}
       rounded={'md'}
-      _hover={{bg: 'primary.50'}}
-      variant='unstyled'
+      _hover={{
+        bg: 'primary.50',
+        '.label': {color: 'primary.500'},
+        '.icon': {opacity: '100%', transform: 'translateX(0)'},
+      }}
     >
-      <Stack direction={'row'} align={'center'}>
+      <Flex justifyContent={'space-between'}>
         <Box>
           <Text
+            className='label'
             transition={'all .3s ease'}
             _groupHover={{color: 'primary.500'}}
             fontWeight={600}
           >
             {label}
           </Text>
-          <Text fontSize={'sm'} color={'text.body'}>
+          <br />
+          <Text
+            fontSize={'sm'}
+            color={'text.body'}
+            borderBottom={'none!important'}
+          >
             {subLabel}
           </Text>
         </Box>
         <Flex
+          className={'icon'}
           transition={'all .3s ease'}
           transform={'translateX(-10px)'}
-          opacity={0}
-          _groupHover={{opacity: '100%', transform: 'translateX(0)'}}
+          opacity={1}
           justify={'flex-end'}
           align={'center'}
-          flex={1}
         >
           <Icon
             sx={{
@@ -199,7 +251,7 @@ const DesktopSubNav = ({label, href, subLabel}: RouteProps) => {
             as={FaChevronRight}
           />
         </Flex>
-      </Stack>
+      </Flex>
     </Link>
   );
 };
@@ -274,6 +326,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
         </Flex>
       </Flex>
 
+      {/* Nav in mobile mode */}
       <Collapse in={isOpen} animateOpacity>
         <Stack bg={'white'} p={2} display={{md: 'none'}} alignItems={'end'}>
           {navItems &&

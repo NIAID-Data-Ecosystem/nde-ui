@@ -1,3 +1,4 @@
+import {Text} from '@chakra-ui/react';
 import React from 'react';
 import {
   PageContainer,
@@ -31,6 +32,9 @@ export const Typography = () => {
           return (
             <React.Fragment key={fontFamily}>
               <SectionTitle>{formatName(fontFamily)}</SectionTitle>
+              <Text color={'gray.800'} fontSize={'xs'}>
+                used for: {type} text
+              </Text>
               <SectionContainer>
                 <TextStyles fontFamily={fontFamily} />
               </SectionContainer>

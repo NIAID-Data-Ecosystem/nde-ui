@@ -2,6 +2,7 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {Link} from './link';
 import {theme} from 'src/theme';
+import {Text} from 'src/components';
 
 export default {
   title: 'Components/Link',
@@ -29,7 +30,7 @@ export default {
     _hover: {
       description: 'Color for a hovered link.',
       defaultValue: {
-        color: 'niaid.color',
+        color: 'link.color',
       },
       control: {
         type: 'object',
@@ -56,11 +57,11 @@ export default {
       name: 'variant',
       description: `Underline styles for link where
       \n
-      'base' | undefined: Unstyled text has an underline that appears on hover.
-      \n
-      'underline': Underline text decoration that disappears on hover.
+      'base' | undefined: Underlined text which disappears on hover.
       \n
       'unstyled': Text has no underline.
+      \n
+      'button': Text that has an underline when hovered.
       `,
       defaultValue: undefined,
       control: {
@@ -115,22 +116,24 @@ const Template: ComponentStory<typeof Link> = args => <Link {...args} />;
 
 export const DefaultLink = Template.bind({});
 DefaultLink.args = {
-  children: 'Default Link',
+  children:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
   href: '#',
+  isExternal: true,
 };
 
 export const ExternalLink = Template.bind({});
 ExternalLink.args = {
-  children: 'External Link',
+  children: 'External link',
   isExternal: true,
   href: '#',
 };
 
-export const UnderlineLink = Template.bind({});
-UnderlineLink.args = {
-  children: 'Underline Link',
+export const ButtonLink = Template.bind({});
+ButtonLink.args = {
+  children: 'Button Link',
   href: '#',
-  variant: 'underline',
+  variant: 'button',
 };
 
 export const UnstyledLink = Template.bind({});
@@ -138,4 +141,28 @@ UnstyledLink.args = {
   children: 'Unstyled Link',
   href: '#',
   variant: 'unstyled',
+};
+
+const TextTemplate: ComponentStory<typeof Link> = args => (
+  <Link {...args}>
+    <Text>
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+      fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+      sunt in culpa qui officia deserunt mollit anim id est
+    </Text>
+    <Text>
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+      fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+      sunt in culpa qui officia deserunt mollit anim id est
+    </Text>
+  </Link>
+);
+export const WithNestedTextElement = TextTemplate.bind({});
+WithNestedTextElement.args = {
+  href: '#',
+  isExternal: true,
 };

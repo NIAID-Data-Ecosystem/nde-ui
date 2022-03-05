@@ -3,57 +3,117 @@ import {ComponentStyleConfig} from '@chakra-ui/react';
 export const Link: ComponentStyleConfig = {
   baseStyle: props => {
     return {
-      display: 'inline-flex',
-      alignItems: 'baseline',
-      color: props.color || 'link.color',
-      lineHeight: 'base',
-      // using border instead of text-decoration as outlined here: https://policy-prod-varnish-1734617591.us-east-1.elb.amazonaws.com/policies/link-styles
-      borderBottom: '0.0625rem solid',
-      textDecoration: 'none',
+      display: 'inline',
+      svg: {
+        color: 'currentColor',
+      },
+      '.child-string': {
+        width: '100%',
+        display: 'inline',
+        alignItems: 'baseline',
+        color: props.color || 'link.color',
+        lineHeight: 'base',
+        borderBottom: props.borderBottom || '0.0625rem solid',
+      },
 
-      borderColor: 'transparent',
-      _hover: {textDecoration: 'none'},
-
-      ':hover, :visited:hover': {
-        textDecoration: 'none',
-        borderBottom: '0.0625rem solid',
-        borderColor: props?._hover?.color || 'niaid.color',
-        color: props?._hover?.color || 'niaid.color',
-        svg: {
-          color: props?._hover?.color || 'niaid.color',
+      '.child-node': {
+        width: '100%',
+        display: 'inline',
+        alignItems: 'baseline',
+        color: props.color || 'link.color',
+        lineHeight: 'base',
+        // For nested text elements
+        p: {
+          display: 'inline',
+          color: 'inherit',
+          borderBottom: props.borderBottom || '0.0625rem solid',
         },
       },
-      ':visited': {
-        color: props?._visited?.color ?? 'link.visited',
-        borderColor: props?._visited?.color ?? 'link.visited',
+
+      ':hover': {
+        textDecoration: 'none',
+        '.child-string, .child-node': {
+          borderBottom: 'none',
+          color: props?._hover?.color || 'link.color',
+          p: {
+            borderBottomColor: 'transparent',
+          },
+        },
         svg: {
-          color: props?._visited?.color ?? 'link.visited',
+          color: props?._hover?.color || 'link.color',
+        },
+      },
+
+      ':visited': {
+        '.child-string, .child-node': {
+          color: props?._visited?.color || 'link.visited',
+          // For nested text elements
+          p: {
+            display: 'inline',
+            color: props?._visited?.color || 'link.visited',
+          },
+        },
+        svg: {
+          color: props?._visited?.color || 'link.visited',
+        },
+
+        ':hover': {
+          borderBottom: 'none',
+          '.child-string, .child-node': {
+            borderBottom: 'none',
+          },
         },
       },
     };
   },
+
   variants: {
-    underline: props => {
+    // underline on hover.
+    button: () => {
       return {
-        borderColor: props.color || 'link.color',
-        ':hover': {
-          borderColor: 'transparent',
+        textDecoration: 'none',
+        borderBottom: 'none',
+        '.child-string, .child-node': {
+          borderBottom: 'none',
           textDecoration: 'none',
+        },
+        ':visited': {
+          textDecoration: 'none',
+
+          '.child-string, .child-node': {
+            textDecoration: 'none',
+            borderBottom: 'none',
+          },
+        },
+        ':hover, :visited:hover': {
+          '.child-string, .child-node': {
+            borderBottom: '0.0625rem solid',
+          },
         },
       };
     },
     unstyled: () => {
       return {
-        borderBottom: 'none',
         textDecoration: 'none',
-        _hover: {textDecoration: 'none', borderBottom: 'none'},
-        ':hover, :visited:hover': {
-          textDecoration: 'none',
+        '.child-string, .child-node': {
           borderBottom: 'none',
+          textDecoration: 'none',
         },
         ':visited': {
           textDecoration: 'none',
-          borderBottom: 'none',
+
+          '.child-string, .child-node': {
+            textDecoration: 'none',
+            borderBottom: 'none',
+          },
+        },
+        ':hover, :visited:hover': {
+          textDecoration: 'none',
+
+          '.child-string, .child-node': {
+            textDecoration: 'none',
+            borderBottom: 'none',
+          },
         },
       };
     },

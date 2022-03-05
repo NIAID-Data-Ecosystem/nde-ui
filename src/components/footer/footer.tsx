@@ -7,11 +7,12 @@ import {
   Heading,
   Icon,
   Image,
+  LinkProps,
   useBreakpointValue,
   TextProps,
 } from '@chakra-ui/react';
 import {FaExternalLinkAlt} from 'react-icons/fa';
-import {Link, LinkProps} from '@chakra-ui/react';
+import {Link} from '../../components/link';
 import styled from '@emotion/styled';
 import footerConfig from './footer.config.json';
 import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-preferred--white.svg';
@@ -33,7 +34,7 @@ export interface ListHeaderProps extends TextProps {}
 const ListHeader: React.FC<ListHeaderProps> = ({children, ...props}) => {
   return (
     <Heading
-      as={'h5'}
+      as={'h2'}
       size={'h6'}
       mb={2}
       fontFamily={'body'}
@@ -69,9 +70,6 @@ export const Footer: React.FC<FooterProps> = ({navigation, contact}) => {
     <Box bg={'gray.900'} color={'white'}>
       <Container as={Stack} maxW={'6xl'} py={10}>
         <SimpleGrid columns={{base: 1, sm: 2, md: 3}} spacing={8}>
-          {navigationSections.length < 3 ? (
-            <Stack align={'flex-start'}></Stack>
-          ) : null}
           {navigationSections.map((section, i) => {
             return (
               <Stack key={i} align={'flex-start'}>
@@ -86,14 +84,11 @@ export const Footer: React.FC<FooterProps> = ({navigation, contact}) => {
                             isExternal={isExternal ?? false}
                           >
                             {label}
-                            {isExternal && (
-                              <Icon as={FaExternalLinkAlt} boxSize={3} ml={2} />
-                            )}
                           </StyledLink>
                         ) : (
                           <>
                             <ListHeader
-                              as={'h6'}
+                              as={'h3'}
                               size={'sm'}
                               mb={0}
                               fontWeight='semibold'
@@ -108,13 +103,6 @@ export const Footer: React.FC<FooterProps> = ({navigation, contact}) => {
                                     isExternal={route.isExternal ?? false}
                                   >
                                     {route.label}
-                                    {route.isExternal && (
-                                      <Icon
-                                        as={FaExternalLinkAlt}
-                                        boxSize={3}
-                                        ml={2}
-                                      />
-                                    )}
                                   </StyledLink>
                                 </Box>
                               ))}
