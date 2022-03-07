@@ -58,6 +58,7 @@ export const MobileNavItem = ({label, routes, href}: RouteProps) => {
             bg: 'primary.50',
             color: 'primary.500',
           }}
+          _visited={{color: 'primary.600'}}
         >
           <Flex justify={'space-between'} align={'center'}>
             <Text fontWeight={600}>{label}</Text>
@@ -140,6 +141,7 @@ export const DesktopNavItem = ({label, routes, href}: RouteProps) => {
         variant='unstyled'
         cursor={'pointer'}
         alignItems={'center'}
+        whiteSpace={'nowrap'}
       >
         {label}
       </Link>

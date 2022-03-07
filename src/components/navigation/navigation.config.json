@@ -1,5 +1,6 @@
 {
   "routes": [
+    {"label": "Search", "href": "/"},
     {"label": "About", "href": "/about"},
 
     {"label": "Getting Started", "href": "/getting-started"},

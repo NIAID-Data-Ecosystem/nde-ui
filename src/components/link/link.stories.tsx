@@ -163,6 +163,7 @@ const TextTemplate: ComponentStory<typeof Link> = args => (
 );
 export const WithNestedTextElement = TextTemplate.bind({});
 WithNestedTextElement.args = {
-  href: '#',
+  href: '#sdasd',
+  variant: 'button',
   isExternal: true,
 };

@@ -30,6 +30,12 @@ export const Link: ComponentStyleConfig = {
         },
       },
 
+      '.child-string, .child-node': {
+        svg: {
+          color: props?.color || 'link.color',
+        },
+      },
+
       ':hover': {
         textDecoration: 'none',
         '.child-string, .child-node': {
@@ -76,6 +82,11 @@ export const Link: ComponentStyleConfig = {
         '.child-string, .child-node': {
           borderBottom: 'none',
           textDecoration: 'none',
+          p: {
+            display: 'inline',
+            color: 'inherit',
+            borderBottom: 'none',
+          },
         },
         ':visited': {
           textDecoration: 'none',
@@ -98,6 +109,11 @@ export const Link: ComponentStyleConfig = {
         '.child-string, .child-node': {
           borderBottom: 'none',
           textDecoration: 'none',
+          p: {
+            display: 'inline',
+            color: 'inherit',
+            borderBottom: 'none',
+          },
         },
         ':visited': {
           textDecoration: 'none',
