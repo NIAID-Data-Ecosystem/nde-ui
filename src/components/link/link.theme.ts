@@ -4,69 +4,41 @@ export const Link: ComponentStyleConfig = {
   baseStyle: props => {
     return {
       display: 'inline',
+      color: props.color || 'link.color',
       svg: {
         color: 'currentColor',
       },
-      '.child-string': {
+
+      '.child-string, .child-node, .child-node p': {
         width: '100%',
         display: 'inline',
         alignItems: 'baseline',
-        color: props.color || 'link.color',
+        color: 'inherit',
         lineHeight: 'base',
+      },
+
+      '.child-string, .child-node p': {
         borderBottom: props.borderBottom || '0.0625rem solid',
       },
 
-      '.child-node': {
-        width: '100%',
-        display: 'inline',
-        alignItems: 'baseline',
-        color: props.color || 'link.color',
-        lineHeight: 'base',
-        // For nested text elements
-        p: {
-          display: 'inline',
-          color: 'inherit',
-          borderBottom: props.borderBottom || '0.0625rem solid',
-        },
-      },
-
-      '.child-string, .child-node': {
-        svg: {
-          color: props?.color || 'link.color',
-        },
-      },
-
       ':hover': {
-        textDecoration: 'none',
-        '.child-string, .child-node': {
-          borderBottom: 'none',
-          color: props?._hover?.color || 'link.color',
-          p: {
-            borderBottomColor: 'transparent',
-          },
-        },
-        svg: {
-          color: props?._hover?.color || 'link.color',
+        color: props?._hover?.color || 'link.color',
+        '.child-string, .child-node, .child-node p': {
+          borderBottomColor: 'transparent',
+          color: 'inherit',
         },
       },
 
       ':visited': {
-        '.child-string, .child-node': {
-          color: props?._visited?.color || 'link.visited',
-          // For nested text elements
-          p: {
-            display: 'inline',
-            color: props?._visited?.color || 'link.visited',
-          },
-        },
-        svg: {
+        color: props?._visited?.color || 'link.visited',
+        '.child-string, .child-node, .child-node p, svg': {
           color: props?._visited?.color || 'link.visited',
         },
 
         ':hover': {
-          borderBottom: 'none',
-          '.child-string, .child-node': {
-            borderBottom: 'none',
+          borderBottom: 'transparent',
+          '.child-string, .child-node, .child-node p': {
+            borderBottomColor: 'transparent',
           },
         },
       },
@@ -75,60 +47,33 @@ export const Link: ComponentStyleConfig = {
 
   variants: {
     // underline on hover.
-    button: () => {
+
+    unstyled: props => {
       return {
-        textDecoration: 'none',
-        borderBottom: 'none',
-        '.child-string, .child-node': {
-          borderBottom: 'none',
-          textDecoration: 'none',
-          p: {
-            display: 'inline',
+        '.child-string, .child-node p': {
+          borderBottomColor: 'transparent',
+        },
+        ':hover': {
+          color: props?._hover?.color || 'link.color',
+          '.child-string, .child-node, .child-node p': {
+            borderBottomColor: 'transparent',
             color: 'inherit',
-            borderBottom: 'none',
           },
         },
         ':visited': {
-          textDecoration: 'none',
+          color: props?._visited?.color || 'link.visited',
+          '.child-string, .child-node, .child-node p, svg': {
+            color: props?._visited?.color || 'link.visited',
+          },
 
-          '.child-string, .child-node': {
-            textDecoration: 'none',
-            borderBottom: 'none',
-          },
-        },
-        ':hover, :visited:hover': {
-          '.child-string, .child-node': {
-            borderBottom: '0.0625rem solid',
-          },
-        },
-      };
-    },
-    unstyled: () => {
-      return {
-        textDecoration: 'none',
-        '.child-string, .child-node': {
-          borderBottom: 'none',
-          textDecoration: 'none',
-          p: {
-            display: 'inline',
-            color: 'inherit',
-            borderBottom: 'none',
-          },
-        },
-        ':visited': {
-          textDecoration: 'none',
+          ':hover': {
+            borderBottom: 'transparent',
+            color: props?._visited?._hover?.color || 'link.visited',
 
-          '.child-string, .child-node': {
-            textDecoration: 'none',
-            borderBottom: 'none',
-          },
-        },
-        ':hover, :visited:hover': {
-          textDecoration: 'none',
-
-          '.child-string, .child-node': {
-            textDecoration: 'none',
-            borderBottom: 'none',
+            '.child-string, .child-node, .child-node p, svg': {
+              borderBottomColor: 'transparent',
+              color: 'inherit',
+            },
           },
         },
       };

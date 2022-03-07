@@ -4,7 +4,9 @@ import {
   ButtonProps as ChakraButtonProps,
 } from '@chakra-ui/react';
 
-export type ButtonProps = ChakraButtonProps;
+export interface ButtonProps extends ChakraButtonProps {
+  href?: string;
+}
 /**
  * Primary UI component for user interaction
  */

@@ -2,8 +2,9 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {Link} from './link';
 import {theme} from 'src/theme';
-import {Text} from 'src/components';
-
+import {Button, Text} from 'src/components';
+import {Icon} from '@chakra-ui/react';
+import {FaAddressBook, FaExternalLinkAlt} from 'react-icons/fa';
 export default {
   title: 'Components/Link',
   component: Link,
@@ -129,13 +130,6 @@ ExternalLink.args = {
   href: '#',
 };
 
-export const ButtonLink = Template.bind({});
-ButtonLink.args = {
-  children: 'Button Link',
-  href: '#',
-  variant: 'button',
-};
-
 export const UnstyledLink = Template.bind({});
 UnstyledLink.args = {
   children: 'Unstyled Link',
@@ -163,7 +157,10 @@ const TextTemplate: ComponentStory<typeof Link> = args => (
 );
 export const WithNestedTextElement = TextTemplate.bind({});
 WithNestedTextElement.args = {
-  href: '#sdasd',
-  variant: 'button',
+  href: '#',
   isExternal: true,
+  variant: 'unstyled',
+  color: 'red',
+  _hover: {color: 'pink'},
+  _visited: {color: 'orange'},
 };
