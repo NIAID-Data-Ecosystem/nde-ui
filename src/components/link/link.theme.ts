@@ -5,6 +5,7 @@ export const Link: ComponentStyleConfig = {
     return {
       display: 'inline',
       color: props.color || 'link.color',
+      textDecoration: 'none',
       svg: {
         color: 'currentColor',
       },
