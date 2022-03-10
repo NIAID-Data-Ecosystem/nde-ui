@@ -4,12 +4,10 @@ import {VisualDescription} from 'src/storybook/components/visual-description';
 import CustomThemeShadows from 'src/theme/foundations/shadows';
 
 /**
- * Showcase for different space sizing in theme.
+ * Showcase for different shadows in theme.
  */
 
-interface ShadowStyles {}
-
-export const ShadowStyles: React.FC<ShadowStyles> = () => {
+export const ShadowStyles: React.FC = () => {
   const shadowKeys = Object.keys(CustomThemeShadows);
 
   return (
