@@ -61,10 +61,14 @@ export const colors = {
   },
   status: {
     success: '#17805F',
+    success_lt: '#F2F5F4',
     alert: '#F8FF55',
     warning: '#FFC10A',
+    warning_lt: '#FFF9F2',
     error: '#D23342',
+    error_lt: '#FBF2F3',
     info: '#4865E3',
+    info_lt: '#F3F4FC',
   },
 
   socials: {

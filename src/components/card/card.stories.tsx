@@ -1,7 +1,15 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {Text, Button} from '@chakra-ui/react';
-import {Card, CardHeader, CardTitle, CardActions} from './card';
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  CardTitle,
+  CardActions,
+} from './card';
+import {theme} from 'src/theme';
 
 export default {
   title: 'Components/Card',
@@ -21,42 +29,99 @@ export default {
         type: {summary: 'BoxProps'},
       },
     },
+
+    variant: {
+      name: 'variant',
+      description: `
+      Card Styles
+      \n
+      'base' | undefined: Basic white card with padding.
+      \n
+      'colorful': with color background (used for search results card).
+      `,
+      defaultValue: undefined,
+      control: {
+        type: 'select',
+        options: [...Object.keys(theme.components.Card.variants), 'base'],
+      },
+      table: {
+        defaultValue: {summary: 'undefined'},
+        type: {summary: 'string'},
+      },
+    },
   },
 } as ComponentMeta<typeof Card>;
 
 const Template: ComponentStory<typeof Card> = args => <Card {...args} />;
 
 export const CardExample = Template.bind({});
-CardExample.args = {children: 'Card with some example content inside'};
+CardExample.args = {width: '20rem', height: '10rem'};
 
 export const CardWithHeader: ComponentStory<typeof Card> = args => {
   return (
     <Card {...args}>
       <CardHeader>
-        <CardTitle>Title</CardTitle>
-        <CardActions>
-          <Button>Button</Button>
-        </CardActions>
+        <CardTitle>Card Title</CardTitle>
       </CardHeader>
-      <Text>{args.children}</Text>
+      <CardBody>
+        <Text>{args.children}</Text>
+      </CardBody>
     </Card>
   );
 };
 
 CardWithHeader.args = {
-  children: 'Card with a header title.',
+  children: 'with body text',
+};
+
+export const CardWithHeaderAndFooter: ComponentStory<typeof Card> = args => {
+  return (
+    <Card {...args}>
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+      </CardHeader>
+      <CardBody>
+        <Text>{args.children}</Text>
+      </CardBody>
+      <CardFooter>Footer</CardFooter>
+    </Card>
+  );
+};
+
+CardWithHeaderAndFooter.args = {
+  children: 'with body text',
+};
+
+export const CardWithColorVariant: ComponentStory<typeof Card> = args => {
+  return (
+    <Card {...args}>
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+      </CardHeader>
+      <CardBody>
+        <Text>{args.children}</Text>
+      </CardBody>
+      <CardFooter>
+        <Text>Footer {args.children}</Text>
+      </CardFooter>
+    </Card>
+  );
+};
+
+CardWithColorVariant.args = {
+  children: 'with body text',
+  variant: 'colorful',
 };
 
 export const CardWithHeaderAndMaxWidth: ComponentStory<typeof Card> = args => {
   return (
     <Card {...args}>
       <CardHeader>
-        <CardTitle>Title</CardTitle>
-        <CardActions>
-          <Button>Button</Button>
-        </CardActions>
+        <CardTitle> Card Title</CardTitle>
       </CardHeader>
-      <Text>{args.children}</Text>
+      <CardBody>
+        <Text>{args.children}</Text>
+      </CardBody>
     </Card>
   );
 };
@@ -71,30 +136,24 @@ export const CardWithLongHeader: ComponentStory<typeof Card> = args => {
     <Card {...args}>
       <CardHeader>
         <CardTitle>This is a long title that should cause wrapping</CardTitle>
-        <CardActions>
-          <Button>Button</Button>
-        </CardActions>
       </CardHeader>
-      <Text>{args.children}</Text>
     </Card>
   );
 };
 
-export const CardWithLongHeaderAndMaxWidth: ComponentStory<
-  typeof Card
-> = args => {
-  return (
-    <Card {...args}>
-      <CardHeader>
-        <CardTitle>This is a long title that should cause wrapping</CardTitle>
-        <CardActions>
-          <Button>Button</Button>
-        </CardActions>
-      </CardHeader>
-      <Text>{args.children}</Text>
-    </Card>
-  );
-};
+export const CardWithLongHeaderAndMaxWidth: ComponentStory<typeof Card> =
+  args => {
+    return (
+      <Card {...args}>
+        <CardHeader>
+          <CardTitle>This is a long title that should cause wrapping</CardTitle>
+        </CardHeader>
+        <CardBody>
+          <Text>{args.children}</Text>
+        </CardBody>
+      </Card>
+    );
+  };
 
 CardWithLongHeaderAndMaxWidth.args = {
   children: 'Card with a set max width and a long header',
@@ -106,38 +165,20 @@ export const CardWithMultipleActions: ComponentStory<typeof Card> = args => {
     <Card {...args}>
       <CardHeader>
         <CardTitle>Title heading</CardTitle>
+      </CardHeader>
+      <CardBody>
+        <Text>{args.children}</Text>
+      </CardBody>
+      <CardFooter>
         <CardActions>
           <Button>Button</Button>
-          <Button>Button</Button>
         </CardActions>
-      </CardHeader>
-      <Text>{args.children}</Text>
+      </CardFooter>
     </Card>
   );
 };
 
 CardWithMultipleActions.args = {
   children: 'Card with many actions',
-};
-
-export const CardWithMultipleActionsAndMaxWidth: ComponentStory<
-  typeof Card
-> = args => {
-  return (
-    <Card {...args}>
-      <CardHeader>
-        <CardTitle>Title heading</CardTitle>
-        <CardActions>
-          <Button>Button</Button>
-          <Button>Button</Button>
-        </CardActions>
-      </CardHeader>
-      <Text>{args.children}</Text>
-    </Card>
-  );
-};
-
-CardWithMultipleActionsAndMaxWidth.args = {
-  children: 'Card with many actions and a set max width.',
-  maxW: '50%',
+  variant: 'colorful',
 };

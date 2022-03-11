@@ -102,6 +102,12 @@ export default {
         category: 'state',
       },
     },
+    isExternal: {
+      control: {type: 'boolean'},
+      table: {
+        category: 'state',
+      },
+    },
 
     isLoading: {
       control: {type: 'boolean'},
@@ -259,4 +265,12 @@ GhostDisabled.args = {
   ...defaultButtonArgs,
   isDisabled: true,
   variant: 'ghost',
+};
+
+export const ExternalButton = Template.bind({});
+ExternalButton.args = {
+  children: 'Click Me',
+  variant: 'solid',
+  isExternal: true,
+  href: 'http://localhost:6007/?path=/story/components-card--search-result-card-example',
 };

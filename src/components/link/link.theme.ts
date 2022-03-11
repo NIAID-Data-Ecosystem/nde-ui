@@ -24,6 +24,8 @@ export const Link: ComponentStyleConfig = {
 
       ':hover': {
         color: props?._hover?.color || 'link.color',
+        textDecoration: 'none',
+
         '.child-string, .child-node, .child-node p': {
           borderBottomColor: 'transparent',
           color: 'inherit',

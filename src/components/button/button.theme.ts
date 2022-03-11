@@ -1,10 +1,17 @@
 export const Button = {
   // The styles all buttons have in common
-  baseStyle: {
-    borderRadius: 'base',
-    fontWeight: 'normal',
-    fontFamily: 'body',
-    cursor: 'pointer',
+  baseStyle: props => {
+    return {
+      borderRadius: 'base',
+      fontWeight: 'normal',
+      fontFamily: 'body',
+      cursor: 'pointer',
+      color: 'white',
+
+      _hover: {
+        color: 'inherit',
+      },
+    };
   },
   sizes: {
     sm: {
@@ -19,10 +26,6 @@ export const Button = {
     },
   },
   variants: {
-    link: {
-      textDecoration: 'underline',
-      color: 'link.color',
-    },
     solid: ({colorScheme}: {colorScheme: string}) => {
       let bg;
       let hoverBg;
@@ -33,11 +36,16 @@ export const Button = {
       }
       return {
         bg,
+        color: 'white!important',
         _hover: {
+          color: 'white',
           bg: hoverBg,
           _disabled: {
             bg,
           },
+        },
+        _visited: {
+          '.child-string, .child-node, .child-node p, svg': {color: 'white'},
         },
       };
     },
@@ -50,18 +58,22 @@ export const Button = {
       }
       return {
         bg,
+
         _hover: {
           bg: hoverBg,
           _disabled: {
             bg,
           },
         },
+        _visited: {
+          '.child-string, .child-node, .child-node p, svg': {color: 'inherit'},
+        },
       };
     },
     outline: ({colorScheme}: {colorScheme: string}) => {
       let color;
       let hoverBg;
-      let bg;
+      const bg = 'white';
 
       if (colorScheme === 'negative') {
         color = 'status.error';
@@ -75,6 +87,13 @@ export const Button = {
           bg: hoverBg,
           _disabled: {
             bg,
+          },
+        },
+        _visited: {
+          color: 'inherit',
+
+          '.child-string, .child-node, .child-node p, svg': {
+            color: 'inherit',
           },
         },
       };
