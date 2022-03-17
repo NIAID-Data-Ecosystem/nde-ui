@@ -27,7 +27,7 @@ export const Link: ComponentStyleConfig = {
         textDecoration: 'none',
 
         '.child-string, .child-node, .child-node p': {
-          borderBottomColor: 'transparent',
+          borderColor: 'transparent',
           color: 'inherit',
         },
       },
@@ -41,7 +41,7 @@ export const Link: ComponentStyleConfig = {
         ':hover': {
           borderBottom: 'transparent',
           '.child-string, .child-node, .child-node p': {
-            borderBottomColor: 'transparent',
+            borderColor: 'transparent',
           },
         },
       },
@@ -49,17 +49,50 @@ export const Link: ComponentStyleConfig = {
   },
 
   variants: {
-    // underline on hover.
+    ghost: props => {
+      return {
+        borderColor: 'transparent',
+        '.child-string, .child-node, .child-node p': {
+          color: 'inherit',
+          borderColor: 'transparent',
+        },
+        '.child-string, .child-node p': {
+          borderColor: 'transparent',
+        },
+        ':hover': {
+          borderBottom: props.borderBottom || '0.0625rem solid',
 
+          borderColor: props.color || 'link.color',
+          '.child-string, .child-node, .child-node p': {
+            borderBottom: props.borderBottom || '0.0625rem solid',
+            borderColor: props.color || 'link.color',
+          },
+        },
+        ':visited': {
+          borderBottom: props.borderBottom || '0.0625rem solid',
+          borderColor: 'transparent',
+          '.child-string, .child-node, .child-node p, svg': {
+            borderColor: 'transparent',
+            borderBottom: props.borderBottom || '0.0625rem solid',
+          },
+          ':hover': {
+            borderColor: props.color || 'link.visited',
+            '.child-string, .child-node, .child-node p': {
+              borderColor: props.color || 'link.visited',
+            },
+          },
+        },
+      };
+    },
     unstyled: props => {
       return {
         '.child-string, .child-node p': {
-          borderBottomColor: 'transparent',
+          borderColor: 'transparent',
         },
         ':hover': {
           color: props?._hover?.color || 'link.color',
           '.child-string, .child-node, .child-node p': {
-            borderBottomColor: 'transparent',
+            borderColor: 'transparent',
             color: 'inherit',
           },
         },
@@ -74,7 +107,7 @@ export const Link: ComponentStyleConfig = {
             color: props?._visited?._hover?.color || 'link.visited',
 
             '.child-string, .child-node, .child-node p, svg': {
-              borderBottomColor: 'transparent',
+              borderColor: 'transparent',
               color: 'inherit',
             },
           },

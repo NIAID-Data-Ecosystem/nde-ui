@@ -41,30 +41,31 @@ export const MobileNavItem = ({label, routes, href}: RouteProps) => {
   const {isOpen, onToggle} = useDisclosure();
 
   return (
-    <Stack
-      w={'100%'}
-      spacing={4}
-      onClick={routes && onToggle}
-      cursor={'pointer'}
-    >
+    <Stack w='100%' spacing={2} onClick={routes && onToggle} cursor='pointer'>
       {href ? (
         <Link
-          p={2}
+          px={4}
+          py={2}
           href={href}
-          w={'100%'}
-          color={'primary.600'}
-          rounded={'md'}
+          w='100%'
+          color='primary.600'
+          variant='unstyled'
+          rounded='md'
           _hover={{
             bg: 'primary.50',
             color: 'primary.500',
+            '.icon': {opacity: '100%', transform: 'translateX(0)'},
           }}
           _visited={{color: 'primary.600'}}
         >
-          <Flex justify={'space-between'} align={'center'}>
+          <Flex opacity={1} justify='space-between' align='center'>
             <Text fontWeight={600}>{label}</Text>
             <Icon
+              className='icon'
+              transform='translateX(-10px)'
+              transition='all .3s ease'
               sx={{
-                '> *': {color: 'gray.300'},
+                '> *': {color: 'primary.500'},
               }}
               w={3}
               h={3}
@@ -74,19 +75,22 @@ export const MobileNavItem = ({label, routes, href}: RouteProps) => {
         </Link>
       ) : (
         <Flex
-          p={2}
-          justify={'space-between'}
-          align={'center'}
-          w={'100%'}
-          color={'gray.800'}
-          rounded={'md'}
+          px={4}
+          py={2}
+          justify='space-between'
+          align='center'
+          w='100%'
+          color='gray.900'
+          rounded='md'
           _hover={{
             bg: 'primary.50',
             color: 'gray.900',
           }}
         >
-          <Flex justify={'space-between'} align={'center'}>
-            <Text fontWeight={600}>{label}</Text>
+          <Flex justify='space-between' align='center'>
+            <Text fontWeight={600} color='gray.700'>
+              {label}
+            </Text>
           </Flex>
           {routes && (
             <Icon
@@ -95,7 +99,11 @@ export const MobileNavItem = ({label, routes, href}: RouteProps) => {
               }}
               as={FaChevronDown}
               transition={'all .25s ease-in-out'}
-              transform={isOpen ? 'rotate(180deg)' : ''}
+              transform={
+                isOpen
+                  ? 'translateX(-10px) rotate(180deg)'
+                  : 'translateX(-10px)'
+              }
               w={3}
               h={3}
             />
@@ -103,22 +111,24 @@ export const MobileNavItem = ({label, routes, href}: RouteProps) => {
         </Flex>
       )}
 
-      <Collapse in={isOpen} animateOpacity>
-        <Stack
-          mt={0}
-          pl={2}
-          ml={2}
-          borderLeft={1}
-          borderStyle={'solid'}
-          borderColor={'gray.200'}
-          align={'start'}
-        >
-          {routes &&
-            routes.map(route => {
-              return <MobileNavItem key={route.href} {...route} />;
-            })}
-        </Stack>
-      </Collapse>
+      <Box>
+        <Collapse in={isOpen} animateOpacity>
+          <Stack
+            mt={0}
+            pl={2}
+            ml={2}
+            borderLeft={2}
+            borderStyle='solid'
+            borderColor='gray.200'
+            align='start'
+          >
+            {routes &&
+              routes.map(route => {
+                return <MobileNavItem key={route.href} {...route} />;
+              })}
+          </Stack>
+        </Collapse>
+      </Box>
     </Stack>
   );
 };
@@ -130,46 +140,41 @@ export const DesktopNavItem = ({label, routes, href}: RouteProps) => {
       <Link
         p={2}
         href={href ?? '#'}
-        fontSize={'sm'}
+        fontSize='sm'
         fontWeight={500}
-        color={'white'}
+        color='white'
         _visited={{color: 'white'}}
         _hover={{
           opacity: 0.85,
           color: 'white',
         }}
         variant='unstyled'
-        cursor={'pointer'}
-        alignItems={'center'}
-        whiteSpace={'nowrap'}
+        cursor='pointer'
+        alignItems='center'
+        whiteSpace='nowrap'
       >
         {label}
       </Link>
     );
   }
   return (
-    <Box bg={'inherit'}>
-      <Popover
-        trigger={'click'}
-        placement={'bottom-start'}
-        autoFocus
-        closeOnEsc
-      >
+    <Box bg='inherit'>
+      <Popover trigger='click' placement='bottom-start' autoFocus closeOnEsc>
         <PopoverTrigger>
           <Button
             p={2}
             href={href ?? '#'}
-            fontSize={'sm'}
+            fontSize='sm'
             fontWeight={500}
-            color={'white'}
+            color='white'
             _visited={{color: 'white'}}
             _hover={{
               opacity: 0.85,
               color: 'white',
             }}
             variant='unstyled'
-            cursor={'pointer'}
-            alignItems={'center'}
+            cursor='pointer'
+            alignItems='center'
           >
             {label}
             {routes && <Icon as={FaCaretDown} w={4} h={4} />}
@@ -179,17 +184,17 @@ export const DesktopNavItem = ({label, routes, href}: RouteProps) => {
         {routes && (
           <PopoverContent
             border={0}
-            boxShadow={'xl'}
-            bg={'white'}
+            boxShadow='xl'
+            bg='white'
             py={2}
-            rounded={'xl'}
-            minW={'sm'}
+            rounded='xl'
+            minW='sm'
             id='title'
             title='Nav Pop over'
           >
             <PopoverArrow />
             <PopoverBody>
-              <Stack role={'tablist'}>
+              <Stack role='tablist'>
                 {routes.map(route => (
                   <DesktopSubNav key={route.label} {...route} />
                 ))}
@@ -209,40 +214,38 @@ const DesktopSubNav = ({label, href, subLabel}: RouteProps) => {
       role='tab'
       href={href}
       p={2}
-      color={'primary.700'}
-      rounded={'md'}
+      color='primary.700'
+      variant='unstyled'
+      rounded='md'
       _hover={{
         bg: 'primary.50',
+        color: 'primary.500',
         '.label': {color: 'primary.500'},
         '.icon': {opacity: '100%', transform: 'translateX(0)'},
       }}
     >
-      <Flex justifyContent={'space-between'}>
+      <Flex justifyContent='space-between'>
         <Box>
           <Text
             className='label'
-            transition={'all .3s ease'}
+            transition='all .3s ease'
             _groupHover={{color: 'primary.500'}}
             fontWeight={600}
           >
             {label}
           </Text>
           <br />
-          <Text
-            fontSize={'sm'}
-            color={'text.body'}
-            borderBottom={'none!important'}
-          >
+          <Text fontSize='sm' color='text.body'>
             {subLabel}
           </Text>
         </Box>
         <Flex
-          className={'icon'}
-          transition={'all .3s ease'}
-          transform={'translateX(-10px)'}
+          className='icon'
+          transition='all .3s ease'
+          transform='translateX(-10px)'
           opacity={1}
-          justify={'flex-end'}
-          align={'center'}
+          justify='flex-end'
+          align='center'
         >
           <Icon
             sx={{
@@ -263,29 +266,25 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
   const isMobile = useBreakpointValue({base: true, md: false});
 
   return (
-    <Box as={'nav'} aria-label={'Main navigation'} w={'100%'}>
+    <Box as='nav' aria-label='Main navigation' w='100%'>
       <Flex
         bg={bg || 'primary.500'}
-        color={'white'}
-        minH={'60px'}
+        color='white'
+        minH='60px'
         py={{base: 2}}
         px={{base: 4}}
         borderBottom={1}
-        borderStyle={'solid'}
-        borderColor={'gray.200'}
-        align={'center'}
+        borderStyle='solid'
+        borderColor='gray.200'
+        align='center'
       >
-        <Flex
-          flex={{base: 1, md: 'auto'}}
-          ml={{base: -2}}
-          alignItems={'center'}
-        >
-          <Flex flex={{base: 1}} justify={'start'}>
+        <Flex flex={{base: 1, md: 'auto'}} ml={{base: -2}} alignItems='center'>
+          <Flex flex={{base: 1}} justify='start'>
             <Link
               display='flex'
               alignItems='center'
               href='/landing'
-              variant={'unstyled'}
+              variant='unstyled'
             >
               <Image
                 w={['220px', '220px', '350px']}
@@ -298,7 +297,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
               display={{base: 'none', md: 'flex'}}
               ml={10}
               flex={1}
-              justifyContent={'flex-end'}
+              justifyContent='flex-end'
             >
               <Stack direction={'row'} spacing={4}>
                 {navItems &&
@@ -311,7 +310,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
           {navItems && (
             <IconButton
               onClick={onToggle}
-              color={'white'}
+              color='white'
               display={{base: 'flex', md: 'none'}}
               _hover={{bg: 'whiteAlpha.500'}}
               icon={
@@ -321,22 +320,25 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
                   <Icon as={IoMenu} w={5} h={5} />
                 )
               }
-              variant={'ghost'}
-              aria-label={'Toggle Navigation'}
+              variant='ghost'
+              aria-label='Toggle Navigation'
             />
           )}
         </Flex>
       </Flex>
 
       {/* Nav in mobile mode */}
-      <Collapse in={isOpen} animateOpacity>
-        <Stack bg={'white'} p={2} display={{md: 'none'}} alignItems={'end'}>
-          {navItems &&
-            navItems.map(navItem => (
-              <MobileNavItem key={navItem.label} {...navItem} />
-            ))}
-        </Stack>
-      </Collapse>
+
+      <Box borderRadius='semi' boxShadow='base' overflow='hidden'>
+        <Collapse in={isOpen} animateOpacity>
+          <Stack bg='white' p={2} display={{md: 'none'}} alignItems='end'>
+            {navItems &&
+              navItems.map(navItem => (
+                <MobileNavItem key={navItem.label} {...navItem} />
+              ))}
+          </Stack>
+        </Collapse>
+      </Box>
     </Box>
   );
 };

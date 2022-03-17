@@ -11,7 +11,7 @@ import {
   useBreakpointValue,
   TextProps,
 } from '@chakra-ui/react';
-import {FaExternalLinkAlt} from 'react-icons/fa';
+import {FaChevronRight} from 'react-icons/fa';
 import {Link} from '../../components/link';
 import styled from '@emotion/styled';
 import footerConfig from './footer.config.json';
@@ -23,10 +23,50 @@ export const StyledLink = styled(Link)<LinkProps>(() => ({}));
 
 StyledLink.defaultProps = {
   display: 'inline',
-  color: 'whiteAlpha.800',
+  color: 'white',
   width: '100%',
+  variant: 'ghost',
+  my: 0,
   _visited: {color: 'white'},
-  _hover: {color: 'white'},
+  _hover: {color: 'white', borderBottomColor: 'white'},
+};
+
+interface FooterLinkProps {
+  href: string;
+  isExternal?: boolean;
+}
+
+const FooterLink: React.FC<FooterLinkProps> = ({
+  children,
+  isExternal,
+  href,
+}) => {
+  // Icon for local links.
+  return (
+    <Box
+      _hover={{
+        svg: {
+          opacity: '100%',
+          transform: 'translateX(0)',
+          transition: 'all .3s ease',
+        },
+      }}
+    >
+      <StyledLink href={href} isExternal={isExternal ?? false} variant='ghost'>
+        {children}
+      </StyledLink>
+      {!isExternal && (
+        <Icon
+          as={FaChevronRight}
+          boxSize={3}
+          ml={2}
+          color={'accent.bg'}
+          transform={`translate(-5px)`}
+          transition='all .3s ease'
+        ></Icon>
+      )}
+    </Box>
+  );
 };
 
 // Header for footer section
@@ -35,10 +75,10 @@ const ListHeader: React.FC<ListHeaderProps> = ({children, ...props}) => {
   return (
     <Heading
       as={'h2'}
-      size={'h6'}
-      mb={2}
+      size={'h5'}
       fontFamily={'body'}
       color={'white'}
+      fontWeight={'medium'}
       {...props}
     >
       {children}
@@ -66,56 +106,66 @@ export const Footer: React.FC<FooterProps> = ({navigation, contact}) => {
     : (footerConfig.routes as FooterItem[]);
 
   const isMobile = useBreakpointValue({base: true, md: false});
+
   return (
-    <Box bg={'gray.900'} color={'white'}>
-      <Container as={Stack} maxW={'6xl'} py={10}>
-        <SimpleGrid columns={{base: 1, sm: 2, md: 3}} spacing={8}>
+    <Box
+      as={'footer'}
+      bg={'gray.900'}
+      color={'white'}
+      borderTop={'0.25rem solid'}
+      borderColor={'accent.bg'}
+    >
+      <Stack maxW={'6xl'} p={8}>
+        <SimpleGrid minChildWidth={'350px'} spacing={6}>
           {navigationSections.map((section, i) => {
             return (
-              <Stack key={i} align={'flex-start'}>
+              <Box key={i} flex={i === 0 ? 2 : 1}>
                 {section.label && <ListHeader>{section.label}</ListHeader>}
                 {section.routes &&
                   section.routes.map(({href, label, routes, isExternal}) => {
+                    console.log(section);
                     return (
-                      <Stack key={label} align={'flex-start'}>
+                      <Box key={label} align={'flex-start'} mb={1}>
                         {href ? (
-                          <StyledLink
+                          <FooterLink
                             href={href}
                             isExternal={isExternal ?? false}
                           >
                             {label}
-                          </StyledLink>
+                          </FooterLink>
                         ) : (
                           <>
                             <ListHeader
                               as={'h3'}
                               size={'sm'}
                               mb={0}
-                              fontWeight='semibold'
+                              color={'whiteAlpha.800'}
                             >
                               {label}
                             </ListHeader>
                             {routes &&
                               routes.map(route => (
                                 <Box key={route.label}>
-                                  <StyledLink
-                                    href={route.href}
-                                    isExternal={route.isExternal ?? false}
-                                  >
-                                    {route.label}
-                                  </StyledLink>
+                                  {route.href && (
+                                    <FooterLink
+                                      href={route.href}
+                                      isExternal={route.isExternal ?? false}
+                                    >
+                                      {route.label}
+                                    </FooterLink>
+                                  )}
                                 </Box>
                               ))}
                           </>
                         )}
-                      </Stack>
+                      </Box>
                     );
                   })}
-              </Stack>
+              </Box>
             );
           })}
         </SimpleGrid>
-      </Container>
+      </Stack>
       <Box
         borderTopWidth={1}
         borderStyle={'solid'}

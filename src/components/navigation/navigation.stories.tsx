@@ -73,9 +73,8 @@ const NavigationItemArgTypes = {
 };
 
 /* Mobile Navigation Item Story  */
-export const MobileNavigationItem: ComponentStory<
-  typeof MobileNavItem
-> = args => <MobileNavItem {...args}></MobileNavItem>;
+export const MobileNavigationItem: ComponentStory<typeof MobileNavItem> =
+  args => <MobileNavItem {...args}></MobileNavItem>;
 MobileNavigationItem.args = {
   label: 'Link Name',
   href: '#',
@@ -85,9 +84,8 @@ MobileNavigationItem.argTypes = {
 };
 
 /* Desktop Navigation Item Story  */
-export const DesktopNavigationItem: ComponentStory<
-  typeof DesktopNavItem
-> = args => <DesktopNavItem {...args}></DesktopNavItem>;
+export const DesktopNavigationItem: ComponentStory<typeof DesktopNavItem> =
+  args => <DesktopNavItem {...args}></DesktopNavItem>;
 
 DesktopNavigationItem.args = {
   label: 'Link Name',

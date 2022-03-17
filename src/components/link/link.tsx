@@ -10,7 +10,7 @@ import {FaExternalLinkAlt} from 'react-icons/fa';
 
 export interface LinkProps extends ChakraLinkProps {
   color?: string;
-  variant?: 'base' | 'unstyled' | 'button';
+  variant?: 'base' | 'unstyled' | 'ghost';
 }
 
 export const Link: React.FC<LinkProps> = props => {

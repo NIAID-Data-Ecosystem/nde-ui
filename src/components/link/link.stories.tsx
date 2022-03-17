@@ -2,9 +2,7 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {Link} from './link';
 import {theme} from 'src/theme';
-import {Button, Text} from 'src/components';
-import {Icon} from '@chakra-ui/react';
-import {FaAddressBook, FaExternalLinkAlt} from 'react-icons/fa';
+import {Text} from 'src/components';
 export default {
   title: 'Components/Link',
   component: Link,
@@ -62,7 +60,7 @@ export default {
       \n
       'unstyled': Text has no underline.
       \n
-      'button': Text that has an underline when hovered.
+      'link': Text that has an underline when hovered.
       `,
       defaultValue: undefined,
       control: {
@@ -137,6 +135,14 @@ UnstyledLink.args = {
   variant: 'unstyled',
 };
 
+export const GhostLink = Template.bind({});
+GhostLink.args = {
+  children: 'Ghost Link',
+  href: '#skldhfd',
+  variant: 'ghost',
+  isExternal: true,
+};
+
 const TextTemplate: ComponentStory<typeof Link> = args => (
   <Link {...args}>
     <Text>
@@ -159,8 +165,7 @@ export const WithNestedTextElement = TextTemplate.bind({});
 WithNestedTextElement.args = {
   href: '#',
   isExternal: true,
-  variant: 'unstyled',
-  color: 'red',
-  _hover: {color: 'pink'},
-  _visited: {color: 'orange'},
+  color: 'link.color',
+  _hover: {color: 'link.color'},
+  _visited: {color: 'link.visiteds'},
 };
