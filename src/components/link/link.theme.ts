@@ -72,13 +72,13 @@ export const Link: ComponentStyleConfig = {
           borderBottom: props.borderBottom || '0.0625rem solid',
           borderColor: 'transparent',
           '.child-string, .child-node, .child-node p, svg': {
-            borderColor: 'transparent',
             borderBottom: props.borderBottom || '0.0625rem solid',
+            borderColor: 'transparent',
           },
           ':hover': {
-            borderColor: props.color || 'link.visited',
+            borderColor: props?._visited?.color || 'link.visited',
             '.child-string, .child-node, .child-node p': {
-              borderColor: props.color || 'link.visited',
+              borderColor: props?._visited?.color || 'link.visited',
             },
           },
         },

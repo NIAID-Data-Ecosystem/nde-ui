@@ -2,7 +2,7 @@ import {theme} from 'src/theme';
 
 export const Badge = {
   // Badge styles based on: https://designsystem.niaid.nih.gov/components/molecules
-  baseStyle: props => {
+  baseStyle: () => {
     const baseStyles = {
       py: 2,
       px: 3,

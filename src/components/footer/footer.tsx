@@ -28,7 +28,7 @@ StyledLink.defaultProps = {
   variant: 'ghost',
   my: 0,
   _visited: {color: 'white'},
-  _hover: {color: 'white', borderBottomColor: 'white'},
+  _hover: {color: 'white'},
 };
 
 interface FooterLinkProps {
@@ -116,7 +116,7 @@ export const Footer: React.FC<FooterProps> = ({navigation, contact}) => {
       borderColor={'accent.bg'}
     >
       <Stack maxW={'6xl'} p={8}>
-        <SimpleGrid minChildWidth={'350px'} spacing={6}>
+        <SimpleGrid minChildWidth={'300px'} spacing={6}>
           {navigationSections.map((section, i) => {
             return (
               <Box key={i} flex={i === 0 ? 2 : 1}>

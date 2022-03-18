@@ -167,5 +167,5 @@ WithNestedTextElement.args = {
   isExternal: true,
   color: 'link.color',
   _hover: {color: 'link.color'},
-  _visited: {color: 'link.visiteds'},
+  _visited: {color: 'link.visited'},
 };

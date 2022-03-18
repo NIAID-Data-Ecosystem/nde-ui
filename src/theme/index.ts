@@ -8,6 +8,7 @@ import {Badge} from '../components/badge/badge.theme';
 import Card from '../components/card/card.theme';
 import {Heading} from '../components/heading/heading.theme';
 import {Link} from '../components/link/link.theme';
+import {Tag} from '../components/tag/tag.theme';
 import {Text} from '../components/text/text.theme';
 import {ColorsProps} from './foundations/colors';
 
@@ -31,6 +32,7 @@ const overrides = {
     Card,
     Heading,
     Link,
+    Tag,
     Text,
   },
   config,

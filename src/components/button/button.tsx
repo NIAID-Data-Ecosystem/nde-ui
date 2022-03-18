@@ -22,11 +22,11 @@ export const Button: React.FC<ButtonProps> = ({
   href,
   ...props
 }) => {
-  if (isExternal) {
+  if (href) {
     return (
       <ChakraButton as={Link} href={href} {...props}>
         <Text color={'inherit'}>{children}</Text>
-        <Icon as={FaExternalLinkAlt} boxSize={4} ml={2}></Icon>
+        {isExternal && <Icon as={FaExternalLinkAlt} boxSize={4} ml={2}></Icon>}
       </ChakraButton>
     );
   }

@@ -1,6 +1,6 @@
 export const Button = {
   // The styles all buttons have in common
-  baseStyle: props => {
+  baseStyle: () => {
     return {
       borderRadius: 'base',
       fontWeight: 'normal',
@@ -29,16 +29,20 @@ export const Button = {
     solid: ({colorScheme}: {colorScheme: string}) => {
       let bg;
       let hoverBg;
+      let color = 'white';
 
       if (colorScheme === 'negative') {
         bg = 'status.error';
         hoverBg = 'red.700';
       }
+      if (colorScheme === 'gray') {
+        color = 'text.heading';
+      }
       return {
         bg,
-        color: 'white!important',
+        color: color,
         _hover: {
-          color: 'white',
+          color: color,
           bg: hoverBg,
           _disabled: {
             bg,
