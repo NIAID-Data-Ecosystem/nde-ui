@@ -86,6 +86,7 @@ export {
   useBoolean,
   useBreakpointValue,
   useClipboard,
+  useDimensions,
   useDisclosure,
   useMediaQuery,
   useMergeRefs,

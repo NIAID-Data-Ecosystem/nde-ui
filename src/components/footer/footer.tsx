@@ -123,7 +123,6 @@ export const Footer: React.FC<FooterProps> = ({navigation, contact}) => {
                 {section.label && <ListHeader>{section.label}</ListHeader>}
                 {section.routes &&
                   section.routes.map(({href, label, routes, isExternal}) => {
-                    console.log(section);
                     return (
                       <Box key={label} align={'flex-start'} mb={1}>
                         {href ? (
