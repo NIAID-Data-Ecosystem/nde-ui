@@ -7,6 +7,7 @@ import {Button} from '../components/button/button.theme';
 import {Badge} from '../components/badge/badge.theme';
 import Card from '../components/card/card.theme';
 import {Heading} from '../components/heading/heading.theme';
+import {Input} from '../components/input/input.theme';
 import {Link} from '../components/link/link.theme';
 import {Tag} from '../components/tag/tag.theme';
 import {Text} from '../components/text/text.theme';
@@ -31,6 +32,7 @@ const overrides = {
     Button,
     Card,
     Heading,
+    Input,
     Link,
     Tag,
     Text,

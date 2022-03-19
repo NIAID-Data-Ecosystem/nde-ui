@@ -1,7 +1,6 @@
 import React from 'react';
 import {Button, ButtonProps} from '../button';
 import {
-  Box,
   ButtonGroup,
   ButtonGroupProps,
   Flex,

@@ -1,8 +1,7 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {Box, Flex, Tag, TagCloseButton, TagLabel, Text} from '@chakra-ui/react';
-import {theme} from 'src/theme';
-console.log(theme);
+
 export default {
   title: 'Components/Tag',
   component: Tag,
