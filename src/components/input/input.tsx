@@ -14,12 +14,12 @@ import {IoClose} from 'react-icons/io5';
 
 export interface SearchInputProps extends InputProps {
   // Function fired when input is changed.
-  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   // Function fired button is submitted.
-  handleSubmit?: React.MouseEventHandler<HTMLButtonElement>;
+  handleSubmit?: (e: React.FormEvent<HTMLButtonElement>) => void;
   // Variant for button
   buttonVariant?: string;
-  // Should input update responsively
+  // Should input resize responsively
   isResponsive?: boolean;
   // Label for pop out button
   ariaLabel: string;
@@ -30,6 +30,7 @@ export interface SearchInputProps extends InputProps {
  */
 export const SearchInput: React.FC<SearchInputProps> = ({
   size = 'md',
+  handleChange,
   handleSubmit,
   isResponsive = true,
   buttonVariant,
@@ -54,7 +55,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   };
 
   return (
-    <Flex alignItems={'center'} position='relative'>
+    <Flex as='form' alignItems='center' position='relative' {...props}>
       <InputGroup
         // If in 'responsive mode' we use a button to toggle the visibility of the input in mobile size.
         visibility={[
@@ -65,12 +66,16 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         _focusWithin={{
           svg: {color: `${props.colorScheme}.500`},
         }}
-        {...props}
       >
         <InputLeftElement pointerEvents='none'>
           <FaSearch color='gray.300' />
         </InputLeftElement>
-        <Input type='text' variant='shadow' size={size} {...props} />
+        <Input
+          type='text'
+          variant='shadow'
+          size={size}
+          onChange={e => handleChange(e)}
+        />
 
         {/* If handle submit function is provided we show a button. */}
         {handleSubmit && (
@@ -80,7 +85,8 @@ export const SearchInput: React.FC<SearchInputProps> = ({
               size={size}
               colorScheme={props.colorScheme}
               aria-label='search'
-              onClick={e => handleSubmit(e)}
+              type='submit'
+              onSubmit={e => handleSubmit(e)}
               d='flex'
             >
               Search
