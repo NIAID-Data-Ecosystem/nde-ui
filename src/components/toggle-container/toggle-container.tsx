@@ -6,8 +6,6 @@ import {
   SystemProps,
   useDisclosure,
   ButtonProps,
-  Text,
-  useDimensions,
 } from '@chakra-ui/react';
 import {FaChevronDown} from 'react-icons/fa';
 import styled from '@emotion/styled';

@@ -75,6 +75,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           variant='shadow'
           size={size}
           onChange={e => handleChange(e)}
+          {...props}
         />
 
         {/* If handle submit function is provided we show a button. */}
@@ -86,7 +87,10 @@ export const SearchInput: React.FC<SearchInputProps> = ({
               colorScheme={props.colorScheme}
               aria-label='search'
               type='submit'
-              onSubmit={e => handleSubmit(e)}
+              onSubmit={e => {
+                e.preventDefault();
+                handleSubmit(e);
+              }}
               d='flex'
             >
               Search

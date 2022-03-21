@@ -15,7 +15,6 @@ export const Link: ComponentStyleConfig = {
         display: 'inline',
         alignItems: 'baseline',
         color: 'inherit',
-        lineHeight: 'base',
       },
 
       '.child-string, .child-node p': {

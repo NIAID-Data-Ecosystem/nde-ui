@@ -157,7 +157,12 @@ export const InputWithButton: ComponentStory<typeof Input> = () => {
 
 export const InputWithSearch: ComponentStory<typeof Input> = args => {
   return (
-    <SearchInput ariaLabel={'Open dataset search'} {...args}></SearchInput>
+    <SearchInput
+      handleChange={() => {}}
+      ariaLabel={'Open dataset search'}
+      w='100%'
+      {...args}
+    ></SearchInput>
   );
 };
 InputWithSearch.args = {

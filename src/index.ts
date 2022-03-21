@@ -92,4 +92,5 @@ export {
   useMergeRefs,
   useStyleConfig,
   useOutsideClick,
+  VisuallyHidden,
 } from '@chakra-ui/react';
