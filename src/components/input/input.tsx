@@ -35,6 +35,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   isResponsive = true,
   buttonVariant,
   ariaLabel,
+  colorScheme,
   ...props
 }) => {
   const [showInput, setShowInput] = useState(false);
@@ -64,7 +65,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         ]}
         size={size}
         _focusWithin={{
-          svg: {color: `${props.colorScheme}.500`},
+          svg: {color: `${colorScheme}.500`},
         }}
       >
         <InputLeftElement pointerEvents='none'>
@@ -75,6 +76,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           variant='shadow'
           size={size}
           onChange={e => handleChange(e)}
+          colorScheme={colorScheme}
           {...props}
         />
 
@@ -84,7 +86,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
             <Button
               h={sizeConfig[size].h}
               size={size}
-              colorScheme={props.colorScheme}
+              colorScheme={colorScheme}
               aria-label='search'
               type='submit'
               onSubmit={e => {
@@ -109,7 +111,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           ml={4}
           aria-label={ariaLabel || 'Open search input'}
           icon={showInput ? <IoClose /> : <FaSearch />}
-          colorScheme={props.colorScheme}
+          colorScheme={colorScheme}
           variant={buttonVariant || 'outline'}
           onClick={() => setShowInput(!showInput)}
           isActive={showInput}
