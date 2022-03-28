@@ -6,7 +6,7 @@ import {FaTwitter} from 'react-icons/fa';
 import {theme} from 'src/theme';
 
 export default {
-  title: 'Components/Button',
+  title: 'Components/Buttons/Social',
   component: SocialButton,
   parameters: {
     controls: {sort: 'alpha'},

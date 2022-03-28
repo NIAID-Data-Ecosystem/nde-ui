@@ -4,13 +4,13 @@ import {
   ButtonProps as ChakraButtonProps,
   Link,
   Icon,
-  Text,
 } from '@chakra-ui/react';
 import {FaExternalLinkAlt} from 'react-icons/fa';
 
 export interface ButtonProps extends ChakraButtonProps {
   href?: string;
   isExternal?: boolean;
+  target?: string;
 }
 
 /**
@@ -25,7 +25,7 @@ export const Button: React.FC<ButtonProps> = ({
   if (href) {
     return (
       <ChakraButton as={Link} href={href} {...props}>
-        <Text color={'inherit'}>{children}</Text>
+        {children}
         {isExternal && <Icon as={FaExternalLinkAlt} boxSize={4} ml={2}></Icon>}
       </ChakraButton>
     );

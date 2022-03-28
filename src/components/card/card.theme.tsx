@@ -4,7 +4,7 @@ export const Card = {
   borderRadius: 'semi',
   overflow: 'hidden',
   '>*': {
-    p: [6, 8],
+    p: [6, 8, 10],
   },
 };
 

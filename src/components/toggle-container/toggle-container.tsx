@@ -104,7 +104,7 @@ export const ToggleContainer: React.FC<ToggleContainerProps> = ({
       bg={isOpen ? 'blackAlpha.50' : 'white'}
       onClick={() => (isOpen ? onClose() : onOpen())}
       flexWrap={['wrap', 'nowrap']}
-      ariaLabel={ariaLabel}
+      aria-label={ariaLabel}
       alignItems={alignIcon}
       isDisabled={!isExpandable}
       _hover={{
@@ -116,8 +116,8 @@ export const ToggleContainer: React.FC<ToggleContainerProps> = ({
         _hover: {bg: 'white', cursor: 'default'},
         _active: {bg: 'white'},
       }}
-      px={[2, 4, 8]}
-      py={[2, 4]}
+      px={[2, 4, 8, 10]}
+      py={[2, 4, 6]}
       {...props}
     >
       <Flex

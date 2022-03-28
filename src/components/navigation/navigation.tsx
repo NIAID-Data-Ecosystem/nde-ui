@@ -4,7 +4,6 @@ import {
   Button,
   Flex,
   Text,
-  IconButton,
   Stack,
   Collapse,
   Image,
@@ -22,6 +21,7 @@ import {IoClose, IoMenu} from 'react-icons/io5';
 import {Link} from '../../components/link';
 import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-preferred--white.svg';
 import DesktopLogo from '../../assets/logos/niaid-data-ecosystem-logo_desktop--white.svg';
+import {IconButton} from '../button';
 
 export interface RouteProps {
   label: string;
@@ -310,7 +310,8 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
           {navItems && (
             <IconButton
               onClick={onToggle}
-              color='white'
+              colorScheme='primary'
+              color='#fff'
               display={{base: 'flex', md: 'none'}}
               _hover={{bg: 'whiteAlpha.500'}}
               icon={

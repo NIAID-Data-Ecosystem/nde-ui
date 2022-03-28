@@ -16,7 +16,7 @@ export interface SearchInputProps extends InputProps {
   // Function fired when input is changed.
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   // Function fired button is submitted.
-  handleSubmit?: (e: React.FormEvent<HTMLButtonElement>) => void;
+  handleSubmit?: (e: React.FormEvent<HTMLDivElement>) => void;
   // Variant for button
   buttonVariant?: string;
   // Should input resize responsively
@@ -41,6 +41,10 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   const [showInput, setShowInput] = useState(false);
 
   const sizeConfig: any = {
+    xs: {
+      width: '4rem',
+      h: '1.25rem',
+    },
     sm: {
       width: '5.5rem',
       h: '1.7rem',
@@ -56,7 +60,16 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   };
 
   return (
-    <Flex as='form' alignItems='center' position='relative' {...props}>
+    <Flex
+      as='form'
+      alignItems='center'
+      position='relative'
+      onSubmit={e => {
+        e.preventDefault();
+        handleSubmit && handleSubmit(e);
+      }}
+      {...props}
+    >
       <InputGroup
         // If in 'responsive mode' we use a button to toggle the visibility of the input in mobile size.
         visibility={[
@@ -89,10 +102,6 @@ export const SearchInput: React.FC<SearchInputProps> = ({
               colorScheme={colorScheme}
               aria-label='search'
               type='submit'
-              onSubmit={e => {
-                e.preventDefault();
-                handleSubmit(e);
-              }}
               d='flex'
             >
               Search

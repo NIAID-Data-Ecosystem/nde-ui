@@ -120,6 +120,7 @@ export const PaginationButton: React.FC<PaginationButtonProps> = ({
           ? `Go to page ${children}`
           : undefined
       }
+      size='md'
       {...props}
     >
       <VisuallyHidden>Page</VisuallyHidden>

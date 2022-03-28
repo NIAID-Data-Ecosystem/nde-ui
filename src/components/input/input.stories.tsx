@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {
   Button,
@@ -6,6 +6,7 @@ import {
   InputGroup,
   InputRightElement,
   Stack,
+  Text,
 } from '@chakra-ui/react';
 import {SearchInput} from './input';
 
@@ -156,19 +157,31 @@ export const InputWithButton: ComponentStory<typeof Input> = () => {
 };
 
 export const InputWithSearch: ComponentStory<typeof Input> = args => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [submittedValue, setSubmittedValue] = useState('');
   return (
-    <SearchInput
-      handleChange={() => {}}
-      ariaLabel={'Open dataset search'}
-      w='100%'
-      {...args}
-    ></SearchInput>
+    <>
+      <Text my={2} fontSize='sm' color='niaid.placeholder'>
+        Searched Term: {searchTerm || '-'}
+      </Text>
+      <Text my={2} fontSize='sm' color='niaid.placeholder'>
+        Submitted Term: {submittedValue || '-'}
+      </Text>
+      <SearchInput
+        handleChange={e => setSearchTerm(e.target.value)}
+        handleSubmit={e => {
+          e.preventDefault();
+          setSubmittedValue(searchTerm);
+        }}
+        ariaLabel={'Open dataset search'}
+        w='100%'
+        {...args}
+      ></SearchInput>
+    </>
   );
 };
 InputWithSearch.args = {
   placeholder: 'Enter a keyword or phrase',
-  handleChange: () => {},
-  handleSubmit: () => {},
   colorScheme: 'secondary',
   isResponsive: true,
   size: 'md',
