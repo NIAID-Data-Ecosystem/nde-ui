@@ -89,6 +89,9 @@ export const Button = {
         _disabled: {
           bg,
           color,
+          '.child-string, .child-node, .child-node p, svg': {
+            color,
+          },
         },
       };
 
