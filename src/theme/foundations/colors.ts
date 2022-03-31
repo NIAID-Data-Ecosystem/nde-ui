@@ -54,7 +54,7 @@ export const colors = {
     heading: '#2f2f2f',
   },
   navigation: {bg: '#262626', hover: '#1B1B1B'},
-  accent: {bg: '#75C3AC'},
+  accent: {bg: '#C24C7B'},
   link: {
     color: '#246CD3',
     visited: '#6F57B5',

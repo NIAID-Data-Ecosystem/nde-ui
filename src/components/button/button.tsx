@@ -24,7 +24,7 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   if (href) {
     return (
-      <ChakraButton as={Link} href={href} {...props}>
+      <ChakraButton as={Link} href={href} isExternal={isExternal} {...props}>
         {children}
         {isExternal && <Icon as={FaExternalLinkAlt} boxSize={4} ml={2}></Icon>}
       </ChakraButton>

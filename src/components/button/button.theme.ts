@@ -88,6 +88,7 @@ export const Button = {
         },
         _disabled: {
           bg,
+          color,
         },
       };
 

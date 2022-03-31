@@ -172,8 +172,8 @@ export const Footer: React.FC<FooterProps> = ({navigation, contact}) => {
         borderColor={'gray.700'}
       >
         <Container
-          as={Stack}
-          maxW={'6xl'}
+          // as={Stack}
+          maxW={'unset'}
           py={4}
           direction={{base: 'column', md: 'row'}}
           spacing={4}
