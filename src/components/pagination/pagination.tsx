@@ -24,7 +24,7 @@ export const Pagination: React.FC<PaginationProps> = ({children, ...props}) => {
       {...props}
     >
       <VisuallyHidden>
-        <h4>Pagination</h4>
+        <h2>Pagination</h2>
       </VisuallyHidden>
       {children}
     </Flex>

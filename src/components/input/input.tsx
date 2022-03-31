@@ -8,6 +8,7 @@ import {
   InputRightElement,
   InputProps,
   IconButton,
+  VisuallyHidden,
 } from '@chakra-ui/react';
 import {FaSearch} from 'react-icons/fa';
 import {IoClose} from 'react-icons/io5';
@@ -21,7 +22,7 @@ export interface SearchInputProps extends InputProps {
   buttonVariant?: string;
   // Should input resize responsively
   isResponsive?: boolean;
-  // Label for pop out button
+  // For accessibility, we need to link label and input with identical for and id field.
   ariaLabel: string;
 }
 
@@ -70,6 +71,10 @@ export const SearchInput: React.FC<SearchInputProps> = ({
       }}
       {...props}
     >
+      <VisuallyHidden>
+        <label htmlFor={ariaLabel}>{ariaLabel}</label>
+      </VisuallyHidden>
+
       <InputGroup
         // If in 'responsive mode' we use a button to toggle the visibility of the input in mobile size.
         visibility={[
@@ -85,6 +90,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           <FaSearch color='gray.300' />
         </InputLeftElement>
         <Input
+          id={ariaLabel}
           type='text'
           variant='shadow'
           size={size}
@@ -118,7 +124,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           top={0}
           right={0}
           ml={4}
-          aria-label={ariaLabel || 'Open search input'}
+          aria-label={'Open search input'}
           icon={showInput ? <IoClose /> : <FaSearch />}
           colorScheme={colorScheme}
           variant={buttonVariant || 'outline'}

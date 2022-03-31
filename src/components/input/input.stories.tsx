@@ -168,12 +168,12 @@ export const InputWithSearch: ComponentStory<typeof Input> = args => {
         Submitted Term: {submittedValue || '-'}
       </Text>
       <SearchInput
+        ariaLabel='search for datasets'
         handleChange={e => setSearchTerm(e.target.value)}
         handleSubmit={e => {
           e.preventDefault();
           setSubmittedValue(searchTerm);
         }}
-        ariaLabel={'Open dataset search'}
         w='100%'
         {...args}
       ></SearchInput>
