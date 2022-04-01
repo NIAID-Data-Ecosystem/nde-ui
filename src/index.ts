@@ -1,6 +1,7 @@
 export * from './components/';
 export * from './theme/';
 export * from './utils/theme-provider';
+export {css} from '@emotion/react';
 export {
   Accordion,
   AccordionButton,
@@ -20,6 +21,7 @@ export {
   Code,
   Collapse,
   Divider,
+  extendTheme,
   Fade,
   Flex,
   FlexProps,

@@ -1,16 +1,18 @@
 import React from 'react';
-import {ChakraProvider} from '@chakra-ui/react';
+import {ChakraProvider, ChakraProviderProps} from '@chakra-ui/react';
 import {theme} from 'src/theme';
-import FontFace from './font-face';
 
-export const ThemeProvider: React.FC = ({children, ...props}) => {
+interface ThemeProviderProps extends ChakraProviderProps {}
+
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({
+  children,
+  ...props
+}) => {
   return (
     <>
       <ChakraProvider theme={theme} {...props}>
         {children}
       </ChakraProvider>
-      {/* Fontset */}
-      <FontFace />
     </>
   );
 };
