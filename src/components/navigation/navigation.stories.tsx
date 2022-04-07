@@ -24,7 +24,7 @@ export const NavigationBarNoLinks = Template.bind({});
 export const DefaultNavigation = Template.bind({});
 DefaultNavigation.args = {
   navItems: navItems.routes,
-  bg: 'primary.500',
+  bg: 'tertiary.700',
 };
 DefaultNavigation.argTypes = {
   navItems: {
@@ -46,12 +46,12 @@ DefaultNavigation.argTypes = {
   },
   bg: {
     description: 'Background color for navigation bar.',
-    defaultValue: theme.colors.primary['500'],
+    defaultValue: theme.colors.tertiary['700'],
     control: {
       type: 'color',
     },
     table: {
-      defaultValue: {summary: 'primary.500'},
+      defaultValue: {summary: 'tertiary.700'},
       type: {summary: 'string'},
     },
   },

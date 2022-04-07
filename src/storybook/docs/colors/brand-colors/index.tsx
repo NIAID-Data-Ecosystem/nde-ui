@@ -7,7 +7,11 @@ export const BrandColors = () => {
   const {colors} = theme;
   // Additional description for theme swatch
   const get_description = (themeKey: string, colorKey: string) => {
-    if (themeKey === 'primary' || themeKey === 'secondary') {
+    if (
+      themeKey === 'primary' ||
+      themeKey === 'secondary' ||
+      themeKey === 'tertiary'
+    ) {
       if (colorKey === '500' || colorKey === '500') {
         return `(NIAID ${themeKey}) - Used for emphasis of main UI elements`;
       }
@@ -31,6 +35,7 @@ export const BrandColors = () => {
     return (
       v[0] === 'primary' ||
       v[0] === 'secondary' ||
+      v[0] === 'tertiary' ||
       v[0] === 'accent' ||
       v[0] === 'niaid'
     );

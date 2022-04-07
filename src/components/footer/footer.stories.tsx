@@ -1,10 +1,6 @@
 import React from 'react';
-import {Footer, FooterItem} from './footer';
+import {Footer} from './footer';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
-import footerConfig from './footer.config.json';
-import {Box, Stack, Text, Icon} from '@chakra-ui/react';
-import {FaTwitter, FaLinkedin} from 'react-icons/fa';
-import {SocialButton} from '../button';
 
 export default {
   title: 'Components/Footer',
@@ -36,45 +32,6 @@ export default {
     },
   },
 } as ComponentMeta<typeof Footer>;
-
-interface FooterConfig {
-  routes: FooterItem[];
-  contact: FooterItem;
-}
-
-const ContactUs = () => {
-  const {contact} = footerConfig as FooterConfig;
-  return (
-    <Stack direction={'row'}>
-      {contact.label && (
-        <Text color={'white'} mr={2}>
-          {contact.label}
-        </Text>
-      )}
-      {contact.routes &&
-        contact.routes.map(route => {
-          if (!route.href || !route.type) {
-            return;
-          }
-          const {type, label, href} = route;
-          let icon;
-          if (type === 'twitter') {
-            icon = FaTwitter;
-          }
-          if (type === 'linkedin') {
-            icon = FaLinkedin;
-          }
-          return (
-            <Box key={label} mx={1}>
-              <SocialButton label={label} href={href} bg={`${type}.500`}>
-                <Icon as={icon} boxSize={4} />
-              </SocialButton>
-            </Box>
-          );
-        })}
-    </Stack>
-  );
-};
 
 const customRoutes = [
   {
@@ -114,9 +71,7 @@ export const DefaultFooter = Template.bind({});
 
 /* Default Footer Story with contact info  */
 export const DefaultFooterWithContactUs = Template.bind({});
-DefaultFooterWithContactUs.args = {
-  contact: <ContactUs />,
-};
+DefaultFooterWithContactUs.args = {};
 
 /* Custom Footer Links  */
 export const FooterWithPortalLinks = Template.bind({});
@@ -128,5 +83,4 @@ FooterWithPortalLinks.args = {
 export const FooterWithPortalLinksAndWithContactUs = Template.bind({});
 FooterWithPortalLinksAndWithContactUs.args = {
   navigation: customRoutes,
-  contact: <ContactUs />,
 };

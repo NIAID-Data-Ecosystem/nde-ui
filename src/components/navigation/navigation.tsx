@@ -48,15 +48,16 @@ export const MobileNavItem = ({label, routes, href}: RouteProps) => {
           py={2}
           href={href}
           w='100%'
-          color='primary.600'
+          color='tertiary.800'
           variant='unstyled'
           rounded='md'
           _hover={{
-            bg: 'primary.50',
-            color: 'primary.500',
+            bg: 'tertiary.50',
+            color: 'tertiary.600',
+            '.label': {color: 'tertiary.600'},
             '.icon': {opacity: '100%', transform: 'translateX(0)'},
           }}
-          _visited={{color: 'primary.600'}}
+          _visited={{color: 'tertiary.800'}}
         >
           <Flex opacity={1} justify='space-between' align='center'>
             <Text fontWeight={600}>{label}</Text>
@@ -65,7 +66,7 @@ export const MobileNavItem = ({label, routes, href}: RouteProps) => {
               transform='translateX(-10px)'
               transition='all .3s ease'
               sx={{
-                '> *': {color: 'primary.500'},
+                '> *': {color: 'tertiary.700'},
               }}
               w={3}
               h={3}
@@ -83,7 +84,7 @@ export const MobileNavItem = ({label, routes, href}: RouteProps) => {
           color='gray.900'
           rounded='md'
           _hover={{
-            bg: 'primary.50',
+            bg: 'tertiary.50',
             color: 'gray.900',
           }}
         >
@@ -214,13 +215,13 @@ const DesktopSubNav = ({label, href, subLabel}: RouteProps) => {
       role='tab'
       href={href}
       p={2}
-      color='primary.700'
+      color='tertiary.800'
       variant='unstyled'
       rounded='md'
       _hover={{
-        bg: 'primary.50',
-        color: 'primary.500',
-        '.label': {color: 'primary.500'},
+        bg: 'tertiary.50',
+        color: 'tertiary.600',
+        '.label': {color: 'tertiary.600'},
         '.icon': {opacity: '100%', transform: 'translateX(0)'},
       }}
     >
@@ -229,7 +230,7 @@ const DesktopSubNav = ({label, href, subLabel}: RouteProps) => {
           <Text
             className='label'
             transition='all .3s ease'
-            _groupHover={{color: 'primary.500'}}
+            _groupHover={{color: 'tertiary.700'}}
             fontWeight={600}
           >
             {label}
@@ -249,7 +250,7 @@ const DesktopSubNav = ({label, href, subLabel}: RouteProps) => {
         >
           <Icon
             sx={{
-              '> *': {color: 'primary.500'},
+              '> *': {color: 'tertiary.700'},
             }}
             w={3}
             h={3}
@@ -268,7 +269,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
   return (
     <Box as='nav' aria-label='Main navigation' w='100%'>
       <Flex
-        bg={bg || 'primary.500'}
+        bg={bg || 'tertiary.700'}
         color='white'
         minH='60px'
         py={{base: 2}}
@@ -310,7 +311,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
           {navItems && (
             <IconButton
               onClick={onToggle}
-              colorScheme='primary'
+              colorScheme='tertiary'
               color='#fff'
               display={{base: 'flex', md: 'none'}}
               _hover={{bg: 'whiteAlpha.500'}}

@@ -61,7 +61,7 @@ export const Link: ComponentStyleConfig = {
         ':hover': {
           borderBottom: props.borderBottom || '0.0625rem solid',
 
-          borderColor: props.color || 'link.color',
+          borderColor: 'transparent',
           '.child-string, .child-node, .child-node p': {
             borderBottom: props.borderBottom || '0.0625rem solid',
             borderColor: props.color || 'link.color',
