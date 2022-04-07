@@ -70,16 +70,6 @@
         "label": "Help",
         "href": "mailto:help@data.niaid.nih.gov",
         "type": "email"
-      },
-      {
-        "label": "LinkedIn",
-        "href": "#",
-        "type": "social"
-      },
-      {
-        "label": "twitter",
-        "href": "#",
-        "type": "social"
       }
     ]
   }
