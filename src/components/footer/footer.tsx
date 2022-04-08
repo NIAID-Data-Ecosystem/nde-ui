@@ -67,7 +67,7 @@ const FooterLink: React.FC<FooterLinkProps> = ({
           as={FaChevronRight}
           boxSize={3}
           ml={2}
-          color='#fff'
+          color='accent.bg'
           transform='translate(-5px)'
           transition='all .3s ease'
         ></Icon>
