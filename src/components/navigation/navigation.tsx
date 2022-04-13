@@ -284,7 +284,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
             <Link
               display='flex'
               alignItems='center'
-              href='/'
+              href='http://data.niaid.nih.gov/'
               variant='unstyled'
             >
               <Image
