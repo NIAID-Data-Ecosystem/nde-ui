@@ -284,7 +284,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
             <Link
               display='flex'
               alignItems='center'
-              href='/landing'
+              href='/'
               variant='unstyled'
             >
               <Image
