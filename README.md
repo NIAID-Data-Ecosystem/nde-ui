@@ -4,12 +4,6 @@
 yarn add nde-design-system
 ```
 
-_or_
-
-```sh
-npm i nde-design-system --save
-```
-
 ---
 
 ## Usage
@@ -20,8 +14,19 @@ npm i nde-design-system --save
 import {ThemeProvider} from 'nde-ui';
 
 <ThemeProvider>
+  <FontFace />
   <App />
 </ThemeProvider>;
 ```
 
-To view all components available, `npm run storybook`.
+- The NDE design system extends Chakra-UI functionality. Refer to their
+  [docs](https://chakra-ui.com/) for more info.
+
+## Storybook
+
+To view all components available, clone the repo and run:
+
+```sh
+yarn install
+yarn run storybook
+```
