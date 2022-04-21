@@ -19,6 +19,7 @@ import {
 import {FaCaretDown, FaChevronRight, FaChevronDown} from 'react-icons/fa';
 import {IoClose, IoMenu} from 'react-icons/io5';
 import {Link} from '../../components/link';
+import VerticalMobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-vertical--white.svg';
 import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-preferred--white.svg';
 import DesktopLogo from '../../assets/logos/niaid-data-ecosystem-logo_desktop--white.svg';
 import {IconButton} from '../button';
@@ -96,7 +97,7 @@ export const MobileNavItem = ({label, routes, href}: RouteProps) => {
           {routes && (
             <Icon
               sx={{
-                '> *': {color: 'gray.300'},
+                '> *': {color: 'tertiary.700'},
               }}
               as={FaChevronDown}
               transition={'all .25s ease-in-out'}
@@ -139,9 +140,9 @@ export const DesktopNavItem = ({label, routes, href}: RouteProps) => {
   if (!routes) {
     return (
       <Link
-        p={2}
+        px={2}
         href={href ?? '#'}
-        fontSize='sm'
+        fontSize='md'
         fontWeight={500}
         color='white'
         _visited={{color: 'white'}}
@@ -153,19 +154,24 @@ export const DesktopNavItem = ({label, routes, href}: RouteProps) => {
         cursor='pointer'
         alignItems='center'
         whiteSpace='nowrap'
+        d='flex'
+        h='100%'
+        justifyContent='center'
       >
         {label}
       </Link>
     );
   }
   return (
-    <Box bg='inherit'>
+    <>
       <Popover trigger='click' placement='bottom-start' autoFocus closeOnEsc>
         <PopoverTrigger>
           <Button
-            p={2}
+            __css={{padding: 0}}
+            px={2}
+            d='flex'
             href={href ?? '#'}
-            fontSize='sm'
+            fontSize='md'
             fontWeight={500}
             color='white'
             _visited={{color: 'white'}}
@@ -176,9 +182,11 @@ export const DesktopNavItem = ({label, routes, href}: RouteProps) => {
             variant='unstyled'
             cursor='pointer'
             alignItems='center'
+            justifyContent='center'
+            h='100%'
           >
             {label}
-            {routes && <Icon as={FaCaretDown} w={4} h={4} />}
+            {routes && <Icon as={FaCaretDown} ml={1} w={4} h={4} />}
           </Button>
         </PopoverTrigger>
 
@@ -204,7 +212,7 @@ export const DesktopNavItem = ({label, routes, href}: RouteProps) => {
           </PopoverContent>
         )}
       </Popover>
-    </Box>
+    </>
   );
 };
 
@@ -264,43 +272,65 @@ const DesktopSubNav = ({label, href, subLabel}: RouteProps) => {
 
 export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
   const {isOpen, onToggle} = useDisclosure();
-  const isMobile = useBreakpointValue({base: true, md: false});
-
+  const screenSize = useBreakpointValue({
+    base: 'mobile-small',
+    sm: 'mobile',
+    lg: 'desktop',
+  });
   return (
     <Box as='nav' aria-label='Main navigation' w='100%'>
       <Flex
         bg={bg || 'tertiary.700'}
         color='white'
         minH='60px'
-        py={{base: 2}}
-        px={{base: 4}}
+        px={6}
         borderBottom={1}
         borderStyle='solid'
         borderColor='gray.200'
         align='center'
       >
-        <Flex flex={{base: 1, md: 'auto'}} ml={{base: -2}} alignItems='center'>
+        <Flex flex={{base: 1, md: 'auto'}} alignItems='center'>
           <Flex flex={{base: 1}} justify='start'>
             <Link
               display='flex'
               alignItems='center'
               href='http://data.niaid.nih.gov/'
               variant='unstyled'
+              py={6}
             >
               <Image
-                w={['220px', '220px', '350px']}
-                h={'auto'}
-                src={isMobile ? MobileLogo : DesktopLogo}
+                w='auto'
+                h={
+                  screenSize === 'mobile'
+                    ? '28px'
+                    : screenSize === 'mobile-small'
+                    ? '56px'
+                    : '40px'
+                }
+                minH={
+                  screenSize === 'mobile'
+                    ? '28px'
+                    : screenSize === 'mobile-small'
+                    ? '56px'
+                    : '40px'
+                }
+                src={
+                  screenSize === 'mobile'
+                    ? MobileLogo
+                    : screenSize === 'mobile-small'
+                    ? VerticalMobileLogo
+                    : DesktopLogo
+                }
                 alt={'niaid logo'}
               />
             </Link>
             <Flex
               display={{base: 'none', md: 'flex'}}
-              ml={10}
+              ml={{base: 6, lg: 10}}
               flex={1}
               justifyContent='flex-end'
             >
-              <Stack direction={'row'} spacing={4}>
+              <Stack direction={'row'} spacing={{base: 2, lg: 4}} py={2}>
                 {navItems &&
                   navItems.map(navItem => (
                     <DesktopNavItem key={navItem.label} {...navItem} />
