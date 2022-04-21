@@ -70,6 +70,12 @@
         "label": "Help",
         "href": "mailto:help@data.niaid.nih.gov",
         "type": "email"
+      },
+      {
+        "label": "Contact Us",
+        "href": "https://www.niaid.nih.gov/global/contact-us",
+        "isExternal": true,
+        "type": "contact"
       }
     ]
   }

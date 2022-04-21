@@ -321,7 +321,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
                     ? VerticalMobileLogo
                     : DesktopLogo
                 }
-                alt={'niaid logo'}
+                alt={'NIAID Data Ecosystem logo'}
               />
             </Link>
             <Flex

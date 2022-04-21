@@ -32,6 +32,7 @@ export {
   Icon,
   IconButton,
   Image,
+  ImageProps,
   Input,
   InputProps,
   InputAddon,
