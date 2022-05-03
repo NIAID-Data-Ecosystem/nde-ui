@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, ButtonProps} from '../button';
 import {
+  Box,
   ButtonGroup,
   ButtonGroupProps,
   Flex,
@@ -21,6 +22,7 @@ export const Pagination: React.FC<PaginationProps> = ({children, ...props}) => {
       borderRadius='semi'
       overflow='hidden'
       boxShadow='base'
+      justifyContent='center'
       {...props}
     >
       <VisuallyHidden>
@@ -78,8 +80,8 @@ export const PaginationButtonGroup: React.FC<PaginationButtonGroupProps> = ({
         );
       };
 
-      return (
-        <>
+      return children ? (
+        <Flex>
           <Ellipsis isVisible={!indexList.includes(0)} />
           <ButtonGroup {...props}>
             {React.Children.map(children, (child, i) => {
@@ -87,12 +89,14 @@ export const PaginationButtonGroup: React.FC<PaginationButtonGroupProps> = ({
             })}
           </ButtonGroup>
           <Ellipsis isVisible={!indexList.includes(totalPages - 1)} />
-        </>
+        </Flex>
+      ) : (
+        <></>
       );
     }
   }
   // Show all buttons if less than 5 elements.
-  return <ButtonGroup {...props}>{children}</ButtonGroup>;
+  return children ? <ButtonGroup {...props}>{children}</ButtonGroup> : <></>;
 };
 
 /**
@@ -109,22 +113,25 @@ export const PaginationButton: React.FC<PaginationButtonProps> = ({
   ...props
 }) => {
   return (
-    <Button
-      colorScheme='primary'
-      px={2}
-      m={1}
-      variant={isActive ? 'solid' : 'outline'}
-      isActive={isActive}
-      title={
-        title || typeof children == 'string'
-          ? `Go to page ${children}`
-          : undefined
-      }
-      size='md'
-      {...props}
-    >
-      <VisuallyHidden>Page</VisuallyHidden>
-      {children}
-    </Button>
+    <>
+      {/* Desktop is a select dropdown */}
+      <Button
+        colorScheme='primary'
+        px={2}
+        m={1}
+        variant={isActive ? 'solid' : 'outline'}
+        isActive={isActive}
+        title={
+          title || typeof children == 'string'
+            ? `Go to page ${children}`
+            : undefined
+        }
+        size='md'
+        {...props}
+      >
+        <VisuallyHidden>Page</VisuallyHidden>
+        {children}
+      </Button>
+    </>
   );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Button as ChakraButton,
   ButtonProps as ChakraButtonProps,
+  forwardRef,
   Link,
   Icon,
 } from '@chakra-ui/react';
@@ -16,19 +17,28 @@ export interface ButtonProps extends ChakraButtonProps {
 /**
  * Primary UI component for user interaction
  */
-export const Button: React.FC<ButtonProps> = ({
-  children,
-  isExternal,
-  href,
-  ...props
-}) => {
-  if (href) {
+export const Button = forwardRef<ButtonProps, 'button'>(
+  ({children, isExternal, href, ...props}, ref) => {
+    if (href) {
+      return (
+        <ChakraButton
+          as={Link}
+          ref={ref}
+          href={href}
+          isExternal={isExternal}
+          {...props}
+        >
+          {children}
+          {isExternal && (
+            <Icon as={FaExternalLinkAlt} boxSize={4} ml={2}></Icon>
+          )}
+        </ChakraButton>
+      );
+    }
     return (
-      <ChakraButton as={Link} href={href} isExternal={isExternal} {...props}>
+      <ChakraButton ref={ref} {...props}>
         {children}
-        {isExternal && <Icon as={FaExternalLinkAlt} boxSize={4} ml={2}></Icon>}
       </ChakraButton>
     );
-  }
-  return <ChakraButton {...props}>{children}</ChakraButton>;
-};
+  },
+);

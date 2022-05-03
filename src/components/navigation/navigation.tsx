@@ -15,6 +15,7 @@ import {
   useBreakpointValue,
   useDisclosure,
   PopoverBody,
+  FlexProps,
 } from '@chakra-ui/react';
 import {FaCaretDown, FaChevronRight, FaChevronDown} from 'react-icons/fa';
 import {IoClose, IoMenu} from 'react-icons/io5';
@@ -24,7 +25,7 @@ import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-pref
 import DesktopLogo from '../../assets/logos/niaid-data-ecosystem-logo_desktop--white.svg';
 import {IconButton} from '../button';
 
-export interface RouteProps {
+interface RouteProps {
   label: string;
   subLabel?: string;
   routes?: Array<RouteProps>;
@@ -32,8 +33,8 @@ export interface RouteProps {
   isExternal?: boolean;
 }
 
-export interface NavigationProps {
-  navItems?: Array<RouteProps>;
+export interface NavigationProps extends FlexProps {
+  navItems?: RouteProps[];
   bg?: string;
 }
 
@@ -270,7 +271,11 @@ const DesktopSubNav = ({label, href, subLabel}: RouteProps) => {
   );
 };
 
-export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
+export const Navigation: React.FC<NavigationProps> = ({
+  bg,
+  navItems,
+  ...props
+}) => {
   const {isOpen, onToggle} = useDisclosure();
   const screenSize = useBreakpointValue({
     base: 'mobile-small',
@@ -283,11 +288,13 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
         bg={bg || 'tertiary.700'}
         color='white'
         minH='60px'
+        h={['105px', '77px', '89px']}
         px={6}
         borderBottom={1}
         borderStyle='solid'
         borderColor='gray.200'
         align='center'
+        {...props}
       >
         <Flex flex={{base: 1, md: 'auto'}} alignItems='center'>
           <Flex flex={{base: 1}} justify='start'>

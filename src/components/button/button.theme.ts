@@ -2,6 +2,7 @@ export const Button = {
   // The styles all buttons have in common
   baseStyle: () => {
     return {
+      border: '1px solid',
       borderRadius: 'semi',
       fontWeight: 'normal',
       fontFamily: 'body',
@@ -42,9 +43,11 @@ export const Button = {
       return {
         bg,
         color,
+        borderColor: bg,
         _hover: {
           color,
           bg: hoverBg,
+          borderColor: hoverBg,
           _disabled: {
             bg,
           },

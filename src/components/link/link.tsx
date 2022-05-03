@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Box,
   Icon,
+  forwardRef,
   Link as ChakraLink,
   LinkProps as ChakraLinkProps,
   useStyleConfig,
@@ -13,36 +14,29 @@ export interface LinkProps extends ChakraLinkProps {
   variant?: 'base' | 'unstyled' | 'ghost';
 }
 
-export const Link: React.FC<LinkProps> = props => {
+export const Link = forwardRef<LinkProps, 'a'>((props, ref) => {
   const {variant, children, isExternal, ...rest} = props;
 
   // Get computed styles from theme.
   const styles = useStyleConfig('Link', {variant});
-  if (typeof children === 'string') {
-    return (
-      <ChakraLink
-        isExternal={isExternal}
-        __css={styles}
-        variant={variant}
-        {...rest}
-      >
-        <Box className={'child-string'}>{children}</Box>
-        {/* Show external icon when [isExternal] prop is true */}
-        {isExternal && <Icon as={FaExternalLinkAlt} boxSize={3} ml={2} />}
-      </ChakraLink>
-    );
-  }
+
   // Pass the computed styles into the `__css` prop
   return (
     <ChakraLink
       isExternal={isExternal}
       __css={styles}
       variant={variant}
+      ref={ref}
       {...rest}
     >
-      <Box className={'child-node'}>{children}</Box>
+      {/* wrap children in div for border-bottom property */}
+      <Box
+        className={typeof children === 'string' ? 'child-string' : 'child-node'}
+      >
+        {children}
+      </Box>
       {/* Show external icon when [isExternal] prop is true */}
       {isExternal && <Icon as={FaExternalLinkAlt} boxSize={3} ml={2} />}
     </ChakraLink>
   );
-};
+});

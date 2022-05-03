@@ -131,8 +131,9 @@ export const ToggleContainer: React.FC<ToggleContainerProps> = ({
       {(isOpen || (!isOpen && isOverflowing)) && (
         <Flex
           className='icon'
-          flexDirection={'column'}
-          h={'100%'}
+          flexDirection='column'
+          w='100%'
+          h='100%'
           alignItems='center'
           pl={[2, 4]}
           pt={[2, 0]}
@@ -144,8 +145,8 @@ export const ToggleContainer: React.FC<ToggleContainerProps> = ({
             color='gray.700'
             as={FaChevronDown}
             transform={isOpen ? 'rotate(-180deg)' : undefined}
-            transformOrigin={'center'}
-            transition={'transform 0.2s'}
+            transformOrigin='center'
+            transition='transform 0.2s'
           />
         </Flex>
       )}

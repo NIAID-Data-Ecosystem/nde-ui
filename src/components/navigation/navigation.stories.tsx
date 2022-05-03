@@ -1,21 +1,17 @@
 import React from 'react';
-import {
-  Navigation as NavigationBar,
-  MobileNavItem,
-  DesktopNavItem,
-} from './navigation';
+import {Navigation, MobileNavItem, DesktopNavItem} from './navigation';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {theme} from 'src/theme';
 import navItems from './navigation.config.json';
 
 export default {
   title: 'Components/Navigation',
-  component: NavigationBar,
+  component: Navigation,
   argTypes: {},
-} as ComponentMeta<typeof NavigationBar>;
+} as ComponentMeta<typeof Navigation>;
 
-const Template: ComponentStory<typeof NavigationBar> = args => (
-  <NavigationBar {...args} />
+const Template: ComponentStory<typeof Navigation> = args => (
+  <Navigation {...args} />
 );
 
 export const NavigationBarNoLinks = Template.bind({});
