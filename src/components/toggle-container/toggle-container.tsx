@@ -132,7 +132,7 @@ export const ToggleContainer: React.FC<ToggleContainerProps> = ({
         <Flex
           className='icon'
           flexDirection='column'
-          w='100%'
+          w={['100%', 'unset']}
           h='100%'
           alignItems='center'
           pl={[2, 4]}

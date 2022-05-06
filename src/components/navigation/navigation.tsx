@@ -39,7 +39,13 @@ export interface NavigationProps extends FlexProps {
 }
 
 // Mobile Navigation link styles
-export const MobileNavItem = ({label, routes, href}: RouteProps) => {
+export const MobileNavItem = ({
+  label,
+  routes,
+  href,
+  isExternal,
+  ...props
+}: RouteProps) => {
   const {isOpen, onToggle} = useDisclosure();
 
   return (
@@ -60,6 +66,8 @@ export const MobileNavItem = ({label, routes, href}: RouteProps) => {
             '.icon': {opacity: '100%', transform: 'translateX(0)'},
           }}
           _visited={{color: 'tertiary.800'}}
+          target={isExternal ? '_blank' : '_self'}
+          {...props}
         >
           <Flex opacity={1} justify='space-between' align='center'>
             <Text fontWeight={600}>{label}</Text>
@@ -137,7 +145,13 @@ export const MobileNavItem = ({label, routes, href}: RouteProps) => {
 };
 
 // Desktop Navigation link styles
-export const DesktopNavItem = ({label, routes, href}: RouteProps) => {
+export const DesktopNavItem = ({
+  label,
+  routes,
+  href,
+  isExternal,
+  ...props
+}: RouteProps) => {
   if (!routes) {
     return (
       <Link
@@ -158,6 +172,8 @@ export const DesktopNavItem = ({label, routes, href}: RouteProps) => {
         d='flex'
         h='100%'
         justifyContent='center'
+        target={isExternal ? '_blank' : '_self'}
+        {...props}
       >
         {label}
       </Link>
@@ -218,7 +234,13 @@ export const DesktopNavItem = ({label, routes, href}: RouteProps) => {
 };
 
 // Desktop Navigation sub menu for nested links
-const DesktopSubNav = ({label, href, subLabel}: RouteProps) => {
+const DesktopSubNav = ({
+  label,
+  href,
+  subLabel,
+  isExternal,
+  ...props
+}: RouteProps) => {
   return (
     <Link
       role='tab'
@@ -233,6 +255,8 @@ const DesktopSubNav = ({label, href, subLabel}: RouteProps) => {
         '.label': {color: 'tertiary.600'},
         '.icon': {opacity: '100%', transform: 'translateX(0)'},
       }}
+      target={isExternal ? '_blank' : '_self'}
+      {...props}
     >
       <Flex justifyContent='space-between'>
         <Box>
