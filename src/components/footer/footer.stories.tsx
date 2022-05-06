@@ -35,28 +35,44 @@ export default {
 
 const customRoutes = [
   {
-    label: 'Discovery Portal',
+    label: 'NIAID Data Ecosystem',
     routes: [
-      {label: 'About', href: '/about'},
-
-      {label: 'Getting Started', href: '/getting-started'},
       {
-        label: 'Resources',
+        label: 'Discovery Portal',
+        routes: [
+          {label: 'About', href: '/about'},
+
+          {label: 'Getting Started', href: '/getting-started'},
+          {
+            label: 'Resources',
+            routes: [
+              {
+                label: 'F.A.Q',
+                subLabel: 'Frequently Asked Questions',
+                href: '/faq',
+              },
+              {
+                label: 'Schemas',
+                subLabel: 'Dataset and Computational Tool schemas',
+                href: '/schema',
+              },
+              {
+                label: 'Latest',
+                subLabel:
+                  'Changelog for additions/subtractions/feature launches',
+                href: '/latest',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        label: 'Analysis Workspace',
         routes: [
           {
-            label: 'F.A.Q',
-            subLabel: 'Frequently Asked Questions',
+            label: 'Go to workspace',
             href: '/faq',
-          },
-          {
-            label: 'Schemas',
-            subLabel: 'Dataset and Computational Tool schemas',
-            href: '/schema',
-          },
-          {
-            label: 'Latest',
-            subLabel: 'Changelog for additions/subtractions/feature launches',
-            href: '/latest',
+            isExternal: true,
           },
         ],
       },

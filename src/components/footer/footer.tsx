@@ -11,6 +11,8 @@ import {
   TextProps,
   UnorderedList,
   ListItem,
+  HeadingProps,
+  ListProps,
 } from '@chakra-ui/react';
 import {FaChevronRight, FaRegEnvelope} from 'react-icons/fa';
 import styled from '@emotion/styled';
@@ -166,6 +168,67 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
     sm: 'mobile',
     lg: 'desktop',
   });
+
+  interface SubList {
+    label: string;
+    routes?: FooterItem[];
+    listProps?: ListProps;
+    headingProps?: HeadingProps;
+  }
+  const SubList: React.FC<SubList> = ({
+    label,
+    routes,
+    listProps,
+    headingProps,
+    ...props
+  }) => {
+    return (
+      <>
+        <ListHeader
+          as='h3'
+          size='md'
+          mb={3}
+          color='whiteAlpha.800'
+          {...headingProps}
+        >
+          {label}
+        </ListHeader>
+        <UnorderedList ml={0} {...listProps}>
+          {routes &&
+            routes.map(route => {
+              if (route.routes) {
+                return (
+                  <SubList
+                    key={route.label}
+                    label={route.label}
+                    routes={route.routes}
+                    // listProps={{ml: 2}}
+                    headingProps={{
+                      as: 'h4',
+                      size: 'sm',
+                    }}
+                  />
+                );
+              }
+              return (
+                <ListItem key={route.label}>
+                  {route.href && (
+                    <FooterLink
+                      href={route.href}
+                      isExternal={route.isExternal ?? false}
+                      variant='ghost'
+                    >
+                      {route.label}
+                    </FooterLink>
+                  )}
+                </ListItem>
+              );
+            })}
+        </UnorderedList>
+      </>
+    );
+  };
+
   return (
     <Box
       as='footer'
@@ -223,32 +286,7 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
                               {label}
                             </FooterLink>
                           ) : (
-                            <>
-                              <ListHeader
-                                as='h3'
-                                size='sm'
-                                mb={3}
-                                color='whiteAlpha.800'
-                              >
-                                {label}
-                              </ListHeader>
-                              <UnorderedList ml={0}>
-                                {routes &&
-                                  routes.map(route => (
-                                    <ListItem key={route.label}>
-                                      {route.href && (
-                                        <FooterLink
-                                          href={route.href}
-                                          isExternal={route.isExternal ?? false}
-                                          variant='ghost'
-                                        >
-                                          {route.label}
-                                        </FooterLink>
-                                      )}
-                                    </ListItem>
-                                  ))}
-                              </UnorderedList>
-                            </>
+                            <SubList label={label} routes={routes} />
                           )}
                         </ListItem>
                       );

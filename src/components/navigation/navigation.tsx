@@ -44,7 +44,6 @@ export const MobileNavItem = ({
   routes,
   href,
   isExternal,
-  ...props
 }: RouteProps) => {
   const {isOpen, onToggle} = useDisclosure();
 
@@ -67,7 +66,6 @@ export const MobileNavItem = ({
           }}
           _visited={{color: 'tertiary.800'}}
           target={isExternal ? '_blank' : '_self'}
-          {...props}
         >
           <Flex opacity={1} justify='space-between' align='center'>
             <Text fontWeight={600}>{label}</Text>
@@ -150,7 +148,6 @@ export const DesktopNavItem = ({
   routes,
   href,
   isExternal,
-  ...props
 }: RouteProps) => {
   if (!routes) {
     return (
@@ -173,7 +170,6 @@ export const DesktopNavItem = ({
         h='100%'
         justifyContent='center'
         target={isExternal ? '_blank' : '_self'}
-        {...props}
       >
         {label}
       </Link>
@@ -234,13 +230,7 @@ export const DesktopNavItem = ({
 };
 
 // Desktop Navigation sub menu for nested links
-const DesktopSubNav = ({
-  label,
-  href,
-  subLabel,
-  isExternal,
-  ...props
-}: RouteProps) => {
+const DesktopSubNav = ({label, href, subLabel, isExternal}: RouteProps) => {
   return (
     <Link
       role='tab'
@@ -256,7 +246,6 @@ const DesktopSubNav = ({
         '.icon': {opacity: '100%', transform: 'translateX(0)'},
       }}
       target={isExternal ? '_blank' : '_self'}
-      {...props}
     >
       <Flex justifyContent='space-between'>
         <Box>
@@ -295,11 +284,7 @@ const DesktopSubNav = ({
   );
 };
 
-export const Navigation: React.FC<NavigationProps> = ({
-  bg,
-  navItems,
-  ...props
-}) => {
+export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
   const {isOpen, onToggle} = useDisclosure();
   const screenSize = useBreakpointValue({
     base: 'mobile-small',
@@ -318,7 +303,6 @@ export const Navigation: React.FC<NavigationProps> = ({
         borderStyle='solid'
         borderColor='gray.200'
         align='center'
-        {...props}
       >
         <Flex flex={{base: 1, md: 'auto'}} alignItems='center'>
           <Flex flex={{base: 1}} justify='start'>
