@@ -245,6 +245,7 @@ const DesktopSubNav = ({label, href, subLabel, isExternal}: RouteProps) => {
         '.label': {color: 'tertiary.600'},
         '.icon': {opacity: '100%', transform: 'translateX(0)'},
       }}
+      _visited={{color: 'tertiary.800'}}
       target={isExternal ? '_blank' : '_self'}
     >
       <Flex justifyContent='space-between'>
