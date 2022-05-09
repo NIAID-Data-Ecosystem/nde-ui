@@ -180,7 +180,6 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
     routes,
     listProps,
     headingProps,
-    ...props
   }) => {
     return (
       <>
@@ -237,8 +236,10 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
       borderTop='0.25rem solid'
       borderColor='accent.bg'
       minW='300px'
+      display={['block', 'block', 'block', 'flex']}
+      flexDirection='column'
     >
-      <Stack p={{base: 4, sm: 8}} alignItems='center'>
+      <Stack p={8} alignItems={['center', 'center', 'start']} margin={'0 auto'}>
         <Box w='100%'>
           <Link
             display='flex'
