@@ -1,3 +1,5 @@
+import {colors} from 'src/theme/foundations/colors';
+
 export const Button = {
   // The styles all buttons have in common
   baseStyle: () => {
@@ -66,21 +68,31 @@ export const Button = {
       color: string;
     }) => {
       let color = 'inherit';
+      let borderColor = 'inherit';
       let hoverBg;
       const hoverColor = 'white';
       const bg = 'white';
 
       if (colorScheme === 'negative') {
         color = props.color || 'status.error';
+        borderColor = color;
         hoverBg = 'red.600';
       }
       if (colorScheme === 'primary') {
         color = props.color || 'primary.500';
+        borderColor = color;
         hoverBg = 'primary.600';
       }
       if (colorScheme === 'secondary') {
         color = props.color || 'secondary.500';
+        borderColor = color;
         hoverBg = 'secondary.600';
+      }
+
+      if (colorScheme === 'gray') {
+        color = 'gray.900';
+        borderColor = 'gray.200';
+        hoverBg = 'gray.800';
       }
 
       const hoverAndActive = {
@@ -93,6 +105,7 @@ export const Button = {
         _disabled: {
           bg,
           color,
+          borderColor,
           '.child-string, .child-node, .child-node p, svg': {
             color,
           },
@@ -100,7 +113,7 @@ export const Button = {
       };
 
       return {
-        borderColor: color,
+        borderColor,
         color,
         bg,
 

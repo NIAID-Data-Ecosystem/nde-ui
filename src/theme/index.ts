@@ -9,6 +9,7 @@ import Card from '../components/card/card.theme';
 import {Heading} from '../components/heading/heading.theme';
 import {Input} from '../components/input/input.theme';
 import {Link} from '../components/link/link.theme';
+import {Table} from '../components/table/table.theme';
 import {Tag} from '../components/tag/tag.theme';
 import {Text} from '../components/text/text.theme';
 import {ColorsProps} from './foundations/colors';
@@ -34,6 +35,7 @@ const overrides = {
     Heading,
     Input,
     Link,
+    Table,
     Tag,
     Text,
   },

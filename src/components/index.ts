@@ -7,5 +7,6 @@ export * from './input';
 export * from './link';
 export * from './navigation';
 export * from './pagination';
+export * from './table';
 export * from './text';
 export * from './toggle-container';

@@ -96,6 +96,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           size={size}
           onChange={e => handleChange(e)}
           colorScheme={colorScheme}
+          pr={sizeConfig[size].width}
           {...props}
         />
 
@@ -109,6 +110,8 @@ export const SearchInput: React.FC<SearchInputProps> = ({
               aria-label='search'
               type='submit'
               d='flex'
+              // set padding top and bottom for safari, do not remove.
+              py={0}
             >
               Search
             </Button>
