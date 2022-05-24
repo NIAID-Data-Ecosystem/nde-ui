@@ -86,6 +86,7 @@ export {
   TagLeftIcon,
   TagRightIcon,
   TagCloseButton,
+  TableContainer,
   Table,
   Thead,
   Tbody,

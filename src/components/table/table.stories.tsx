@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {
   Table,
@@ -11,7 +11,8 @@ import {
   TableCaption,
   TableContainer,
 } from '@chakra-ui/react';
-import {TableWrapper, TablePagination, usePagination} from './table';
+import {TableWrapper, TablePagination, TableSortToggle} from './table';
+import {useTableSort} from './table.hooks';
 
 export default {
   title: 'Components/Table',
@@ -73,32 +74,32 @@ export default {
 const items = [
   {
     toConvert: '1',
-    into: 'millimetres (mm)',
-    multiplyBy: 'multiply by',
+    into: 'millimetres',
+    multiplyBy: '1.2',
   },
   {
     toConvert: '2',
-    into: 'centimetres (cm)',
+    into: 'centimetres',
     multiplyBy: '30.48',
   },
   {
     toConvert: '3',
-    into: 'metres (m)',
+    into: 'metres',
     multiplyBy: '0.91444',
   },
   {
     toConvert: '4',
-    into: 'millimetres (mm)',
-    multiplyBy: 'multiply by',
+    into: 'millimetres',
+    multiplyBy: '15.4',
   },
   {
     toConvert: '5',
-    into: 'centimetres (cm)',
+    into: 'centimetres',
     multiplyBy: '30.48',
   },
   {
     toConvert: '6',
-    into: 'metres (m)',
+    into: 'metres',
     multiplyBy: '0.91444',
   },
 ];
@@ -142,21 +143,60 @@ export const TableExample: ComponentStory<typeof Table> = args => {
 
 export const TableExampleWithPagination: ComponentStory<typeof Table> =
   args => {
-    const SIZE = 4;
-    const NUM_PAGES = Math.ceil(items.length / SIZE);
+    // For sorting.
+    const accessDataFn = useCallback(v => v, []);
+    const [{data, orderBy, sortBy}, updateSort] = useTableSort(
+      items,
+      accessDataFn,
+      'toConvert',
+      true,
+    );
 
-    const [rows, updateRows, currentPage] = usePagination(items, SIZE, 1);
+    const [rows, setRows] = useState(data || []);
+
+    // const [rows, updateRows, currentPage] = usePagination(data, pageSize);
+
+    // Format column names.
+    const columns = Object.keys(items[0]).map(c => {
+      const column = {key: c, name: c, isNumeric: false};
+      if (c === 'toConvert') {
+        column.name = 'To Convert';
+      }
+      if (c === 'multiplyBy') {
+        column.name = 'Multiply By';
+        column.isNumeric = true;
+      }
+      return column;
+    });
 
     return (
-      <TableWrapper>
+      <TableWrapper {...args}>
         <TableContainer>
           <Table {...args}>
-            <TableCaption>This is the table caption</TableCaption>
+            <TableCaption color='text.body'>
+              This is the table caption
+            </TableCaption>
             <Thead>
               <Tr>
-                <Th>To convert</Th>
-                <Th>into</Th>
-                <Th isNumeric>multiply by</Th>
+                {columns.map(c => {
+                  return (
+                    <Th
+                      key={c.key}
+                      role='columnheader'
+                      scope='col'
+                      isNumeric={c.isNumeric}
+                    >
+                      {c.name}
+                      <TableSortToggle
+                        isSelected={c.key === orderBy}
+                        sortBy={sortBy}
+                        handleToggle={(sortBy: boolean) => {
+                          updateSort(c.key, sortBy);
+                        }}
+                      />
+                    </Th>
+                  );
+                })}
               </Tr>
             </Thead>
             <Tbody>
@@ -180,10 +220,11 @@ export const TableExampleWithPagination: ComponentStory<typeof Table> =
           </Table>
         </TableContainer>
         <TablePagination
-          value={currentPage}
-          numPages={NUM_PAGES}
-          handleChange={num => updateRows(num)}
-          colorScheme={args.colorScheme}
+          data={data}
+          pageSize={2}
+          setRows={v => setRows(v)}
+          pageSizeOptionsIncrement={1}
+          {...args}
         ></TablePagination>
       </TableWrapper>
     );

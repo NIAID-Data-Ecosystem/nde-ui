@@ -23,7 +23,7 @@ export const colors = {
   secondary: {
     50: '#F9F9FE',
     100: '#ECE8FF',
-    200: '#9E92EF',
+    200: '#c5bff1',
     300: '#7766E7',
     400: '#503ADE',
     500: '#321EB5',

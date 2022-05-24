@@ -154,6 +154,12 @@ export const AllButtons: ComponentStory<typeof Button> = args => (
         </Button>
       </Box>
       <Box m={2}>
+        <Button {...args} colorScheme='gray'>
+          Gray
+        </Button>
+      </Box>
+
+      <Box m={2}>
         <Button {...args} colorScheme='primary' href='#' isExternal>
           External
         </Button>
@@ -179,6 +185,11 @@ export const AllButtons: ComponentStory<typeof Button> = args => (
       <Box m={2}>
         <Button {...args} colorScheme='negative' variant='outline'>
           Negative
+        </Button>
+      </Box>
+      <Box m={2}>
+        <Button {...args} colorScheme='gray' variant='outline'>
+          Gray
         </Button>
       </Box>
       <Box m={2}>
@@ -219,6 +230,11 @@ export const AllButtons: ComponentStory<typeof Button> = args => (
       <Box m={2}>
         <Button {...args} colorScheme='negative' variant='ghost'>
           Negative
+        </Button>
+      </Box>
+      <Box m={2}>
+        <Button {...args} colorScheme='gray' variant='ghost'>
+          Gray
         </Button>
       </Box>
       <Box m={2}>

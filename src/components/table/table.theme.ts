@@ -1,11 +1,11 @@
 export const Table = {
   // Table styles based on: https://designsystem.niaid.nih.gov/components/atoms
-  parts: ['pagination', 'wrapper'],
+  parts: ['pagination', 'wrapper', 'caption'],
   baseStyle: (props: {borderColor: any; colorScheme: string}) => {
     let borderColor = props.borderColor;
 
     if (props.colorScheme === 'gray') {
-      borderColor = 'gray.100';
+      borderColor = 'gray.400';
     } else if (props.colorScheme === 'primary') {
       borderColor = 'primary.500';
     } else if (props.colorScheme === 'secondary') {
@@ -16,17 +16,21 @@ export const Table = {
       pagination: {
         display: 'flex',
         w: '100%',
-        p: 4,
         bg: '#fff',
         borderTop: '.0625rem solid',
-        borderColor: 'gray.200',
+        borderColor: props.colorScheme
+          ? `${props.colorScheme}.200`
+          : 'gray.200',
         flexDirection: ['column-reverse', 'row'],
         justifyContent: 'space-between',
         alignItems: 'center',
+        flexWrap: 'wrap',
       },
       wrapper: {
         border: '.0625rem solid',
-        borderColor: 'gray.200',
+        borderColor: props.colorScheme
+          ? `${props.colorScheme}.200`
+          : 'gray.200',
         borderRadius: 'semi',
         overflow: 'auto',
         whiteSpace: 'nowrap',
@@ -41,6 +45,7 @@ export const Table = {
             borderBottom: '0.25rem solid',
             borderColor,
             mb: 1,
+            position: 'relative',
           },
         },
       },
@@ -63,7 +68,12 @@ export const Table = {
           },
         },
       },
-      caption: {color: 'text.body'},
+      caption: {
+        borderTop: '.0625rem solid',
+        borderColor: props.colorScheme
+          ? `${props.colorScheme}.200`
+          : 'gray.200',
+      },
     };
 
     return baseStyles;

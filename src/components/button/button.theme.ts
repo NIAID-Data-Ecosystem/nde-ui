@@ -1,5 +1,3 @@
-import {colors} from 'src/theme/foundations/colors';
-
 export const Button = {
   // The styles all buttons have in common
   baseStyle: () => {
