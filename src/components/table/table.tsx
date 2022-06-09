@@ -118,18 +118,23 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
         isDisabled={isDisabled}
         onClick={handleClick}
         mx={0.5}
+        display={['none', 'flex']}
       ></IconButton>
     );
   };
 
   return (
     <Flex __css={styles.pagination} colorScheme={colorScheme} {...props}>
-      <Flex p={4} bg='page.alt' w='100%' justifyContent='space-between'>
+      <Flex
+        p={4}
+        bg='page.alt'
+        w='100%'
+        justifyContent='space-between'
+        flexDirection={['column', 'row']}
+      >
         {/* Select options for displaying per page rows */}
-        <Flex>
-          <Text fontSize='sm' display={['none', 'block']}>
-            Rows per page:{' '}
-          </Text>
+        <Flex pb={[4, 0]} flex={[1, 'unset']} flexDirection={['column', 'row']}>
+          <Text fontSize='sm'>Rows per page: </Text>
           {/* Display row options by increments of 5. */}
           <Select
             value={
@@ -141,9 +146,10 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
             onChange={e => setPageSize(+e.currentTarget.value)}
             size={size}
             colorScheme={colorScheme}
-            mx={4}
+            mx={[0, 2]}
             cursor='pointer'
             bg='white'
+            aria-label={'Select number of rows per page'}
           >
             {Array.from(
               Array(Math.ceil(data.length / pageSizeOptionsIncrement)),
@@ -158,7 +164,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
         </Flex>
 
         {/* Navigation for pages. */}
-        <Flex>
+        <Flex flex={[1, 'unset']} flexDirection={['column', 'row']}>
           <ArrowButton
             icon={<FaAngleDoubleLeft />}
             ariaLabel='Go to first page.'
@@ -176,9 +182,11 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
             onChange={e => updateRows(+e.currentTarget.value)}
             size={size}
             colorScheme={colorScheme}
-            mx={4}
+            mx={[0, 4]}
+            my={[2, 0]}
             cursor='pointer'
             bg='white'
+            aria-label={'Select page'}
           >
             {Array.from(Array(numPages)).map((_, i) => {
               return (

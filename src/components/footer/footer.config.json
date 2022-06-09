@@ -4,16 +4,19 @@
       "label": "Policies",
       "routes": [
         {
-          "label": "Accessibility [todo]",
-          "href": "https://policy-prod-varnish-1734617591.us-east-1.elb.amazonaws.com/policies/accessibility-content"
+          "label": "Accessibility",
+          "href": "https://data-staging.niaid.nih.gov/accessibility",
+          "isExternal": true
         },
         {
-          "label": "Disclaimer [todo]",
-          "href": "https://policy-prod-varnish-1734617591.us-east-1.elb.amazonaws.com/policies/disclaimer"
+          "label": "Disclaimer",
+          "href": "https://data-staging.niaid.nih.gov/disclaimer",
+          "isExternal": true
         },
         {
-          "label": "Privacy Policy [todo]",
-          "href": "https://policy-prod-varnish-1734617591.us-east-1.elb.amazonaws.com/policies/privacy-policy-content"
+          "label": "Privacy Policy",
+          "href": "https://data-staging.niaid.nih.gov/privacy",
+          "isExternal": true
         },
         {
           "label": "Freedom of Information Act (FOIA)",

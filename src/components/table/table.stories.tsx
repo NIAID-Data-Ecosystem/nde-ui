@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {
   Table,
@@ -144,17 +144,13 @@ export const TableExample: ComponentStory<typeof Table> = args => {
 export const TableExampleWithPagination: ComponentStory<typeof Table> =
   args => {
     // For sorting.
-    const accessDataFn = useCallback(v => v, []);
+    const accessDataFn = (v: any) => v;
     const [{data, orderBy, sortBy}, updateSort] = useTableSort(
       items,
       accessDataFn,
-      'toConvert',
-      true,
     );
 
     const [rows, setRows] = useState(data || []);
-
-    // const [rows, updateRows, currentPage] = usePagination(data, pageSize);
 
     // Format column names.
     const columns = Object.keys(items[0]).map(c => {

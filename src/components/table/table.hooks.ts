@@ -13,7 +13,7 @@ export const useTableSort = (
   /**
    * Function to access the order value in data. Defaults to (v) => v. Must wrap in callback.
    */
-  accessorFn: (arg: any) => any = useCallback(v => v, []),
+  accessor: (arg: any) => any = v => v,
 
   /**
    * Initial order by value.
@@ -25,6 +25,8 @@ export const useTableSort = (
    */
   isSortAscending?: boolean,
 ): any => {
+  const accessorFn = useCallback(accessor, []);
+
   const [orderBy, setOrderBy] = useState<string | null>(orderByInitial || null);
   const [sortByAsc, setSortByAsc] = useState(isSortAscending);
 
