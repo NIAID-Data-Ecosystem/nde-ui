@@ -1,6 +1,6 @@
 {
   "name": "nde-design-system",
-  "version": "0.2.64",
+  "version": "0.2.65",
   "description": "A React component library for NIAID Data Ecosystem design system.",
   "repository": {
     "type": "git",
