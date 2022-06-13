@@ -43,18 +43,6 @@ export default {
         },
       },
     },
-    size: {
-      name: 'size',
-      control: {
-        type: 'radio',
-        options: ['sm', 'md', 'lg'],
-      },
-      table: {
-        type: {
-          summary: 'sm|md|lg',
-        },
-      },
-    },
 
     variant: {
       name: 'variant',
@@ -141,62 +129,69 @@ export const TableExample: ComponentStory<typeof Table> = args => {
   );
 };
 
-export const TableExampleWithPagination: ComponentStory<typeof Table> =
-  args => {
-    // For sorting.
-    const accessDataFn = (v: any) => v;
-    const [{data, orderBy, sortBy}, updateSort] = useTableSort(
-      items,
-      accessDataFn,
-    );
+export const TableExampleWithPagination: ComponentStory<any> = args => {
+  // num of rows per page
+  const [pageSize, setPageSize] = useState(2);
 
-    const [rows, setRows] = useState(data || []);
+  // current page
+  const [from, setFrom] = useState(0);
 
-    // Format column names.
-    const columns = Object.keys(items[0]).map(c => {
-      const column = {key: c, name: c, isNumeric: false};
-      if (c === 'toConvert') {
-        column.name = 'To Convert';
-      }
-      if (c === 'multiplyBy') {
-        column.name = 'Multiply By';
-        column.isNumeric = true;
-      }
-      return column;
-    });
+  // For sorting.
+  const accessDataFn = (v: any) => v;
+  const [{data, orderBy, sortBy}, updateSort] = useTableSort(
+    items,
+    accessDataFn,
+  );
 
-    return (
-      <TableWrapper {...args}>
-        <TableContainer>
-          <Table {...args}>
-            <TableCaption color='text.body'>
-              This is the table caption
-            </TableCaption>
-            <Thead>
-              <Tr>
-                {columns.map(c => {
-                  return (
-                    <Th
-                      key={c.key}
-                      role='columnheader'
-                      scope='col'
-                      isNumeric={c.isNumeric}
-                    >
-                      {c.name}
-                      <TableSortToggle
-                        isSelected={c.key === orderBy}
-                        sortBy={sortBy}
-                        handleToggle={(sortBy: boolean) => {
-                          updateSort(c.key, sortBy);
-                        }}
-                      />
-                    </Th>
-                  );
-                })}
-              </Tr>
-            </Thead>
-            <Tbody>
-              {rows.map((item: any, i: number) => {
+  const rows = data || [];
+
+  // Format column names.
+  const columns = Object.keys(items[0]).map(c => {
+    const column = {key: c, name: c, isNumeric: false};
+    if (c === 'toConvert') {
+      column.name = 'To Convert';
+    }
+    if (c === 'multiplyBy') {
+      column.name = 'Multiply By';
+      column.isNumeric = true;
+    }
+    return column;
+  });
+
+  return (
+    <TableWrapper {...args}>
+      <TableContainer>
+        <Table {...args}>
+          <TableCaption color='text.body'>
+            This is the table caption
+          </TableCaption>
+          <Thead>
+            <Tr>
+              {columns.map(c => {
+                return (
+                  <Th
+                    key={c.key}
+                    role='columnheader'
+                    scope='col'
+                    isNumeric={c.isNumeric}
+                  >
+                    {c.name}
+                    <TableSortToggle
+                      isSelected={c.key === orderBy}
+                      sortBy={sortBy}
+                      handleToggle={(sortBy: boolean) => {
+                        updateSort(c.key, sortBy);
+                      }}
+                    />
+                  </Th>
+                );
+              })}
+            </Tr>
+          </Thead>
+          <Tbody>
+            {rows
+              .slice(from * pageSize, from * pageSize + pageSize)
+              .map((item: any, i: number) => {
                 return (
                   <Tr key={i}>
                     <Td>{item.toConvert}</Td>
@@ -205,23 +200,24 @@ export const TableExampleWithPagination: ComponentStory<typeof Table> =
                   </Tr>
                 );
               })}
-            </Tbody>
-            <Tfoot>
-              <Tr>
-                <Th>To convert</Th>
-                <Th>into</Th>
-                <Th isNumeric>multiply by</Th>
-              </Tr>
-            </Tfoot>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          data={data}
-          pageSize={2}
-          setRows={v => setRows(v)}
-          pageSizeOptionsIncrement={1}
-          {...args}
-        ></TablePagination>
-      </TableWrapper>
-    );
-  };
+          </Tbody>
+          <Tfoot>
+            <Tr>
+              <Th>To convert</Th>
+              <Th>into</Th>
+              <Th isNumeric>multiply by</Th>
+            </Tr>
+          </Tfoot>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        total={data.length}
+        size={2}
+        setSize={setPageSize}
+        from={from}
+        setFrom={setFrom}
+        {...args}
+      />
+    </TableWrapper>
+  );
+};

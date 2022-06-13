@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   Box,
   BoxProps,
@@ -22,7 +22,6 @@ import {
   FaAngleDoubleLeft,
   FaAngleDoubleRight,
 } from 'react-icons/fa';
-import {usePagination} from './table.hooks';
 
 // Based on NIAID's Table Styles
 // https://designsystem.niaid.nih.gov/components/atoms
@@ -50,18 +49,29 @@ export const TableWrapper: React.FC<TableWrapperProps> = ({
 
 export interface TablePaginationProps extends FlexProps {
   /**
-   * Table data list.
+   * Total number of data.
    */
-  data: any[];
+  total: number;
+
   /**
    * Number of rows to display on each page.
    */
-  pageSize: number;
+  size: number;
 
   /**
-   * Returns the paginated list of rows to display. Used to display rows in table.
+   * Update the number of rows to display
    */
-  setRows: (data: any[]) => void;
+  setSize: (n: number) => void;
+
+  /**
+   * Page number on which to start.
+   */
+  from: number;
+
+  /**
+   * Update page number on which to start.
+   */
+  setFrom: (n: number) => void;
 
   /**
    * Color scheme for table. Defaults to gray.
@@ -69,33 +79,25 @@ export interface TablePaginationProps extends FlexProps {
   colorScheme?: SelectProps['colorScheme'];
 
   /**
-   * Number to increment the per page select dropdown. Defaults to increments of 5.
+   * Increment value for the number of rows options. Defaults to 5.
    */
-  pageSizeOptionsIncrement?: number;
+  pageSizeIncrement?: number;
 }
 
 export const TablePagination: React.FC<TablePaginationProps> = ({
-  data,
-  colorScheme = 'gray',
-  setRows,
-  pageSize: initialPageSize,
-  pageSizeOptionsIncrement = 5,
+  total,
+  size,
+  setSize,
+  from,
+  setFrom,
+  pageSizeIncrement = 5,
+  colorScheme,
   ...props
 }) => {
-  // For pagination - how many rows should be displayed.
-  const [pageSize, setPageSize] = useState(initialPageSize);
-
-  const [rows, updateRows, currentPage] = usePagination(data, pageSize);
-
-  const size = useBreakpointValue({base: 'lg', sm: 'sm'});
+  const el_size = useBreakpointValue({base: 'lg', sm: 'sm'});
   const styles = useMultiStyleConfig('Table', {colorScheme});
-  const numPages = Math.ceil(data.length / pageSize);
-  const numRows =
-    Math.round(pageSize / pageSizeOptionsIncrement) * pageSizeOptionsIncrement;
-
-  useEffect(() => {
-    setRows(rows);
-  }, [rows]);
+  const numPages = Math.ceil(total / size);
+  const numRows = Math.round(size / pageSizeIncrement) * pageSizeIncrement;
 
   const ArrowButton = ({
     ariaLabel,
@@ -111,7 +113,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
     return (
       <IconButton
         colorScheme={colorScheme}
-        size={size}
+        size={el_size}
         aria-label={ariaLabel}
         icon={icon}
         variant='outline'
@@ -138,28 +140,30 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
           {/* Display row options by increments of 5. */}
           <Select
             value={
-              numRows > data.length
-                ? Math.ceil(data.length / pageSizeOptionsIncrement) *
-                  pageSizeOptionsIncrement
+              numRows > total
+                ? Math.ceil(total / pageSizeIncrement) * pageSizeIncrement
                 : numRows
             }
-            onChange={e => setPageSize(+e.currentTarget.value)}
-            size={size}
+            onChange={e => {
+              setSize(+e.currentTarget.value);
+              setFrom(0);
+            }}
+            size={el_size}
             colorScheme={colorScheme}
             mx={[0, 2]}
             cursor='pointer'
             bg='white'
             aria-label={'Select number of rows per page'}
           >
-            {Array.from(
-              Array(Math.ceil(data.length / pageSizeOptionsIncrement)),
-            ).map((_, i) => {
-              return (
-                <option key={i} value={(i + 1) * pageSizeOptionsIncrement}>
-                  {(i + 1) * pageSizeOptionsIncrement}
-                </option>
-              );
-            })}
+            {Array.from(Array(Math.ceil(total / pageSizeIncrement))).map(
+              (_, i) => {
+                return (
+                  <option key={i} value={(i + 1) * pageSizeIncrement}>
+                    {(i + 1) * pageSizeIncrement}
+                  </option>
+                );
+              },
+            )}
           </Select>
         </Flex>
 
@@ -168,19 +172,19 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
           <ArrowButton
             icon={<FaAngleDoubleLeft />}
             ariaLabel='Go to first page.'
-            isDisabled={currentPage === 0}
-            handleClick={() => updateRows(0)}
+            isDisabled={from === 0}
+            handleClick={() => setFrom(0)}
           ></ArrowButton>
           <ArrowButton
             icon={<FaChevronLeft />}
             ariaLabel='Go to previous page.'
-            isDisabled={currentPage === 0}
-            handleClick={() => updateRows(currentPage - 1)}
+            isDisabled={from === 0}
+            handleClick={() => setFrom(from - 1)}
           ></ArrowButton>
           <Select
-            value={currentPage}
-            onChange={e => updateRows(+e.currentTarget.value)}
-            size={size}
+            value={from}
+            onChange={e => setFrom(+e.currentTarget.value)}
+            size={el_size}
             colorScheme={colorScheme}
             mx={[0, 4]}
             my={[2, 0]}
@@ -199,14 +203,14 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
           <ArrowButton
             icon={<FaChevronRight />}
             ariaLabel='Go to next page.'
-            isDisabled={currentPage + 1 === numPages}
-            handleClick={() => updateRows(currentPage + 1)}
+            isDisabled={from + 1 === numPages}
+            handleClick={() => setFrom(from + 1)}
           ></ArrowButton>
           <ArrowButton
             icon={<FaAngleDoubleRight />}
             ariaLabel='Go to last page.'
-            isDisabled={currentPage + 1 === numPages}
-            handleClick={() => updateRows(numPages - 1)}
+            isDisabled={from + 1 === numPages}
+            handleClick={() => setFrom(numPages - 1)}
           ></ArrowButton>
         </Flex>
       </Flex>
@@ -220,12 +224,12 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
         p={4}
       >
         <Text fontSize='sm'>
-          Page {currentPage + 1} of {numPages}
+          Page {from + 1} of {numPages}
         </Text>
         <Center display={'flex'} h='20px' mx={2}>
           <Divider orientation='vertical' />
         </Center>
-        <Text fontSize='sm'>{data.length} items total</Text>
+        <Text fontSize='sm'>{total} items total</Text>
       </Flex>
     </Flex>
   );

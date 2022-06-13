@@ -211,8 +211,6 @@ export const DesktopNavItem = ({
             py={2}
             rounded='xl'
             minW='sm'
-            id='title'
-            title='Nav Pop over'
           >
             <PopoverArrow />
             <PopoverBody>
