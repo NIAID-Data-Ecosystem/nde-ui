@@ -244,7 +244,7 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
           <Link
             display='flex'
             alignItems='center'
-            href='http://data.niaid.nih.gov/'
+            href={footerConfig['href']}
             variant='unstyled'
           >
             <Image

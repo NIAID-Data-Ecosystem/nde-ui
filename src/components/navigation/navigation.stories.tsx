@@ -19,6 +19,7 @@ export const NavigationBarNoLinks = Template.bind({});
 /* Navigation Bar Story  */
 export const DefaultNavigation = Template.bind({});
 DefaultNavigation.args = {
+  href: navItems.href,
   navItems: navItems.routes,
   bg: 'tertiary.700',
 };

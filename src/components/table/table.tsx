@@ -82,6 +82,7 @@ export interface TablePaginationProps extends FlexProps {
    * Increment value for the number of rows options. Defaults to 5.
    */
   pageSizeIncrement?: number;
+  pageSizeOptions: number[];
 }
 
 export const TablePagination: React.FC<TablePaginationProps> = ({
@@ -90,14 +91,13 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
   setSize,
   from,
   setFrom,
-  pageSizeIncrement = 5,
+  pageSizeOptions,
   colorScheme,
   ...props
 }) => {
   const el_size = useBreakpointValue({base: 'lg', sm: 'sm'});
   const styles = useMultiStyleConfig('Table', {colorScheme});
   const numPages = Math.ceil(total / size);
-  const numRows = Math.round(size / pageSizeIncrement) * pageSizeIncrement;
 
   const ArrowButton = ({
     ariaLabel,
@@ -139,11 +139,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
           <Text fontSize='sm'>Rows per page: </Text>
           {/* Display row options by increments of 5. */}
           <Select
-            value={
-              numRows > total
-                ? Math.ceil(total / pageSizeIncrement) * pageSizeIncrement
-                : numRows
-            }
+            value={size}
             onChange={e => {
               setSize(+e.currentTarget.value);
               setFrom(0);
@@ -155,7 +151,14 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
             bg='white'
             aria-label={'Select number of rows per page'}
           >
-            {Array.from(Array(Math.ceil(total / pageSizeIncrement))).map(
+            {pageSizeOptions.map((pageSizeOption, i) => {
+              return (
+                <option key={i} value={pageSizeOption}>
+                  {pageSizeOption}
+                </option>
+              );
+            })}
+            {/* {Array.from(Array(Math.ceil(total / pageSizeIncrement))).map(
               (_, i) => {
                 return (
                   <option key={i} value={(i + 1) * pageSizeIncrement}>
@@ -163,7 +166,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
                   </option>
                 );
               },
-            )}
+            )} */}
           </Select>
         </Flex>
 

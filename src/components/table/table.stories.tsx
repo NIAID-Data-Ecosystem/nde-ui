@@ -212,10 +212,13 @@ export const TableExampleWithPagination: ComponentStory<any> = args => {
       </TableContainer>
       <TablePagination
         total={data.length}
-        size={2}
+        size={pageSize}
         setSize={setPageSize}
         from={from}
         setFrom={setFrom}
+        pageSizeOptions={Array.from(Array(Math.ceil(data.length / 2))).map(
+          (_: any, i) => (i + 1) * 2,
+        )}
         {...args}
       />
     </TableWrapper>

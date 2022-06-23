@@ -1,4 +1,5 @@
 {
+  "href": "https://data-staging.niaid.nih.gov/",
   "routes": [
     {
       "label": "Policies",
@@ -16,6 +17,11 @@
         {
           "label": "Privacy Policy",
           "href": "https://data-staging.niaid.nih.gov/privacy",
+          "isExternal": true
+        },
+        {
+          "label": "Terms",
+          "href": "https://data-staging.niaid.nih.gov/terms",
           "isExternal": true
         },
         {

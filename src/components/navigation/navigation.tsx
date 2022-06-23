@@ -24,6 +24,7 @@ import VerticalMobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mob
 import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-preferred--white.svg';
 import DesktopLogo from '../../assets/logos/niaid-data-ecosystem-logo_desktop--white.svg';
 import {IconButton} from '../button';
+import NavConfig from './navigation.config.json';
 
 interface RouteProps {
   label: string;
@@ -36,6 +37,7 @@ interface RouteProps {
 export interface NavigationProps extends FlexProps {
   navItems?: RouteProps[];
   bg?: string;
+  href?: string;
 }
 
 // Mobile Navigation link styles
@@ -283,7 +285,7 @@ const DesktopSubNav = ({label, href, subLabel, isExternal}: RouteProps) => {
   );
 };
 
-export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
+export const Navigation: React.FC<NavigationProps> = ({bg, href, navItems}) => {
   const {isOpen, onToggle} = useDisclosure();
   const screenSize = useBreakpointValue({
     base: 'mobile-small',
@@ -308,7 +310,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navItems}) => {
             <Link
               display='flex'
               alignItems='center'
-              href='http://data.niaid.nih.gov/'
+              href={href || NavConfig.href}
               variant='unstyled'
               py={6}
             >
