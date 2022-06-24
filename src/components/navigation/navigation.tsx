@@ -24,7 +24,6 @@ import VerticalMobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mob
 import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-preferred--white.svg';
 import DesktopLogo from '../../assets/logos/niaid-data-ecosystem-logo_desktop--white.svg';
 import {IconButton} from '../button';
-import NavConfig from './navigation.config.json';
 
 interface RouteProps {
   label: string;
@@ -35,9 +34,8 @@ interface RouteProps {
 }
 
 export interface NavigationProps extends FlexProps {
-  navItems?: RouteProps[];
+  navigation?: {href?: string; routes: RouteProps[]};
   bg?: string;
-  href?: string;
 }
 
 // Mobile Navigation link styles
@@ -285,13 +283,14 @@ const DesktopSubNav = ({label, href, subLabel, isExternal}: RouteProps) => {
   );
 };
 
-export const Navigation: React.FC<NavigationProps> = ({bg, href, navItems}) => {
+export const Navigation: React.FC<NavigationProps> = ({bg, navigation}) => {
   const {isOpen, onToggle} = useDisclosure();
   const screenSize = useBreakpointValue({
     base: 'mobile-small',
     sm: 'mobile',
     lg: 'desktop',
   });
+  const navItems = navigation?.routes;
   return (
     <Box as='nav' aria-label='Main navigation' w='100%'>
       <Flex
@@ -307,13 +306,41 @@ export const Navigation: React.FC<NavigationProps> = ({bg, href, navItems}) => {
       >
         <Flex flex={{base: 1, md: 'auto'}} alignItems='center'>
           <Flex flex={{base: 1}} justify='start'>
-            <Link
-              display='flex'
-              alignItems='center'
-              href={href || NavConfig.href}
-              variant='unstyled'
-              py={6}
-            >
+            {navigation && navigation.href ? (
+              <Link
+                display='flex'
+                alignItems='center'
+                href={navigation.href}
+                variant='unstyled'
+                py={6}
+              >
+                <Image
+                  w='auto'
+                  h={
+                    screenSize === 'mobile'
+                      ? '28px'
+                      : screenSize === 'mobile-small'
+                      ? '56px'
+                      : '40px'
+                  }
+                  minH={
+                    screenSize === 'mobile'
+                      ? '28px'
+                      : screenSize === 'mobile-small'
+                      ? '56px'
+                      : '40px'
+                  }
+                  src={
+                    screenSize === 'mobile'
+                      ? MobileLogo
+                      : screenSize === 'mobile-small'
+                      ? VerticalMobileLogo
+                      : DesktopLogo
+                  }
+                  alt={'NIAID Data Ecosystem logo'}
+                />
+              </Link>
+            ) : (
               <Image
                 w='auto'
                 h={
@@ -339,7 +366,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, href, navItems}) => {
                 }
                 alt={'NIAID Data Ecosystem logo'}
               />
-            </Link>
+            )}
             <Flex
               display={{base: 'none', md: 'flex'}}
               ml={{base: 6, lg: 10}}

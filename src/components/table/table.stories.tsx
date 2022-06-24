@@ -134,7 +134,7 @@ export const TableExampleWithPagination: ComponentStory<any> = args => {
   const [pageSize, setPageSize] = useState(2);
 
   // current page
-  const [from, setFrom] = useState(0);
+  const [from, setFrom] = useState(1);
 
   // For sorting.
   const accessDataFn = (v: any) => v;

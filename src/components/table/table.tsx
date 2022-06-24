@@ -8,9 +8,9 @@ import {
   FlexProps,
   Select,
   SelectProps,
+  Skeleton,
   StylesProvider,
   Text,
-  useBreakpointValue,
   useMultiStyleConfig,
 } from '@chakra-ui/react';
 import {IconButton} from '../button';
@@ -31,6 +31,11 @@ export interface TableWrapperProps extends BoxProps {
   variant?: string;
   colorScheme?: SelectProps['colorScheme'];
 }
+
+// Format number with thousands separator
+const formatNumber = (number: number, separator = ',') => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
+};
 
 export const TableWrapper: React.FC<TableWrapperProps> = ({
   children,
@@ -79,10 +84,19 @@ export interface TablePaginationProps extends FlexProps {
   colorScheme?: SelectProps['colorScheme'];
 
   /**
-   * Increment value for the number of rows options. Defaults to 5.
+   * Options for number of rows to show per page.
    */
-  pageSizeIncrement?: number;
   pageSizeOptions: number[];
+
+  /**
+   * Optional setting for when the number of pages to display is different than the total number of results. (i.e. more than 10 000)
+   */
+  numPages?: number;
+
+  /**
+   * Loading state for loading indicator.
+   */
+  isLoading?: boolean;
 }
 
 export const TablePagination: React.FC<TablePaginationProps> = ({
@@ -93,11 +107,13 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
   setFrom,
   pageSizeOptions,
   colorScheme,
+  isLoading,
+  numPages: totalPages,
   ...props
 }) => {
-  const el_size = useBreakpointValue({base: 'lg', sm: 'sm'});
   const styles = useMultiStyleConfig('Table', {colorScheme});
-  const numPages = Math.ceil(total / size);
+  const numPages =
+    totalPages !== undefined ? totalPages : Math.ceil(total / size);
 
   const ArrowButton = ({
     ariaLabel,
@@ -113,7 +129,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
     return (
       <IconButton
         colorScheme={colorScheme}
-        size={el_size}
+        size='sm'
         aria-label={ariaLabel}
         icon={icon}
         variant='outline'
@@ -144,7 +160,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
               setSize(+e.currentTarget.value);
               setFrom(0);
             }}
-            size={el_size}
+            size='sm'
             colorScheme={colorScheme}
             mx={[0, 2]}
             cursor='pointer'
@@ -158,15 +174,6 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
                 </option>
               );
             })}
-            {/* {Array.from(Array(Math.ceil(total / pageSizeIncrement))).map(
-              (_, i) => {
-                return (
-                  <option key={i} value={(i + 1) * pageSizeIncrement}>
-                    {(i + 1) * pageSizeIncrement}
-                  </option>
-                );
-              },
-            )} */}
           </Select>
         </Flex>
 
@@ -187,7 +194,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
           <Select
             value={from}
             onChange={e => setFrom(+e.currentTarget.value)}
-            size={el_size}
+            size='sm'
             colorScheme={colorScheme}
             mx={[0, 4]}
             my={[2, 0]}
@@ -226,13 +233,19 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
         bg='white'
         p={4}
       >
-        <Text fontSize='sm'>
-          Page {from + 1} of {numPages}
-        </Text>
+        <Skeleton isLoaded={!isLoading}>
+          <Text fontSize='sm'>
+            Page {formatNumber(from + 1)} of {formatNumber(numPages)}
+          </Text>
+        </Skeleton>
         <Center display={'flex'} h='20px' mx={2}>
           <Divider orientation='vertical' />
         </Center>
-        <Text fontSize='sm'>{total} items total</Text>
+        <Skeleton isLoaded={!isLoading}>
+          <Text fontSize='sm'>
+            {formatNumber(total)} {total > 1 ? 'items' : 'item'}
+          </Text>
+        </Skeleton>
       </Flex>
     </Flex>
   );

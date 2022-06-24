@@ -101,15 +101,20 @@ export interface FooterItem {
   isExternal?: boolean;
 }
 
-// Contact Links such as social media, email etc.
-const ContactUs = () => {
-  interface FooterConfig {
-    routes: FooterItem[];
+export interface FooterProps {
+  navigation: {
+    href: string;
     contact: FooterItem;
-  }
+    routes: FooterItem[];
+  };
+}
 
-  const {contact} = footerConfig as FooterConfig;
-
+// Contact Links such as social media, email etc.
+const ContactUs = ({
+  contact,
+}: {
+  contact: FooterProps['navigation']['contact'];
+}) => {
   if (!contact) {
     return null;
   }
@@ -125,7 +130,7 @@ const ContactUs = () => {
         flexWrap='wrap'
         alignItems={['start', 'center']}
       >
-        {contact.routes &&
+        {contact?.routes &&
           contact.routes
             .filter(r => r.type === 'email' || r.type === 'contact')
             .map(route => {
@@ -154,14 +159,8 @@ const ContactUs = () => {
   );
 };
 
-export interface FooterProps {
-  navigation?: FooterItem[];
-}
-
 export const Footer: React.FC<FooterProps> = ({navigation}) => {
-  const navigationSections = navigation
-    ? ([...navigation, ...footerConfig.routes] as FooterItem[])
-    : (footerConfig.routes as FooterItem[]);
+  const navigationSections = navigation?.routes || footerConfig.routes;
 
   const screenSize = useBreakpointValue({
     base: 'mobile-small',
@@ -227,7 +226,6 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
       </>
     );
   };
-
   return (
     <Box
       as='footer'
@@ -241,12 +239,32 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
     >
       <Stack p={8} alignItems={['center', 'center', 'start']} margin={'0 auto'}>
         <Box w='100%'>
-          <Link
-            display='flex'
-            alignItems='center'
-            href={footerConfig['href']}
-            variant='unstyled'
-          >
+          {navigation && navigation.href ? (
+            <Link
+              display='flex'
+              alignItems='center'
+              href={navigation['href']}
+              variant='unstyled'
+            >
+              <Image
+                src={
+                  screenSize === 'mobile'
+                    ? MobileLogo
+                    : screenSize === 'mobile-small'
+                    ? VerticalMobileLogo
+                    : DesktopLogo
+                }
+                alt={'NIAID Data Ecosystem logo'}
+                h={
+                  screenSize === 'mobile'
+                    ? '28px'
+                    : screenSize === 'mobile-small'
+                    ? '56px'
+                    : '40px'
+                }
+              ></Image>
+            </Link>
+          ) : (
             <Image
               src={
                 screenSize === 'mobile'
@@ -264,7 +282,7 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
                   : '40px'
               }
             ></Image>
-          </Link>
+          )}
         </Box>
         <SimpleGrid minChildWidth='300px' maxW='6xl' w='100%'>
           {navigationSections.map((section, i) => {
@@ -311,7 +329,9 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
           direction={{base: 'column', md: 'row'}}
           align={{md: 'center'}}
         >
-          <ContactUs />
+          {navigation && navigation.contact && (
+            <ContactUs contact={navigation.contact} />
+          )}
         </Flex>
       </Box>
     </Box>

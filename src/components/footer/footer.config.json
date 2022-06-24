@@ -1,5 +1,21 @@
 {
   "href": "https://data-staging.niaid.nih.gov/",
+  "contact": {
+    "label": "Connect with us",
+    "routes": [
+      {
+        "label": "Help",
+        "href": "mailto:NIAIDDataEcosystem@mail.nih.gov",
+        "type": "email"
+      },
+      {
+        "label": "Contact Us",
+        "href": "https://www.niaid.nih.gov/global/contact-us",
+        "isExternal": true,
+        "type": "contact"
+      }
+    ]
+  },
   "routes": [
     {
       "label": "Policies",
@@ -17,11 +33,6 @@
         {
           "label": "Privacy Policy",
           "href": "https://data-staging.niaid.nih.gov/privacy",
-          "isExternal": true
-        },
-        {
-          "label": "Terms",
-          "href": "https://data-staging.niaid.nih.gov/terms",
           "isExternal": true
         },
         {
@@ -71,21 +82,5 @@
         }
       ]
     }
-  ],
-  "contact": {
-    "label": "Connect with us",
-    "routes": [
-      {
-        "label": "Help",
-        "href": "mailto:help@data.niaid.nih.gov",
-        "type": "email"
-      },
-      {
-        "label": "Contact Us",
-        "href": "https://www.niaid.nih.gov/global/contact-us",
-        "isExternal": true,
-        "type": "contact"
-      }
-    ]
-  }
+  ]
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import {Navigation, MobileNavItem, DesktopNavItem} from './navigation';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {theme} from 'src/theme';
-import navItems from './navigation.config.json';
+import navigationConfig from './navigation.config.json';
 
 export default {
   title: 'Components/Navigation',
@@ -19,20 +19,23 @@ export const NavigationBarNoLinks = Template.bind({});
 /* Navigation Bar Story  */
 export const DefaultNavigation = Template.bind({});
 DefaultNavigation.args = {
-  href: navItems.href,
-  navItems: navItems.routes,
+  navigation: navigationConfig,
   bg: 'tertiary.700',
 };
 DefaultNavigation.argTypes = {
-  navItems: {
+  navigation: {
     description: `
-    An array of navItem objects where:
-    navItem = {
+    {
+      href: string;
+      routes: Route[]
+    }
+    where Route[] is an array of objects where:
+    Route = {
       label: string,
       href: string
       subLabel?: string,
       isExternal?:boolean,
-      routes?: NavItem[],
+      routes?: Route[],
     }
     `,
     table: {
