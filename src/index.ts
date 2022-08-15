@@ -96,6 +96,7 @@ export {
   Td,
   TableCaption,
   Tooltip,
+  TooltipProps,
   UnorderedList,
   useBoolean,
   useBreakpointValue,
