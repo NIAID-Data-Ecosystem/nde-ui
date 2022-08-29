@@ -13,6 +13,12 @@
         "href": "https://www.niaid.nih.gov/global/contact-us",
         "isExternal": true,
         "type": "contact"
+      },
+      {
+        "label": "Submit an issue",
+        "href": "github.com",
+        "isExternal": true,
+        "type": "github"
       }
     ]
   },

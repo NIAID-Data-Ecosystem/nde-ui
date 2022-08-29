@@ -14,7 +14,7 @@ import {
   HeadingProps,
   ListProps,
 } from '@chakra-ui/react';
-import {FaChevronRight, FaRegEnvelope} from 'react-icons/fa';
+import {FaChevronRight, FaGithub, FaRegEnvelope} from 'react-icons/fa';
 import styled from '@emotion/styled';
 import {Link, LinkProps} from '../../components/link';
 import VerticalMobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-vertical--white.svg';
@@ -131,29 +131,30 @@ const ContactUs = ({
         alignItems={['start', 'center']}
       >
         {contact?.routes &&
-          contact.routes
-            .filter(r => r.type === 'email' || r.type === 'contact')
-            .map(route => {
-              if (!route.href) {
-                return;
-              }
-              const {label, type, href, isExternal} = route;
-              return (
-                <Flex key={label} alignItems='center' px={4}>
-                  <StyledLink
-                    href={href}
-                    fontSize='sm'
-                    w='unset'
-                    isExternal={isExternal}
-                  >
-                    {label}
-                  </StyledLink>
-                  {type?.toLowerCase().includes('email') && (
-                    <Icon as={FaRegEnvelope} boxSize={3} mx={2}></Icon>
-                  )}
-                </Flex>
-              );
-            })}
+          contact.routes.map(route => {
+            if (!route.href) {
+              return;
+            }
+            const {label, type, href, isExternal} = route;
+            return (
+              <Flex key={label} alignItems='center' px={4}>
+                {type?.toLowerCase().includes('email') && (
+                  <Icon as={FaRegEnvelope} boxSize={3} mx={2}></Icon>
+                )}
+                {type?.toLowerCase().includes('github') && (
+                  <Icon as={FaGithub} boxSize={4} mx={2}></Icon>
+                )}
+                <StyledLink
+                  href={href}
+                  fontSize='sm'
+                  w='unset'
+                  isExternal={isExternal}
+                >
+                  {label}
+                </StyledLink>
+              </Flex>
+            );
+          })}
       </Flex>
     </Flex>
   );

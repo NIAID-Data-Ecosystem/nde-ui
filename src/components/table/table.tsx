@@ -142,7 +142,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
   };
 
   return (
-    <Flex __css={styles.pagination} colorScheme={colorScheme} {...props}>
+    <Flex __css={styles.pagination} {...props}>
       <Flex
         p={4}
         bg='page.alt'
