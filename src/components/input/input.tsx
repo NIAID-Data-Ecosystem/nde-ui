@@ -33,6 +33,7 @@ export interface SearchInputProps extends InputProps {
  */
 export const SearchInput: React.FC<SearchInputProps> = ({
   size = 'md',
+  bg = 'white',
   handleChange,
   handleSubmit,
   isResponsive = true,
@@ -100,6 +101,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           onChange={e => handleChange(e)}
           colorScheme={colorScheme}
           pr={sizeConfig[size].width}
+          bg={bg}
           {...props}
         />
 
