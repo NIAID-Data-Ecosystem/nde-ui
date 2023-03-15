@@ -14,9 +14,9 @@ import {
   HeadingProps,
   ListProps,
 } from '@chakra-ui/react';
-import {FaChevronRight, FaGithub, FaRegEnvelope} from 'react-icons/fa';
+import { FaChevronRight, FaGithub, FaRegEnvelope } from 'react-icons/fa';
 import styled from '@emotion/styled';
-import {Link, LinkProps} from '../../components/link';
+import { Link, LinkProps } from '../../components/link';
 import VerticalMobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-vertical--white.svg';
 import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-preferred--white.svg';
 import DesktopLogo from '../../assets/logos/niaid-data-ecosystem-logo_desktop--white.svg';
@@ -29,8 +29,8 @@ StyledLink.defaultProps = {
   display: 'inline',
   my: 0,
   color: 'white',
-  _visited: {color: 'white'},
-  _hover: {color: 'white'},
+  _visited: { color: 'white' },
+  _hover: { color: 'white' },
 };
 
 interface FooterLinkProps extends LinkProps {
@@ -76,8 +76,8 @@ const FooterLink: React.FC<FooterLinkProps> = ({
 };
 
 // Header for footer section
-export interface ListHeaderProps extends TextProps {}
-const ListHeader: React.FC<ListHeaderProps> = ({children, ...props}) => {
+export interface ListHeaderProps extends TextProps { }
+const ListHeader: React.FC<ListHeaderProps> = ({ children, ...props }) => {
   return (
     <Heading
       as='h2'
@@ -106,8 +106,32 @@ export interface FooterProps {
     href: string;
     contact: FooterItem;
     routes: FooterItem[];
+    lastUpdate: FooterItem;
   };
 }
+
+const LastUpdated = ({
+  lastUpdate
+}: {
+  lastUpdate: FooterProps['navigation']['lastUpdate']
+}) => {
+  if (!lastUpdate) {
+    return null;
+  }
+  return (
+    <Flex alignItems='center' px={4}>
+      <StyledLink
+        href={lastUpdate.href}
+        fontSize='sm'
+        w='unset'
+        isExternal={lastUpdate.isExternal}
+      >
+        {lastUpdate.label}
+      </StyledLink>
+    </Flex>
+  );
+};
+
 
 // Contact Links such as social media, email etc.
 const ContactUs = ({
@@ -135,7 +159,7 @@ const ContactUs = ({
             if (!route.href) {
               return;
             }
-            const {label, type, href, isExternal} = route;
+            const { label, type, href, isExternal } = route;
             return (
               <Flex key={label} alignItems='center' px={4}>
                 {type?.toLowerCase().includes('email') && (
@@ -160,7 +184,7 @@ const ContactUs = ({
   );
 };
 
-export const Footer: React.FC<FooterProps> = ({navigation}) => {
+export const Footer: React.FC<FooterProps> = ({ navigation }) => {
   const navigationSections = navigation?.routes || footerConfig.routes;
 
   const screenSize = useBreakpointValue({
@@ -252,16 +276,16 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
                   screenSize === 'mobile'
                     ? MobileLogo
                     : screenSize === 'mobile-small'
-                    ? VerticalMobileLogo
-                    : DesktopLogo
+                      ? VerticalMobileLogo
+                      : DesktopLogo
                 }
                 alt={'NIAID Data Ecosystem logo'}
                 h={
                   screenSize === 'mobile'
                     ? '28px'
                     : screenSize === 'mobile-small'
-                    ? '56px'
-                    : '40px'
+                      ? '56px'
+                      : '40px'
                 }
               ></Image>
             </Link>
@@ -271,16 +295,16 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
                 screenSize === 'mobile'
                   ? MobileLogo
                   : screenSize === 'mobile-small'
-                  ? VerticalMobileLogo
-                  : DesktopLogo
+                    ? VerticalMobileLogo
+                    : DesktopLogo
               }
               alt={'NIAID Data Ecosystem logo'}
               h={
                 screenSize === 'mobile'
                   ? '28px'
                   : screenSize === 'mobile-small'
-                  ? '56px'
-                  : '40px'
+                    ? '56px'
+                    : '40px'
               }
             ></Image>
           )}
@@ -294,7 +318,7 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
                 )}
                 <UnorderedList ml={0} my={4}>
                   {section.routes &&
-                    section.routes.map(({href, label, routes, isExternal}) => {
+                    section.routes.map(({ href, label, routes, isExternal }) => {
                       return (
                         <ListItem key={label} align='flex-start'>
                           {href ? (
@@ -325,16 +349,20 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
       >
         <Flex
           maxW='unset'
-          px={{base: 0, sm: 4}}
-          py={{base: 4, sm: 8, md: 4}}
-          direction={{base: 'column', md: 'row'}}
-          align={{md: 'center'}}
+          px={{ base: 0, sm: 4 }}
+          py={{ base: 4, sm: 8, md: 4 }}
+          direction={{ base: 'column', md: 'row' }}
+          align={{ md: 'center' }}
+          justify={{ md: 'space-between' }}
         >
           {navigation && navigation.contact && (
             <ContactUs contact={navigation.contact} />
           )}
+          {navigation && navigation.lastUpdate && (
+            <LastUpdated lastUpdate={navigation.lastUpdate} />
+          )}
         </Flex>
       </Box>
-    </Box>
+    </Box >
   );
 };
