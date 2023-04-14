@@ -264,6 +264,7 @@ const DesktopSubNav = ({label, href, subLabel, isExternal}: RouteProps) => {
         </Box>
         <Flex
           className='icon'
+          ml='10px'
           transition='all .3s ease'
           transform='translateX(-10px)'
           opacity={1}
