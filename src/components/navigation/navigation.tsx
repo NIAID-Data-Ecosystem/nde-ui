@@ -71,6 +71,7 @@ export const MobileNavItem = ({
             <Text fontWeight={600}>{label}</Text>
             <Icon
               className='icon'
+              ml='10px'
               transform='translateX(-10px)'
               transition='all .3s ease'
               sx={{
