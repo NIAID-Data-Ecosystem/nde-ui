@@ -19,16 +19,10 @@
         "type": "email"
       },
       {
-        "label": "Contact Us",
-        "href": "https://www.niaid.nih.gov/global/contact-us",
-        "isExternal": true,
-        "type": "contact"
-      },
-      {
         "label": "Submit an issue",
-        "href": "github.com",
-        "isExternal": true,
-        "type": "github"
+        "href": "https://github.com/NIAID-Data-Ecosystem/nde-portal/issues/new",
+        "type": "github",
+        "isExternal": true
       }
     ]
   },

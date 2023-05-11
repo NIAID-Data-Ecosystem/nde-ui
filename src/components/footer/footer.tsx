@@ -115,12 +115,18 @@ const LastUpdatedDetails = ({lastUpdate}: {lastUpdate: FooterItem}) => {
     return null;
   }
   return (
-    <Flex alignItems='center' px={4}>
+    <Flex
+      alignItems='center'
+      px={4}
+      mt={{base: 1, md: 0}}
+      mb={{base: 3, md: 0}}
+    >
       <StyledLink
         href={lastUpdate.href}
         fontSize='sm'
         w='unset'
         isExternal={lastUpdate.isExternal}
+        whiteSpace='nowrap'
       >
         {lastUpdate.label}
       </StyledLink>
@@ -139,15 +145,11 @@ const ContactUs = ({
   }
 
   return (
-    <Flex
-      direction={['column', 'column', 'row']}
-      justifyContent='space-between'
-    >
+    <>
       {/* Contact Links */}
       <Flex
-        direction={['column', 'row']}
-        flexWrap='wrap'
-        alignItems={['start', 'center']}
+        flexDirection={{base: 'column', md: 'row'}}
+        alignItems={{base: 'start', md: 'center'}}
       >
         {contact?.routes &&
           contact.routes.map(route => {
@@ -156,7 +158,13 @@ const ContactUs = ({
             }
             const {label, type, href, isExternal} = route;
             return (
-              <Flex key={label} alignItems='center' px={4}>
+              <Flex
+                key={label}
+                alignItems='center'
+                px={4}
+                mt={{base: 1, md: 0}}
+                mb={{base: 3, md: 0}}
+              >
                 {type?.toLowerCase().includes('email') && (
                   <Icon as={FaRegEnvelope} boxSize={3} mx={2}></Icon>
                 )}
@@ -168,6 +176,7 @@ const ContactUs = ({
                   fontSize='sm'
                   w='unset'
                   isExternal={isExternal}
+                  whiteSpace='nowrap'
                 >
                   {label}
                 </StyledLink>
@@ -175,7 +184,7 @@ const ContactUs = ({
             );
           })}
       </Flex>
-    </Flex>
+    </>
   );
 };
 
@@ -220,7 +229,6 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
                     key={route.label}
                     label={route.label}
                     routes={route.routes}
-                    // listProps={{ml: 2}}
                     headingProps={{
                       as: 'h4',
                       size: 'sm',
@@ -274,7 +282,7 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
                     ? VerticalMobileLogo
                     : DesktopLogo
                 }
-                alt={'NIAID Data Ecosystem logo'}
+                alt='NIAID Data Ecosystem logo'
                 h={
                   screenSize === 'mobile'
                     ? '28px'
@@ -304,7 +312,15 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
             ></Image>
           )}
         </Box>
-        <SimpleGrid minChildWidth='300px' maxW='6xl' w='100%'>
+        <SimpleGrid
+          minChildWidth={{
+            base: '100%',
+            md: `${100 / navigationSections.length}%`,
+            lg: `${1000 / navigationSections.length}px`,
+          }}
+          maxW='6xl'
+          w='100%'
+        >
           {navigationSections.map((section, i) => {
             return (
               <Box key={i} flex={i === 0 ? 2 : 1}>
@@ -346,7 +362,7 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
           maxW='unset'
           px={{base: 0, sm: 4}}
           py={{base: 4, sm: 8, md: 4}}
-          direction={{base: 'column', md: 'row'}}
+          flexDirection={{base: 'column', md: 'row'}}
           align={{md: 'center'}}
           justify={{md: 'space-between'}}
         >
@@ -354,7 +370,7 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
             <ContactUs contact={navigation.contact} />
           )}
 
-          <Flex>
+          <Flex flexDirection={{base: 'column', md: 'row'}}>
             {navigation &&
               navigation.lastUpdate &&
               navigation.lastUpdate.map(updateInfo => {
