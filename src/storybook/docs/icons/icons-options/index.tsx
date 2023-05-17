@@ -77,7 +77,7 @@ export const IconOptions: React.FC = () => {
     <>
       {icons.map(icon => {
         return (
-          <VisualDescription title={`${icon.name}`}>
+          <VisualDescription key={icon.name} title={`${icon.name}`}>
             <Icon as={icon.fa} boxSize={6} m={2} />
           </VisualDescription>
         );

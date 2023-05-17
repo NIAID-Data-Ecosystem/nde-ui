@@ -331,7 +331,7 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
                   {section.routes &&
                     section.routes.map(({href, label, routes, isExternal}) => {
                       return (
-                        <ListItem key={label} align='flex-start'>
+                        <ListItem key={label} alignItems='flex-start'>
                           {href ? (
                             <FooterLink
                               href={href}
@@ -363,8 +363,8 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
           px={{base: 0, sm: 4}}
           py={{base: 4, sm: 8, md: 4}}
           flexDirection={{base: 'column', md: 'row'}}
-          align={{md: 'center'}}
-          justify={{md: 'space-between'}}
+          alignItems={{md: 'center'}}
+          justifyContent={{md: 'space-between'}}
         >
           {navigation && navigation.contact && (
             <ContactUs contact={navigation.contact} />

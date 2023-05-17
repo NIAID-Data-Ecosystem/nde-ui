@@ -1,8 +1,8 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {Badge} from './badge';
 import {Box, Flex, Icon, Text} from '@chakra-ui/react';
 import {FaLockOpen, FaLock} from 'react-icons/fa';
+import type {Meta, StoryObj} from '@storybook/react';
 
 export default {
   title: 'Components/Badge',
@@ -55,175 +55,180 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Badge>;
+} as Meta<typeof Badge>;
 
 /**
  * Regular Solid Badge
  */
 
-export const SolidBadges: ComponentStory<typeof Badge> = args => (
-  <Flex flexDirection={'column'} my={2}>
-    <Text>Theme Badges</Text>
-    <Flex w={'100%'} flexWrap='wrap'>
-      <Box m={2}>
-        <Badge {...args} colorScheme='primary'>
-          Primary
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} colorScheme='secondary'>
-          Secondary
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} colorScheme='gray'>
-          Gray
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} colorScheme='tertiary'>
-          Tertiary
-        </Badge>
-      </Box>
-    </Flex>
-    <Text>Status Badges</Text>
-    <Flex w={'100%'} flexWrap='wrap'>
-      <Box m={2}>
-        <Badge {...args} colorScheme='success'>
-          Success
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} colorScheme='warning'>
-          Warning
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} colorScheme='negative'>
-          Negative
-        </Badge>
-      </Box>
+export const SolidBadges: StoryObj<typeof Badge> = {
+  render: args => (
+    <Flex flexDirection={'column'} my={2}>
+      <Text>Theme Badges</Text>
+      <Flex w={'100%'} flexWrap='wrap'>
+        <Box m={2}>
+          <Badge {...args} colorScheme='primary'>
+            Primary
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} colorScheme='secondary'>
+            Secondary
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} colorScheme='gray'>
+            Gray
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} colorScheme='tertiary'>
+            Tertiary
+          </Badge>
+        </Box>
+      </Flex>
+      <Text>Status Badges</Text>
+      <Flex w={'100%'} flexWrap='wrap'>
+        <Box m={2}>
+          <Badge {...args} colorScheme='success'>
+            Success
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} colorScheme='warning'>
+            Warning
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} colorScheme='negative'>
+            Negative
+          </Badge>
+        </Box>
 
-      <Box m={2}>
-        <Badge {...args} colorScheme='info'>
-          Info
-        </Badge>
-      </Box>
+        <Box m={2}>
+          <Badge {...args} colorScheme='info'>
+            Info
+          </Badge>
+        </Box>
+      </Flex>
     </Flex>
-  </Flex>
-);
-
+  ),
+};
 /**
  * Regular Subtle Badge
  */
 
-export const SubtleBadges: ComponentStory<typeof Badge> = args => (
-  <Flex flexDirection={'column'} my={2}>
-    <Text>Theme Badges</Text>
-    <Flex w={'100%'} flexWrap='wrap'>
-      <Box m={2}>
-        <Badge {...args} variant='subtle' colorScheme='primary'>
-          Primary
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} variant='subtle' colorScheme='secondary'>
-          Secondary
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} variant='subtle' colorScheme='gray'>
-          Gray
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} variant='subtle' colorScheme='tertiary'>
-          Tertiary
-        </Badge>
-      </Box>
-    </Flex>
-    <Text>Status Badges</Text>
-    <Flex w={'100%'} flexWrap='wrap'>
-      <Box m={2}>
-        <Badge {...args} variant='subtle' colorScheme='success'>
-          Success
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} variant='subtle' colorScheme='warning'>
-          Warning
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} variant='subtle' colorScheme='negative'>
-          Negative
-        </Badge>
-      </Box>
+export const SubtleBadges: StoryObj<typeof Badge> = {
+  render: args => (
+    <Flex flexDirection={'column'} my={2}>
+      <Text>Theme Badges</Text>
+      <Flex w={'100%'} flexWrap='wrap'>
+        <Box m={2}>
+          <Badge {...args} variant='subtle' colorScheme='primary'>
+            Primary
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} variant='subtle' colorScheme='secondary'>
+            Secondary
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} variant='subtle' colorScheme='gray'>
+            Gray
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} variant='subtle' colorScheme='tertiary'>
+            Tertiary
+          </Badge>
+        </Box>
+      </Flex>
+      <Text>Status Badges</Text>
+      <Flex w={'100%'} flexWrap='wrap'>
+        <Box m={2}>
+          <Badge {...args} variant='subtle' colorScheme='success'>
+            Success
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} variant='subtle' colorScheme='warning'>
+            Warning
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} variant='subtle' colorScheme='negative'>
+            Negative
+          </Badge>
+        </Box>
 
-      <Box m={2}>
-        <Badge {...args} variant='subtle' colorScheme='info'>
-          Info
-        </Badge>
-      </Box>
+        <Box m={2}>
+          <Badge {...args} variant='subtle' colorScheme='info'>
+            Info
+          </Badge>
+        </Box>
+      </Flex>
     </Flex>
-  </Flex>
-);
+  ),
+};
 
 /**
  * Regular Outline Badge
  */
 
-export const OutlineBadges: ComponentStory<typeof Badge> = args => (
-  <Flex flexDirection={'column'} my={2}>
-    <Text>Theme Badges</Text>
-    <Flex w={'100%'} flexWrap='wrap'>
-      <Box m={2}>
-        <Badge {...args} variant='outline' colorScheme='primary'>
-          Primary
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} variant='outline' colorScheme='secondary'>
-          Secondary
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} variant='outline' colorScheme='gray'>
-          Gray
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} variant='outline' colorScheme='tertiary'>
-          Tertiary
-        </Badge>
-      </Box>
-    </Flex>
-    <Text>Status Badges</Text>
-    <Flex w={'100%'} flexWrap='wrap'>
-      <Box m={2}>
-        <Badge {...args} variant='outline' colorScheme='success'>
-          Success
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} variant='outline' colorScheme='warning'>
-          Warning
-        </Badge>
-      </Box>
-      <Box m={2}>
-        <Badge {...args} variant='outline' colorScheme='negative'>
-          Negative
-        </Badge>
-      </Box>
+export const OutlineBadges: StoryObj<typeof Badge> = {
+  render: args => (
+    <Flex flexDirection={'column'} my={2}>
+      <Text>Theme Badges</Text>
+      <Flex w={'100%'} flexWrap='wrap'>
+        <Box m={2}>
+          <Badge {...args} variant='outline' colorScheme='primary'>
+            Primary
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} variant='outline' colorScheme='secondary'>
+            Secondary
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} variant='outline' colorScheme='gray'>
+            Gray
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} variant='outline' colorScheme='tertiary'>
+            Tertiary
+          </Badge>
+        </Box>
+      </Flex>
+      <Text>Status Badges</Text>
+      <Flex w={'100%'} flexWrap='wrap'>
+        <Box m={2}>
+          <Badge {...args} variant='outline' colorScheme='success'>
+            Success
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} variant='outline' colorScheme='warning'>
+            Warning
+          </Badge>
+        </Box>
+        <Box m={2}>
+          <Badge {...args} variant='outline' colorScheme='negative'>
+            Negative
+          </Badge>
+        </Box>
 
-      <Box m={2}>
-        <Badge {...args} variant='outline' colorScheme='info'>
-          Info
-        </Badge>
-      </Box>
+        <Box m={2}>
+          <Badge {...args} variant='outline' colorScheme='info'>
+            Info
+          </Badge>
+        </Box>
+      </Flex>
     </Flex>
-  </Flex>
-);
+  ),
+};
 
 /**
  * Access Badge Example

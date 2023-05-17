@@ -167,7 +167,7 @@ export const DesktopNavItem = ({
         cursor='pointer'
         alignItems='center'
         whiteSpace='nowrap'
-        d='flex'
+        display='flex'
         h='100%'
         justifyContent='center'
         target={isExternal ? '_blank' : '_self'}
@@ -181,9 +181,10 @@ export const DesktopNavItem = ({
       <Popover trigger='click' placement='bottom-start' autoFocus closeOnEsc>
         <PopoverTrigger>
           <Button
+            as='a'
             __css={{padding: 0}}
             px={2}
-            d='flex'
+            display='flex'
             href={href ?? '#'}
             fontSize='md'
             fontWeight={500}

@@ -69,7 +69,7 @@ export interface SearchResultCardProps extends CardProps {
   name?: string;
   author?: Creator[] | null;
   type?: string | null; // change to dataset |computational tool
-  datePublished?: Date | string | null;
+  datePublished?: string | null;
   description?: string | null;
   includedInDataCatalog?: includedInDataCatalog | null;
   conditionsOfAccess?: AccessTypes | null;
@@ -106,6 +106,7 @@ StyledLabel.defaultProps = {
 
 interface StyledBannerProps {
   name?: SearchResultCardProps['type'];
+  children?: React.ReactNode;
 }
 
 const StyledBanner: React.FC<StyledBannerProps> = ({name, children}) => {
@@ -164,7 +165,7 @@ export const SearchResultCardExample = (
           })}
         </ToggleContainer>
         <Box
-          d={['inline-flex', 'block']}
+          display={['inline-flex', 'block']}
           justifyContent={['end']}
           alignContent='center'
           borderY={`1px solid`}

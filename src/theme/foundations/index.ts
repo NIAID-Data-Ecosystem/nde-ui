@@ -8,6 +8,6 @@ const foundations = {
   shadows,
   radii,
   ...typography,
-};
+} as any;
 
 export default foundations;

@@ -18,6 +18,7 @@
     "outDir": "dist",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
     // ts handles types - rollup handles js
     "emitDeclarationOnly": true
   },

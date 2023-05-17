@@ -4,6 +4,7 @@ import {Box, Heading} from '@chakra-ui/react';
 interface SectionHeader {
   size?: string;
   as?: any;
+  children?: React.ReactNode;
 }
 
 export const SectionHeader: React.FC<SectionHeader> = ({

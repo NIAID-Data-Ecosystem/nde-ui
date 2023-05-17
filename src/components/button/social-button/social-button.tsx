@@ -5,6 +5,7 @@ export interface SocialButtonProps {
   label: string;
   href: string;
   bg?: string;
+  children: React.ReactNode;
 }
 
 // Social media icon buttons

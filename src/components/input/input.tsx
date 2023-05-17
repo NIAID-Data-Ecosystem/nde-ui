@@ -13,7 +13,9 @@ import {
 import {FaSearch} from 'react-icons/fa';
 import {IoClose} from 'react-icons/io5';
 
-export interface SearchInputProps extends InputProps {
+type SizeOptions = 'xs' | 'sm' | 'md' | 'lg';
+
+export interface SearchInputProps extends Omit<InputProps, 'size'> {
   // Function fired when input is changed.
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   // Function fired button is submitted.
@@ -26,6 +28,7 @@ export interface SearchInputProps extends InputProps {
   isLoading?: boolean;
   // For accessibility, we need to link label and input with identical for and id field.
   ariaLabel: string;
+  size?: SizeOptions;
 }
 
 /**
@@ -45,7 +48,9 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 }) => {
   const [showInput, setShowInput] = useState(false);
 
-  const sizeConfig: any = {
+  const sizeConfig: {
+    [key in SizeOptions]: {width: string; h: string};
+  } = {
     xs: {
       width: '4rem',
       h: '1.25rem',
@@ -115,7 +120,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
               isLoading={isLoading}
               aria-label='search'
               type='submit'
-              d='flex'
+              display='flex'
               // set padding top and bottom for safari, do not remove.
               py={0}
             >

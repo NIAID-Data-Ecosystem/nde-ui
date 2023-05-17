@@ -1,5 +1,5 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react';
+import type {StoryObj, Meta} from '@storybook/react';
 import {Button} from './button';
 import {Box, Flex, Text} from '@chakra-ui/react';
 
@@ -122,7 +122,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Button>;
+} as Meta<typeof Button>;
 
 const defaultButtonArgs = {
   isActive: false,
@@ -134,206 +134,212 @@ const defaultButtonArgs = {
   children: 'Click Me',
 };
 
-export const AllButtons: ComponentStory<typeof Button> = args => (
-  <Flex flexDirection={'column'} my={2}>
-    <Flex>
-      <Box m={2}>
-        <Button {...args} colorScheme='primary'>
-          Primary
-        </Button>
-      </Box>
-      <Box m={2}>
-        <Button {...args} colorScheme='secondary'>
-          Secondary
-        </Button>
-      </Box>
+export const AllButtons: StoryObj<typeof Button> = {
+  render: args => (
+    <Flex flexDirection={'column'} my={2}>
+      <Flex>
+        <Box m={2}>
+          <Button {...args} colorScheme='primary'>
+            Primary
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button {...args} colorScheme='secondary'>
+            Secondary
+          </Button>
+        </Box>
 
-      <Box m={2}>
-        <Button {...args} colorScheme='negative'>
-          Negative
-        </Button>
-      </Box>
-      <Box m={2}>
-        <Button {...args} colorScheme='gray'>
-          Gray
-        </Button>
-      </Box>
+        <Box m={2}>
+          <Button {...args} colorScheme='negative'>
+            Negative
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button {...args} colorScheme='gray'>
+            Gray
+          </Button>
+        </Box>
 
+        <Box m={2}>
+          <Button {...args} colorScheme='primary' href='#' isExternal>
+            External
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button {...args} colorScheme='secondary' href='#' isExternal>
+            External
+          </Button>
+        </Box>
+      </Flex>
+      <Flex my={2}>
+        <Box m={2}>
+          <Button {...args} colorScheme='primary' variant='outline'>
+            Primary
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button {...args} colorScheme='secondary' variant='outline'>
+            Secondary
+          </Button>
+        </Box>
+
+        <Box m={2}>
+          <Button {...args} colorScheme='negative' variant='outline'>
+            Negative
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button {...args} colorScheme='gray' variant='outline'>
+            Gray
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button
+            {...args}
+            colorScheme='primary'
+            variant='outline'
+            href='#'
+            isExternal
+          >
+            External
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button
+            {...args}
+            colorScheme='secondary'
+            variant='outline'
+            href='#'
+            isExternal
+          >
+            External
+          </Button>
+        </Box>
+      </Flex>
+      <Flex my={2}>
+        <Box m={2}>
+          <Button {...args} colorScheme='primary' variant='ghost'>
+            Primary
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button {...args} colorScheme='secondary' variant='ghost'>
+            Secondary
+          </Button>
+        </Box>
+
+        <Box m={2}>
+          <Button {...args} colorScheme='negative' variant='ghost'>
+            Negative
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button {...args} colorScheme='gray' variant='ghost'>
+            Gray
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button
+            {...args}
+            colorScheme='primary'
+            variant='ghost'
+            href='#'
+            isExternal
+          >
+            External
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button
+            {...args}
+            colorScheme='secondary'
+            variant='ghost'
+            href='#'
+            isExternal
+          >
+            External
+          </Button>
+        </Box>
+      </Flex>
+    </Flex>
+  ),
+};
+
+export const AllSizes: StoryObj<typeof Button> = {
+  render: args => (
+    <Flex flexDirection={'column'} my={2}>
       <Box m={2}>
-        <Button {...args} colorScheme='primary' href='#' isExternal>
-          External
+        <Text>
+          Per NIAIDs design system recommendation. {'base'} is the default case.
+        </Text>
+        <Button {...args} colorScheme='primary' size='base'>
+          base
         </Button>
       </Box>
-      <Box m={2}>
-        <Button {...args} colorScheme='secondary' href='#' isExternal>
-          External
-        </Button>
+      <Box mt={4}>
+        <Text>Other available sizes.</Text>
+        <Box m={2}>
+          <Button {...args} colorScheme='primary' size='xs'>
+            xs
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button {...args} colorScheme='primary' size='sm'>
+            sm
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button {...args} colorScheme='primary' size='md'>
+            md
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button {...args} colorScheme='primary' size='lg'>
+            lg
+          </Button>
+        </Box>
       </Box>
     </Flex>
-    <Flex my={2}>
-      <Box m={2}>
-        <Button {...args} colorScheme='primary' variant='outline'>
-          Primary
-        </Button>
-      </Box>
-      <Box m={2}>
-        <Button {...args} colorScheme='secondary' variant='outline'>
-          Secondary
-        </Button>
-      </Box>
+  ),
+};
 
-      <Box m={2}>
-        <Button {...args} colorScheme='negative' variant='outline'>
-          Negative
-        </Button>
-      </Box>
-      <Box m={2}>
-        <Button {...args} colorScheme='gray' variant='outline'>
-          Gray
-        </Button>
-      </Box>
-      <Box m={2}>
-        <Button
-          {...args}
-          colorScheme='primary'
-          variant='outline'
-          href='#'
-          isExternal
-        >
-          External
-        </Button>
-      </Box>
-      <Box m={2}>
-        <Button
-          {...args}
-          colorScheme='secondary'
-          variant='outline'
-          href='#'
-          isExternal
-        >
-          External
-        </Button>
-      </Box>
-    </Flex>
-    <Flex my={2}>
-      <Box m={2}>
-        <Button {...args} colorScheme='primary' variant='ghost'>
-          Primary
-        </Button>
-      </Box>
-      <Box m={2}>
-        <Button {...args} colorScheme='secondary' variant='ghost'>
-          Secondary
-        </Button>
-      </Box>
-
-      <Box m={2}>
-        <Button {...args} colorScheme='negative' variant='ghost'>
-          Negative
-        </Button>
-      </Box>
-      <Box m={2}>
-        <Button {...args} colorScheme='gray' variant='ghost'>
-          Gray
-        </Button>
-      </Box>
-      <Box m={2}>
-        <Button
-          {...args}
-          colorScheme='primary'
-          variant='ghost'
-          href='#'
-          isExternal
-        >
-          External
-        </Button>
-      </Box>
-      <Box m={2}>
-        <Button
-          {...args}
-          colorScheme='secondary'
-          variant='ghost'
-          href='#'
-          isExternal
-        >
-          External
-        </Button>
-      </Box>
-    </Flex>
-  </Flex>
-);
-
-export const AllSizes: ComponentStory<typeof Button> = args => (
-  <Flex flexDirection={'column'} my={2}>
-    <Box m={2}>
-      <Text>
-        Per NIAIDs design system recommendation. {'base'} is the default case.
-      </Text>
-      <Button {...args} colorScheme='primary' size='base'>
-        base
-      </Button>
-    </Box>
-    <Box mt={4}>
-      <Text>Other available sizes.</Text>
-      <Box m={2}>
-        <Button {...args} colorScheme='primary' size='xs'>
-          xs
-        </Button>
-      </Box>
-      <Box m={2}>
-        <Button {...args} colorScheme='primary' size='sm'>
-          sm
-        </Button>
-      </Box>
-      <Box m={2}>
-        <Button {...args} colorScheme='primary' size='md'>
-          md
-        </Button>
-      </Box>
-      <Box m={2}>
-        <Button {...args} colorScheme='primary' size='lg'>
-          lg
-        </Button>
-      </Box>
-    </Box>
-  </Flex>
-);
-
-const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
+const Template: StoryObj<typeof Button> = {
+  render: args => <Button {...args} />,
+};
 
 // Solid Buttons
-export const SolidPrimary = Template.bind({});
+export const SolidPrimary = Template;
 SolidPrimary.args = {
   ...defaultButtonArgs,
 };
 
-export const SolidLoading = Template.bind({});
+export const SolidLoading = Template;
 SolidLoading.args = {
   ...defaultButtonArgs,
   isLoading: true,
 };
 
-export const SolidDisabled = Template.bind({});
+export const SolidDisabled = Template;
 SolidDisabled.args = {
   ...defaultButtonArgs,
   isDisabled: true,
 };
 
 // Outline Buttons
-export const Outline = Template.bind({});
+export const Outline = Template;
 Outline.args = {
   ...defaultButtonArgs,
   variant: 'outline',
 };
 
-export const OutlineLoading = Template.bind({});
+export const OutlineLoading = Template;
 OutlineLoading.args = {
   ...defaultButtonArgs,
   isLoading: true,
   variant: 'outline',
 };
 
-export const OutlineDisabled = Template.bind({});
+export const OutlineDisabled = Template;
 OutlineDisabled.args = {
   ...defaultButtonArgs,
   isDisabled: true,
@@ -341,27 +347,27 @@ OutlineDisabled.args = {
 };
 
 // Ghost Buttons
-export const Ghost = Template.bind({});
+export const Ghost = Template;
 Ghost.args = {
   ...defaultButtonArgs,
   variant: 'ghost',
 };
 
-export const GhostLoading = Template.bind({});
+export const GhostLoading = Template;
 GhostLoading.args = {
   ...defaultButtonArgs,
   isLoading: true,
   variant: 'ghost',
 };
 
-export const GhostDisabled = Template.bind({});
+export const GhostDisabled = Template;
 GhostDisabled.args = {
   ...defaultButtonArgs,
   isDisabled: true,
   variant: 'ghost',
 };
 
-export const ExternalButton = Template.bind({});
+export const ExternalButton = Template;
 ExternalButton.args = {
   children: 'Click Me',
   variant: 'outline',

@@ -1,5 +1,5 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 import {Icon} from '@chakra-ui/react';
 import {SocialButton} from './social-button';
 import {FaTwitter} from 'react-icons/fa';
@@ -45,11 +45,15 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof SocialButton>;
+} as Meta<typeof SocialButton>;
 
-export const SocialIconButton: ComponentStory<typeof SocialButton> = args => (
-  <SocialButton {...args}></SocialButton>
-);
+export const SocialIconButton: StoryObj<{
+  label: string;
+  href: string;
+  children: React.ReactNode;
+}> = {
+  render: args => <SocialButton {...args}></SocialButton>,
+};
 SocialIconButton.argTypes = {};
 
 SocialIconButton.args = {

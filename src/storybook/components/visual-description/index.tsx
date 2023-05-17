@@ -4,6 +4,7 @@ import React from 'react';
 interface VisualDescription {
   title?: string;
   description?: string;
+  children: React.ReactNode;
 }
 
 // Text component used to describe different design elements in storybook.
