@@ -1,11 +1,9 @@
 {
   "href": "https://data-staging.niaid.nih.gov/",
   "routes": [
-    {"label": "Search", "href": "/"},
+    {"label": "Home", "href": "/"},
+    {"label": "Search", "href": "/search"},
     {"label": "About", "href": "/about"},
-
-    {"label": "Getting Started", "href": "/getting-started"},
-
     {
       "label": "Resources",
       "routes": [

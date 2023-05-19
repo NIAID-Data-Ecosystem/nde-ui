@@ -6,13 +6,11 @@ import {
   Text,
   Stack,
   Collapse,
-  Image,
   Icon,
   Popover,
   PopoverArrow,
   PopoverTrigger,
   PopoverContent,
-  useBreakpointValue,
   useDisclosure,
   PopoverBody,
   FlexProps,
@@ -20,9 +18,7 @@ import {
 import {FaCaretDown, FaChevronRight, FaChevronDown} from 'react-icons/fa';
 import {IoClose, IoMenu} from 'react-icons/io5';
 import {Link} from '../../components/link';
-import VerticalMobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-vertical--white.svg';
-import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-preferred--white.svg';
-import DesktopLogo from '../../assets/logos/niaid-data-ecosystem-logo_desktop--white.svg';
+import {Logo} from '../logo';
 import {IconButton} from '../button';
 
 interface RouteProps {
@@ -153,8 +149,8 @@ export const DesktopNavItem = ({
   if (!routes) {
     return (
       <Link
-        px={2}
         href={href ?? '#'}
+        px={2}
         fontSize='md'
         fontWeight={500}
         color='white'
@@ -165,11 +161,13 @@ export const DesktopNavItem = ({
         }}
         variant='unstyled'
         cursor='pointer'
-        alignItems='center'
         whiteSpace='nowrap'
         display='flex'
+        w='auto'
         h='100%'
         justifyContent='center'
+        alignItems='center'
+        textAlign='center'
         target={isExternal ? '_blank' : '_self'}
       >
         {label}
@@ -288,12 +286,8 @@ const DesktopSubNav = ({label, href, subLabel, isExternal}: RouteProps) => {
 
 export const Navigation: React.FC<NavigationProps> = ({bg, navigation}) => {
   const {isOpen, onToggle} = useDisclosure();
-  const screenSize = useBreakpointValue({
-    base: 'mobile-small',
-    sm: 'mobile',
-    lg: 'desktop',
-  });
   const navItems = navigation?.routes;
+
   return (
     <Box as='nav' aria-label='Main navigation' w='100%'>
       <Flex
@@ -309,6 +303,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navigation}) => {
       >
         <Flex flex={{base: 1, md: 'auto'}} alignItems='center'>
           <Flex flex={{base: 1}} justify='start'>
+            {/* Display logo as link if provided. */}
             {navigation && navigation.href ? (
               <Link
                 display='flex'
@@ -317,58 +312,10 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navigation}) => {
                 variant='unstyled'
                 py={6}
               >
-                <Image
-                  w='auto'
-                  h={
-                    screenSize === 'mobile'
-                      ? '28px'
-                      : screenSize === 'mobile-small'
-                      ? '56px'
-                      : '40px'
-                  }
-                  minH={
-                    screenSize === 'mobile'
-                      ? '28px'
-                      : screenSize === 'mobile-small'
-                      ? '56px'
-                      : '40px'
-                  }
-                  src={
-                    screenSize === 'mobile'
-                      ? MobileLogo
-                      : screenSize === 'mobile-small'
-                      ? VerticalMobileLogo
-                      : DesktopLogo
-                  }
-                  alt={'NIAID Data Ecosystem logo'}
-                />
+                <Logo />
               </Link>
             ) : (
-              <Image
-                w='auto'
-                h={
-                  screenSize === 'mobile'
-                    ? '28px'
-                    : screenSize === 'mobile-small'
-                    ? '56px'
-                    : '40px'
-                }
-                minH={
-                  screenSize === 'mobile'
-                    ? '28px'
-                    : screenSize === 'mobile-small'
-                    ? '56px'
-                    : '40px'
-                }
-                src={
-                  screenSize === 'mobile'
-                    ? MobileLogo
-                    : screenSize === 'mobile-small'
-                    ? VerticalMobileLogo
-                    : DesktopLogo
-                }
-                alt={'NIAID Data Ecosystem logo'}
-              />
+              <Logo />
             )}
             <Flex
               display={{base: 'none', md: 'flex'}}
@@ -376,7 +323,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navigation}) => {
               flex={1}
               justifyContent='flex-end'
             >
-              <Stack direction={'row'} spacing={{base: 2, lg: 4}} py={2}>
+              <Stack direction='row' spacing={{base: 2, lg: 4}} py={2}>
                 {navItems &&
                   navItems.map(navItem => (
                     <DesktopNavItem key={navItem.label} {...navItem} />
@@ -384,6 +331,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navigation}) => {
               </Stack>
             </Flex>
           </Flex>
+
           {navItems && (
             <IconButton
               onClick={onToggle}
@@ -406,10 +354,14 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navigation}) => {
       </Flex>
 
       {/* Nav in mobile mode */}
-
       <Box borderRadius='semi' boxShadow='base' overflow='hidden'>
         <Collapse in={isOpen} animateOpacity>
-          <Stack bg='white' p={2} display={{md: 'none'}} alignItems='end'>
+          <Stack
+            bg='white'
+            p={2}
+            display={{base: 'flex', md: 'none'}}
+            alignItems='end'
+          >
             {navItems &&
               navItems.map(navItem => (
                 <MobileNavItem key={navItem.label} {...navItem} />

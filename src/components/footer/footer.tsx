@@ -6,7 +6,6 @@ import {
   SimpleGrid,
   Heading,
   Icon,
-  Image,
   useBreakpointValue,
   TextProps,
   UnorderedList,
@@ -17,10 +16,8 @@ import {
 import {FaChevronRight, FaGithub, FaRegEnvelope} from 'react-icons/fa';
 import styled from '@emotion/styled';
 import {Link, LinkProps} from '../../components/link';
-import VerticalMobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-vertical--white.svg';
-import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-preferred--white.svg';
-import DesktopLogo from '../../assets/logos/niaid-data-ecosystem-logo_desktop--white.svg';
 import footerConfig from './footer.config.json';
+import {Logo} from '../logo';
 
 // Styled links for footer section
 export const StyledLink = styled(Link)<LinkProps>(() => ({}));
@@ -265,7 +262,12 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
       display={['block', 'block', 'block', 'flex']}
       flexDirection='column'
     >
-      <Stack p={8} alignItems={['center', 'center', 'start']} margin={'0 auto'}>
+      <Stack
+        w='100%'
+        p={8}
+        alignItems={['center', 'center', 'start']}
+        margin={'0 auto'}
+      >
         <Box w='100%'>
           {navigation && navigation.href ? (
             <Link
@@ -274,42 +276,10 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
               href={navigation['href']}
               variant='unstyled'
             >
-              <Image
-                src={
-                  screenSize === 'mobile'
-                    ? MobileLogo
-                    : screenSize === 'mobile-small'
-                    ? VerticalMobileLogo
-                    : DesktopLogo
-                }
-                alt='NIAID Data Ecosystem logo'
-                h={
-                  screenSize === 'mobile'
-                    ? '28px'
-                    : screenSize === 'mobile-small'
-                    ? '56px'
-                    : '40px'
-                }
-              ></Image>
+              <Logo />
             </Link>
           ) : (
-            <Image
-              src={
-                screenSize === 'mobile'
-                  ? MobileLogo
-                  : screenSize === 'mobile-small'
-                  ? VerticalMobileLogo
-                  : DesktopLogo
-              }
-              alt={'NIAID Data Ecosystem logo'}
-              h={
-                screenSize === 'mobile'
-                  ? '28px'
-                  : screenSize === 'mobile-small'
-                  ? '56px'
-                  : '40px'
-              }
-            ></Image>
+            <Logo />
           )}
         </Box>
         <SimpleGrid

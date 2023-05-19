@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text} from './text';
 import {theme} from 'src/theme';
-import {ComponentStory, ComponentMeta} from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
 export default {
   title: 'Components/Text',
@@ -97,11 +97,11 @@ export default {
       control: {type: 'text'},
     },
   },
-} as ComponentMeta<typeof Text>;
+} as Meta<typeof Text>;
 
-const Template: ComponentStory<typeof Text> = args => <Text {...args} />;
+const Template: StoryObj<typeof Text> = {render: args => <Text {...args} />};
 
-export const Default = Template.bind({});
+export const Default = Template;
 Default.args = {
   children: 'Example Text',
   color: theme.colors.text.body,
