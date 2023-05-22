@@ -281,7 +281,6 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
           minChildWidth={{
             base: '100%',
             md: `${100 / navigationSections.length}%`,
-            lg: `${1000 / navigationSections.length}px`,
           }}
           maxW='6xl'
           w='100%'
