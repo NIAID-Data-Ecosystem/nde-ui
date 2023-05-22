@@ -30,7 +30,7 @@ export const Logo = () => {
       {/* Desktop Logo : from large screen size */}
       <Image
         display={{base: 'none', lg: 'block'}}
-        minWidth='595px'
+        minWidth='530px'
         h='40px'
         minH='40px'
         src={DesktopLogo}

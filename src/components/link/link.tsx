@@ -31,6 +31,7 @@ export const Link = forwardRef<LinkProps, 'a'>((props, ref) => {
     >
       {/* wrap children in div for border-bottom property */}
       <Box
+        as='span'
         className={typeof children === 'string' ? 'child-string' : 'child-node'}
       >
         {children}

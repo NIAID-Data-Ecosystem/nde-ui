@@ -262,12 +262,7 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
       display={['block', 'block', 'block', 'flex']}
       flexDirection='column'
     >
-      <Stack
-        w='100%'
-        p={8}
-        alignItems={['center', 'center', 'start']}
-        margin={'0 auto'}
-      >
+      <Stack p={8} alignItems={['center', 'center', 'start']} margin={'0 auto'}>
         <Box w='100%'>
           {navigation && navigation.href ? (
             <Link
