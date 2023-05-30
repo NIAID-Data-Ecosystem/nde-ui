@@ -107,92 +107,59 @@ export interface FooterProps {
   };
 }
 
-const LastUpdatedDetails = ({lastUpdate}: {lastUpdate: FooterItem}) => {
-  if (!lastUpdate) {
-    return null;
-  }
-  return (
-    <Flex
-      alignItems='center'
-      px={4}
-      mt={{base: 1, md: 0}}
-      mb={{base: 3, md: 0}}
-    >
-      <StyledLink
-        href={lastUpdate.href}
-        fontSize='sm'
-        w='unset'
-        isExternal={lastUpdate.isExternal}
-        whiteSpace='nowrap'
-      >
-        {lastUpdate.label}
-      </StyledLink>
-    </Flex>
-  );
-};
-
 // Contact Links such as social media, email etc.
-const ContactUs = ({
-  contact,
+const FooterBottom = ({
+  routes,
 }: {
-  contact: FooterProps['navigation']['contact'];
+  routes:
+    | FooterProps['navigation']['contact']['routes']
+    | FooterProps['navigation']['lastUpdate'];
 }) => {
-  if (!contact) {
+  if (!routes) {
     return null;
   }
 
   return (
     <>
-      {/* Contact Links */}
-      <Flex
-        flexDirection={{base: 'column', md: 'row'}}
-        alignItems={{base: 'start', md: 'center'}}
-      >
-        {contact?.routes &&
-          contact.routes.map(route => {
-            if (!route.href) {
-              return;
-            }
-            const {label, type, href, isExternal} = route;
-            return (
-              <Flex
-                key={label}
-                alignItems='center'
-                px={4}
-                mt={{base: 1, md: 0}}
-                mb={{base: 3, md: 0}}
+      {routes &&
+        routes.map(route => {
+          if (!route.href) {
+            return;
+          }
+          const {label, type, href, isExternal} = route;
+          return (
+            <Flex
+              key={label}
+              alignItems='center'
+              justifyContent='inherit'
+              px={4}
+              mt={{base: 1, md: 0}}
+              mb={{base: 3, md: 0}}
+            >
+              {type?.toLowerCase().includes('email') && (
+                <Icon as={FaRegEnvelope} boxSize={4} mx={2} />
+              )}
+              {type?.toLowerCase().includes('github') && (
+                <Icon as={FaGithub} boxSize={4} mx={2} />
+              )}
+              <StyledLink
+                href={href}
+                fontSize='sm'
+                w='unset'
+                isExternal={isExternal}
+                whiteSpace='nowrap'
               >
-                {type?.toLowerCase().includes('email') && (
-                  <Icon as={FaRegEnvelope} boxSize={3} mx={2}></Icon>
-                )}
-                {type?.toLowerCase().includes('github') && (
-                  <Icon as={FaGithub} boxSize={4} mx={2}></Icon>
-                )}
-                <StyledLink
-                  href={href}
-                  fontSize='sm'
-                  w='unset'
-                  isExternal={isExternal}
-                  whiteSpace='nowrap'
-                >
-                  {label}
-                </StyledLink>
-              </Flex>
-            );
-          })}
-      </Flex>
+                {label}
+              </StyledLink>
+            </Flex>
+          );
+        })}
     </>
   );
 };
 
 export const Footer: React.FC<FooterProps> = ({navigation}) => {
-  const navigationSections = navigation?.routes || footerConfig.routes;
-
-  const screenSize = useBreakpointValue({
-    base: 'mobile-small',
-    sm: 'mobile',
-    lg: 'desktop',
-  });
+  const navigationSections = navigation?.routes;
 
   interface SubList {
     label: string;
@@ -281,6 +248,7 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
           minChildWidth={{
             base: '100%',
             md: `${100 / navigationSections.length}%`,
+            xl: `${1000 / navigationSections.length}px`,
           }}
           maxW='6xl'
           w='100%'
@@ -322,29 +290,37 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
         bg='text.heading'
         borderColor='gray.700'
       >
-        <Flex
+        {/* <Flex
           maxW='unset'
           px={{base: 0, sm: 4}}
-          py={{base: 4, sm: 8, md: 4}}
-          flexDirection={{base: 'column', md: 'row'}}
-          alignItems={{md: 'center'}}
-          justifyContent={{md: 'space-between'}}
+          py={{base: 2, sm: 4}}
+          flexDirection={{base: 'row'}}
+          flexWrap='wrap'
+        > */}
+        <Flex
+          px={{base: 0, sm: 4}}
+          py={{base: 2, sm: 4}}
+          flexDirection={{base: 'row', md: 'row'}}
+          flexWrap='wrap'
         >
-          {navigation && navigation.contact && (
-            <ContactUs contact={navigation.contact} />
-          )}
-
-          <Flex flexDirection={{base: 'column', md: 'row'}}>
-            {navigation &&
-              navigation.lastUpdate &&
-              navigation.lastUpdate.map(updateInfo => {
-                return (
-                  <LastUpdatedDetails
-                    key={updateInfo.label}
-                    lastUpdate={updateInfo}
-                  />
-                );
-              })}
+          <Flex
+            flexDirection={{base: 'column', lg: 'row'}}
+            flexWrap='wrap'
+            flex={1}
+          >
+            {navigation && navigation.contact && (
+              <FooterBottom routes={navigation.contact.routes} />
+            )}
+          </Flex>
+          <Flex
+            flexDirection={{base: 'column', lg: 'row'}}
+            flexWrap='wrap'
+            flex={1}
+            justifyContent={{base: 'flex-start', md: 'flex-end'}}
+          >
+            {navigation && navigation?.lastUpdate && (
+              <FooterBottom routes={navigation.lastUpdate} />
+            )}
           </Flex>
         </Flex>
       </Box>
