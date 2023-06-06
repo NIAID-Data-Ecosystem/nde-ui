@@ -6,7 +6,6 @@ import {
   SimpleGrid,
   Heading,
   Icon,
-  useBreakpointValue,
   TextProps,
   UnorderedList,
   ListItem,
@@ -16,7 +15,6 @@ import {
 import {FaChevronRight, FaGithub, FaRegEnvelope} from 'react-icons/fa';
 import styled from '@emotion/styled';
 import {Link, LinkProps} from '../../components/link';
-import footerConfig from './footer.config.json';
 import {Logo} from '../logo';
 
 // Styled links for footer section
