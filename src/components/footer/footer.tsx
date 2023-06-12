@@ -3,7 +3,6 @@ import {
   Box,
   Flex,
   Stack,
-  SimpleGrid,
   Heading,
   Icon,
   TextProps,
@@ -15,7 +14,7 @@ import {
 import {FaChevronRight, FaGithub, FaRegEnvelope} from 'react-icons/fa';
 import styled from '@emotion/styled';
 import {Link, LinkProps} from '../../components/link';
-import {Logo} from '../logo';
+import {NIAIDLogo, NDELogo} from '../logo';
 
 // Styled links for footer section
 export const StyledLink = styled(Link)<LinkProps>(() => ({}));
@@ -229,99 +228,64 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
     >
       <Stack p={8} alignItems={['center', 'center', 'start']} margin={'0 auto'}>
         <Box w='100%'>
-          {navigation && navigation.href ? (
+          {/*
+            There are two logos in our nav bar with two separate links.
+            1. Link to the NIAID homepage
+            2. Link to the Discovery Portal homepage
+            */}
+          <Flex id='footer-logos' flexDirection={{base: 'column', sm: 'row'}}>
             <Link
               display='flex'
               alignItems='center'
-              href={navigation['href']}
+              href='https://www.niaid.nih.gov/'
               variant='unstyled'
             >
-              <Logo />
+              <NIAIDLogo />
             </Link>
-          ) : (
-            <Logo />
-          )}
+            {navigation && navigation.href ? (
+              <>
+                <Link
+                  display='flex'
+                  alignItems='center'
+                  href={navigation.href}
+                  variant='unstyled'
+                >
+                  <NDELogo />
+                </Link>
+              </>
+            ) : (
+              <></>
+            )}
+          </Flex>
+
+          <Flex
+            px={{base: 0, sm: 4}}
+            py={{base: 2, sm: 4}}
+            flexDirection={{base: 'row', md: 'row'}}
+            flexWrap='wrap'
+          >
+            <Flex
+              flexDirection={{base: 'column', lg: 'row'}}
+              flexWrap='wrap'
+              flex={1}
+            >
+              {navigation && navigation.contact && (
+                <FooterBottom routes={navigation.contact.routes} />
+              )}
+            </Flex>
+            <Flex
+              flexDirection={{base: 'column', lg: 'row'}}
+              flexWrap='wrap'
+              flex={1}
+              justifyContent={{base: 'flex-start', md: 'flex-end'}}
+            >
+              {navigation && navigation?.lastUpdate && (
+                <FooterBottom routes={navigation.lastUpdate} />
+              )}
+            </Flex>
+          </Flex>
         </Box>
-        <SimpleGrid
-          minChildWidth={{
-            base: '100%',
-            md: `${100 / navigationSections.length}%`,
-            xl: `${1000 / navigationSections.length}px`,
-          }}
-          maxW='6xl'
-          w='100%'
-        >
-          {navigationSections.map((section, i) => {
-            return (
-              <Box key={i} flex={i === 0 ? 2 : 1}>
-                {section.label && (
-                  <ListHeader mt={8}>{section.label}</ListHeader>
-                )}
-                <UnorderedList ml={0} my={4}>
-                  {section.routes &&
-                    section.routes.map(({href, label, routes, isExternal}) => {
-                      return (
-                        <ListItem key={label} alignItems='flex-start'>
-                          {href ? (
-                            <FooterLink
-                              href={href}
-                              isExternal={isExternal ?? false}
-                              variant='ghost'
-                            >
-                              {label}
-                            </FooterLink>
-                          ) : (
-                            <SubList label={label} routes={routes} />
-                          )}
-                        </ListItem>
-                      );
-                    })}
-                </UnorderedList>
-              </Box>
-            );
-          })}
-        </SimpleGrid>
       </Stack>
-      <Box
-        borderTopWidth={1}
-        borderStyle='solid'
-        bg='text.heading'
-        borderColor='gray.700'
-      >
-        {/* <Flex
-          maxW='unset'
-          px={{base: 0, sm: 4}}
-          py={{base: 2, sm: 4}}
-          flexDirection={{base: 'row'}}
-          flexWrap='wrap'
-        > */}
-        <Flex
-          px={{base: 0, sm: 4}}
-          py={{base: 2, sm: 4}}
-          flexDirection={{base: 'row', md: 'row'}}
-          flexWrap='wrap'
-        >
-          <Flex
-            flexDirection={{base: 'column', lg: 'row'}}
-            flexWrap='wrap'
-            flex={1}
-          >
-            {navigation && navigation.contact && (
-              <FooterBottom routes={navigation.contact.routes} />
-            )}
-          </Flex>
-          <Flex
-            flexDirection={{base: 'column', lg: 'row'}}
-            flexWrap='wrap'
-            flex={1}
-            justifyContent={{base: 'flex-start', md: 'flex-end'}}
-          >
-            {navigation && navigation?.lastUpdate && (
-              <FooterBottom routes={navigation.lastUpdate} />
-            )}
-          </Flex>
-        </Flex>
-      </Box>
     </Box>
   );
 };
