@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image} from '@chakra-ui/react';
+import {Flex, Image, Link} from '@chakra-ui/react';
 import ndeVerticalMobile from '../../assets/logos/nde/nde-logo_mobile-vertical--white.svg';
 import ndeMobile from '../../assets/logos/nde/nde-logo_mobile-preferred--white.svg';
 import ndeDesktop from '../../assets/logos/nde/nde-logo_desktop--white.svg';
@@ -13,7 +13,7 @@ export const NIAIDLogo = () => {
       {/* Mobile Logo : up to small screen size  */}
       <Image
         display={{base: 'block', sm: 'none'}}
-        minWidth='130px'
+        w='auto'
         h='36px'
         minH='36px'
         src={niaidVerticalMobile}
@@ -23,7 +23,7 @@ export const NIAIDLogo = () => {
       {/* Tablet Logo : from small to large screen size  */}
       <Image
         display={{base: 'none', sm: 'block', lg: 'none'}}
-        minWidth='330px'
+        w='auto'
         h='28px'
         minH='28px'
         src={niaidMobile}
@@ -33,7 +33,7 @@ export const NIAIDLogo = () => {
       {/* Desktop Logo : from large screen size */}
       <Image
         display={{base: 'none', lg: 'block'}}
-        minWidth='530px'
+        w='auto'
         h='40px'
         minH='40px'
         src={niaidDesktop}
@@ -49,7 +49,7 @@ export const NDELogo = () => {
       {/* Mobile Logo : up to small screen size  */}
       <Image
         display={{base: 'block', sm: 'none'}}
-        minWidth='130px'
+        w='auto'
         h='19px'
         minH='19px'
         src={ndeVerticalMobile}
@@ -59,7 +59,7 @@ export const NDELogo = () => {
       {/* Tablet Logo : from small to large screen size  */}
       <Image
         display={{base: 'none', sm: 'block', lg: 'none'}}
-        minWidth='330px'
+        w='auto'
         h='28px'
         minH='28px'
         src={ndeMobile}
@@ -69,12 +69,46 @@ export const NDELogo = () => {
       {/* Desktop Logo : from large screen size */}
       <Image
         display={{base: 'none', lg: 'block'}}
-        minWidth='530px'
+        w='auto'
         h='40px'
         minH='40px'
         src={ndeDesktop}
         alt='NIAID Data Ecosystem logo'
       />
     </>
+  );
+};
+
+export const Logo = ({href}: {href?: string}) => {
+  /*
+    There are two logos in our nav bar with two separate links.
+    1. Link to the NIAID homepage
+    2. Link to the Discovery Portal homepage
+  */
+  return (
+    <Flex className='logo' flexDirection={{base: 'column', sm: 'row'}}>
+      <Link
+        display='flex'
+        alignItems='center'
+        href='https://www.niaid.nih.gov/'
+        variant='unstyled'
+      >
+        <NIAIDLogo />
+      </Link>
+      {href ? (
+        <>
+          <Link
+            display='flex'
+            alignItems='center'
+            href={href}
+            variant='unstyled'
+          >
+            <NDELogo />
+          </Link>
+        </>
+      ) : (
+        <></>
+      )}
+    </Flex>
   );
 };

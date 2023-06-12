@@ -20,12 +20,6 @@ import {IoClose, IoMenu} from 'react-icons/io5';
 import {Link} from '../../components/link';
 import {Logo} from '../logo';
 import {IconButton} from '../button';
-import ndeVerticalMobile from '../../assets/logos/nde/nde-logo_mobile-vertical--white.svg';
-import ndeMobile from '../../assets/logos/nde/nde-logo_mobile-preferred--white.svg';
-import ndeDesktop from '../../assets/logos/nde/nde-logo_desktop--white.svg';
-import niaidVerticalMobile from '../../assets/logos/niaid/niaid-logo_mobile-vertical--white.svg';
-import niaidMobile from '../../assets/logos/niaid/niaid-logo_mobile-preferred--white.svg';
-import niaidDesktop from '../../assets/logos/niaid/niaid-logo_desktop--white.svg';
 
 interface RouteProps {
   label: string;
@@ -309,8 +303,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navigation}) => {
       >
         <Flex flex={{base: 1, md: 'auto'}} alignItems='center'>
           <Flex flex={{base: 1}} justify='start'>
-            {/* Display logo as link if provided. */}
-
+            <Logo href={navigation?.href} />
             <Flex
               display={{base: 'none', md: 'flex'}}
               ml={{base: 6, lg: 10}}
