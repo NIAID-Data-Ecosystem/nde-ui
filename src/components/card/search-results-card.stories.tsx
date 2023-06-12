@@ -31,7 +31,7 @@ import styled from '@emotion/styled';
 import {theme} from 'src/theme';
 import {AccessBadge} from '../badge/badge.stories';
 import {Heading, Link} from '../index';
-import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-preferred.svg';
+import MobileLogo from '../../assets/logos/combined-nde-niaid/niaid-data-ecosystem-logo_mobile-preferred.svg';
 
 export default {
   title: 'Components/Card',

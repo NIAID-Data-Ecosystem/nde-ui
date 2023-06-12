@@ -17,10 +17,13 @@ import {
 import {FaChevronRight, FaGithub, FaRegEnvelope} from 'react-icons/fa';
 import styled from '@emotion/styled';
 import {Link, LinkProps} from '../../components/link';
-import VerticalMobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-vertical--white.svg';
-import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-preferred--white.svg';
-import DesktopLogo from '../../assets/logos/niaid-data-ecosystem-logo_desktop--white.svg';
 import footerConfig from './footer.config.json';
+import ndeVerticalMobile from '../../assets/logos/nde/nde-logo_mobile-vertical--white.svg';
+import ndeMobile from '../../assets/logos/nde/nde-logo_mobile-preferred--white.svg';
+import ndeDesktop from '../../assets/logos/nde/nde-logo_desktop--white.svg';
+import niaidVerticalMobile from '../../assets/logos/niaid/niaid-logo_mobile-vertical--white.svg';
+import niaidMobile from '../../assets/logos/niaid/niaid-logo_mobile-preferred--white.svg';
+import niaidDesktop from '../../assets/logos/niaid/niaid-logo_desktop--white.svg';
 
 // Styled links for footer section
 export const StyledLink = styled(Link)<LinkProps>(() => ({}));
@@ -267,7 +270,88 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
     >
       <Stack p={8} alignItems={['center', 'center', 'start']} margin={'0 auto'}>
         <Box w='100%'>
-          {navigation && navigation.href ? (
+          {/*
+            There are two logos in our nav bar with two separate links.
+            1. Link to the NIAID homepage
+            2. Link to the Discovery Portal homepage
+            */}
+          <Flex
+            id='footer-logos'
+            flexDirection={screenSize === 'mobile-small' ? 'column' : 'row'}
+          >
+            <Link
+              display='flex'
+              alignItems='center'
+              href='https://www.niaid.nih.gov/'
+              variant='unstyled'
+            >
+              <Image
+                w='auto'
+                h={
+                  screenSize === 'mobile'
+                    ? '28px'
+                    : screenSize === 'mobile-small'
+                    ? '36px'
+                    : '40px'
+                }
+                minH={
+                  screenSize === 'mobile'
+                    ? '28px'
+                    : screenSize === 'mobile-small'
+                    ? '36px'
+                    : '40px'
+                }
+                src={
+                  screenSize === 'mobile'
+                    ? niaidMobile
+                    : screenSize === 'mobile-small'
+                    ? niaidVerticalMobile
+                    : niaidDesktop
+                }
+                alt='national institute of allergies and infectious diseases logo'
+              />
+            </Link>
+            {navigation && navigation.href ? (
+              <>
+                <Link
+                  display='flex'
+                  alignItems='center'
+                  href={navigation.href}
+                  variant='unstyled'
+                >
+                  <Image
+                    w='auto'
+                    h={
+                      screenSize === 'mobile'
+                        ? '28px'
+                        : screenSize === 'mobile-small'
+                        ? '19px'
+                        : '40px'
+                    }
+                    minH={
+                      screenSize === 'mobile'
+                        ? '28px'
+                        : screenSize === 'mobile-small'
+                        ? '19px'
+                        : '40px'
+                    }
+                    src={
+                      screenSize === 'mobile'
+                        ? ndeMobile
+                        : screenSize === 'mobile-small'
+                        ? ndeVerticalMobile
+                        : ndeDesktop
+                    }
+                    alt='NIAID Data Ecosystem logo'
+                  />
+                </Link>
+              </>
+            ) : (
+              <></>
+            )}
+          </Flex>
+
+          {/* {navigation && navigation.href ? (
             <Link
               display='flex'
               alignItems='center'
@@ -310,7 +394,7 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
                   : '40px'
               }
             ></Image>
-          )}
+          )}*/}
         </Box>
         <SimpleGrid
           minChildWidth={{

@@ -20,10 +20,13 @@ import {
 import {FaCaretDown, FaChevronRight, FaChevronDown} from 'react-icons/fa';
 import {IoClose, IoMenu} from 'react-icons/io5';
 import {Link} from '../../components/link';
-import VerticalMobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-vertical--white.svg';
-import MobileLogo from '../../assets/logos/niaid-data-ecosystem-logo_mobile-preferred--white.svg';
-import DesktopLogo from '../../assets/logos/niaid-data-ecosystem-logo_desktop--white.svg';
 import {IconButton} from '../button';
+import ndeVerticalMobile from '../../assets/logos/nde/nde-logo_mobile-vertical--white.svg';
+import ndeMobile from '../../assets/logos/nde/nde-logo_mobile-preferred--white.svg';
+import ndeDesktop from '../../assets/logos/nde/nde-logo_desktop--white.svg';
+import niaidVerticalMobile from '../../assets/logos/niaid/niaid-logo_mobile-vertical--white.svg';
+import niaidMobile from '../../assets/logos/niaid/niaid-logo_mobile-preferred--white.svg';
+import niaidDesktop from '../../assets/logos/niaid/niaid-logo_desktop--white.svg';
 
 interface RouteProps {
   label: string;
@@ -308,13 +311,20 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navigation}) => {
       >
         <Flex flex={{base: 1, md: 'auto'}} alignItems='center'>
           <Flex flex={{base: 1}} justify='start'>
-            {navigation && navigation.href ? (
+            {/*
+            There are two logos in our nav bar with two separate links.
+            1. Link to the NIAID homepage
+            2. Link to the Discovery Portal homepage
+            */}
+            <Flex
+              id='nav-logos'
+              flexDirection={screenSize === 'mobile-small' ? 'column' : 'row'}
+            >
               <Link
                 display='flex'
                 alignItems='center'
-                href={navigation.href}
+                href='https://www.niaid.nih.gov/'
                 variant='unstyled'
-                py={6}
               >
                 <Image
                   w='auto'
@@ -322,53 +332,66 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navigation}) => {
                     screenSize === 'mobile'
                       ? '28px'
                       : screenSize === 'mobile-small'
-                      ? '56px'
+                      ? '36px'
                       : '40px'
                   }
                   minH={
                     screenSize === 'mobile'
                       ? '28px'
                       : screenSize === 'mobile-small'
-                      ? '56px'
+                      ? '36px'
                       : '40px'
                   }
                   src={
                     screenSize === 'mobile'
-                      ? MobileLogo
+                      ? niaidMobile
                       : screenSize === 'mobile-small'
-                      ? VerticalMobileLogo
-                      : DesktopLogo
+                      ? niaidVerticalMobile
+                      : niaidDesktop
                   }
-                  alt={'NIAID Data Ecosystem logo'}
+                  alt='national institute of allergies and infectious diseases logo'
                 />
               </Link>
-            ) : (
-              <Image
-                w='auto'
-                h={
-                  screenSize === 'mobile'
-                    ? '28px'
-                    : screenSize === 'mobile-small'
-                    ? '56px'
-                    : '40px'
-                }
-                minH={
-                  screenSize === 'mobile'
-                    ? '28px'
-                    : screenSize === 'mobile-small'
-                    ? '56px'
-                    : '40px'
-                }
-                src={
-                  screenSize === 'mobile'
-                    ? MobileLogo
-                    : screenSize === 'mobile-small'
-                    ? VerticalMobileLogo
-                    : DesktopLogo
-                }
-                alt={'NIAID Data Ecosystem logo'}
-              />
-            )}
+              {navigation && navigation.href ? (
+                <>
+                  <Link
+                    display='flex'
+                    alignItems='center'
+                    href={navigation.href}
+                    variant='unstyled'
+                  >
+                    <Image
+                      w='auto'
+                      h={
+                        screenSize === 'mobile'
+                          ? '28px'
+                          : screenSize === 'mobile-small'
+                          ? '19px'
+                          : '40px'
+                      }
+                      minH={
+                        screenSize === 'mobile'
+                          ? '28px'
+                          : screenSize === 'mobile-small'
+                          ? '19px'
+                          : '40px'
+                      }
+                      src={
+                        screenSize === 'mobile'
+                          ? ndeMobile
+                          : screenSize === 'mobile-small'
+                          ? ndeVerticalMobile
+                          : ndeDesktop
+                      }
+                      alt='NIAID Data Ecosystem logo'
+                    />
+                  </Link>
+                </>
+              ) : (
+                <></>
+              )}
+            </Flex>
+
             <Flex
               display={{base: 'none', md: 'flex'}}
               ml={{base: 6, lg: 10}}
