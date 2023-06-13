@@ -284,6 +284,7 @@ export const Footer: React.FC<FooterProps> = ({navigation}) => {
               alignItems='center'
               href='https://www.niaid.nih.gov/'
               variant='unstyled'
+              target='_blank'
             >
               <Image
                 w='auto'

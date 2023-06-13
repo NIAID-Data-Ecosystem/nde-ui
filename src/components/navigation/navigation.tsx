@@ -325,6 +325,7 @@ export const Navigation: React.FC<NavigationProps> = ({bg, navigation}) => {
                 alignItems='center'
                 href='https://www.niaid.nih.gov/'
                 variant='unstyled'
+                target='_blank'
               >
                 <Image
                   w='auto'
