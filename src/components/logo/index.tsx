@@ -92,6 +92,7 @@ export const Logo = ({href}: {href?: string}) => {
         alignItems='center'
         href='https://www.niaid.nih.gov/'
         variant='unstyled'
+        target='_blank'
       >
         <NIAIDLogo />
       </Link>
