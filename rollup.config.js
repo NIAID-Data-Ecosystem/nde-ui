@@ -44,7 +44,7 @@ export default [
     ],
   },
   {
-    input: 'dist/esm/types/index.d.ts',
+    input: 'src/index.ts',
     output: [{file: 'dist/index.d.ts', format: 'esm'}],
     // This is a plugin that lets you roll-up your .d.ts definition files.
     plugins: [dts()],
