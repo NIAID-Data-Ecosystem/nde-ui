@@ -1,4 +1,4 @@
-import {ThemeTypings} from '@chakra-ui/react';
+import {extendTheme, ThemeTypings} from '@chakra-ui/react';
 import foundations from './foundations';
 import styles from './styles';
 import {Fonts} from './foundations/typography/typography.types';
@@ -46,4 +46,4 @@ export interface Theme extends Omit<ThemeTypings, 'colors' | 'fonts'>, Fonts {
 /*
 Theme extended from Chakra-UI: https://chakra-ui.com/docs/theming/theme
 */
-export const NDETheme = overrides;
+export const theme = extendTheme(overrides) as Theme;
